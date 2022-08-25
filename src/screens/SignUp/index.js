@@ -12,8 +12,6 @@ const SignUp = ({navigation}) => {
   const [pass, setPass] = useState('');
   const [confirPass, setConfirPass] = useState('');
 
-  console.log(firestore);
-
   const cadastrar = () => {
     if (nome !== '' && email !== '' && pass !== '' && confirPass !== '') {
       if (pass === confirPass) {
@@ -21,22 +19,37 @@ const SignUp = ({navigation}) => {
           .createUserWithEmailAndPassword(email, pass)
           .then(() => {
             let userf = auth().currentUser;
-            userf
-              .sendEmailVerification()
+            let user = {};
+            user.nome = nome;
+            user.email = email;
+            firestore()
+              .collection('users') //  referencia da colecao
+              .doc(userf.uid) //chave do documento
+              .set(user) // valor do documento
               .then(() => {
-                Alert.alert(
-                  'Informação:',
-                  'Foi enviado um email para: ' + email + 'para verificação.',
-                );
-                navigation.dispatch(
-                  CommonActions.reset({
-                    index: 0,
-                    routes: [{name: 'SignIn'}],
-                  }),
-                );
+                console.log('SignUp, cadastrar: Usuário adicionado');
+                userf
+                  .sendEmailVerification()
+                  .then(() => {
+                    Alert.alert(
+                      'Informação:',
+                      'Foi enviado um email para: ' +
+                        email +
+                        'para verificação.',
+                    );
+                    navigation.dispatch(
+                      CommonActions.reset({
+                        index: 0,
+                        routes: [{name: 'SignIn'}],
+                      }),
+                    );
+                  })
+                  .catch(e => {
+                    console.log('SignUp, cadastrar: ' + e);
+                  });
               })
               .catch(e => {
-                console.log('SignUp, cadastrar: ' + e);
+                console.log('SignUp, cadatrar: ' + e);
               });
           })
           .catch(e => {

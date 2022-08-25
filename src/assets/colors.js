@@ -4,7 +4,7 @@ export const COLORS = {
   primaryDark: '#351f63',
   accent: '#478b5d',
   accentSecundary: '#8b5d47',
-*/
+
   primary: '#FF0000',
   primaryLight: '#ADD8E6',
   primaryDark: '#00008B',
@@ -13,4 +13,10 @@ export const COLORS = {
   grey: '#ccc',
   white: '#fff',
   black: '#000',
+*/
+  primary: '#D2738D',
+  primaryLight: '#FFE6E6',
+  primaryDark: '#D27D',
+  accent: '#fff',
+  accentSecundary: '#00000c',
 };

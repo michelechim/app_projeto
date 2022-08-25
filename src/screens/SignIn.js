@@ -75,7 +75,8 @@ const SignIn = ({navigation}) => {
         <View style={styles.divSuperior}>
           <Image
             style={styles.image}
-            source={require('../assets/images/logo.png')}
+            //  source={require('../assets/images/logo.png')}
+            source={require('../assets/images/logo_2.png')}
             accessibilityLabel="logo do app"
           />
           <TextInput
@@ -139,9 +140,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   image: {
-    width: 150,
-    height: 150,
-    margin: 5,
+    width: 300,
+    height: 300,
+    margin: 2,
   },
   input: {
     width: '95%',

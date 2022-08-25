@@ -31,7 +31,8 @@ const App = () => {
 export default App;
 
 const signInStyle = {
-  title: 'Bem vindo ao app',
+  title: 'Chim - mãe & filha',
+  //  title: 'Bem vindo ao aplicativo',
   headerStyle: {backgroundColor: COLORS.primary},
   headerTitle: {color: COLORS.white},
 };
