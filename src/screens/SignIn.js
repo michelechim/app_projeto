@@ -11,21 +11,58 @@ import {
 } from 'react-native';
 import Button from '../components/Button';
 import {COLORS} from '../assets/colors';
-import app from '@react-native-firebase/app';
 import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import firestore from '@react-native-firebase/firestore';
+import Loading from '../components/Loading';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const recuperarSenha = () => {
     navigation.navigate('ForgotPassword');
   };
 
+  const storeUserCache = async value => {
+    try {
+      value.pass = pass;
+      const jsonValue = JSON.stringify(value);
+      await AsyncStorage.setItem('user', jsonValue);
+      setLoading(false);
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'Home'}],
+        }),
+      );
+    } catch (e) {
+      console.log('SignIn: erro em storeUserCache: ' + e);
+    }
+  };
+
+  const getUser = () => {
+    firestore()
+      .collection('users')
+      .doc(auth().currentUser.uid)
+      .get()
+      .then(doc => {
+        if (doc.exists) {
+          storeUserCache(doc.data());
+        } else {
+          console.log('O documento não existe na base de dados!');
+        }
+      })
+      .catch(e => {
+        console.log('SignIn: erro em getUser: ' + e);
+      });
+  };
+
   const entrar = () => {
-    console.log(`Email=${email} Senha=${pass}`);
     if (email !== '' && pass !== '') {
+      setLoading(true);
       auth()
         .signInWithEmailAndPassword(email, pass)
         .then(() => {
@@ -34,16 +71,13 @@ const SignIn = ({navigation}) => {
               'Erro',
               'Você deve verificar seu email para prosseguir.',
             );
+            setLoading(false);
             return;
           }
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{name: 'Home'}],
-            }),
-          );
+          getUser();
         })
         .catch(e => {
+          setLoading(false);
           console.log('SignIn: erro em entrar: ' + e);
           switch (e.code) {
             case 'auth/user-not-found':
@@ -75,8 +109,7 @@ const SignIn = ({navigation}) => {
         <View style={styles.divSuperior}>
           <Image
             style={styles.image}
-            //  source={require('../assets/images/logo.png')}
-            source={require('../assets/images/logo_2.png')}
+            source={require('../assets/images/logo.png')}
             accessibilityLabel="logo do app"
           />
           <TextInput
@@ -118,6 +151,7 @@ const SignIn = ({navigation}) => {
           </View>
         </View>
       </ScrollView>
+      {loading && <Loading />}
     </SafeAreaView>
   );
 };
