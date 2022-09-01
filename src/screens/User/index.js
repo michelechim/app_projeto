@@ -4,11 +4,15 @@ import Button from '../../components/Button';
 import {Container, TextInput} from './styles';
 import firestore from '@react-native-firebase/firestore';
 import {ToastAndroid} from 'react-native';
+import DeleteButton from '../../components/DeleteButton';
+import {Alert} from 'react-native';
+import Loading from '../../components/Loading';
 
 const User = ({route, navigation}) => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [id, setId] = useState('');
+  const [loading, setLoading] = useState(false);
 
   //console.log(route.params.user);
 
@@ -44,6 +48,35 @@ const User = ({route, navigation}) => {
       });
   };
 
+  const excluir = () => {
+    Alert.alert('Atenção', 'Você tem certeza que deseja excluir o curso?', [
+      {
+        text: 'Não',
+        onPress: () => {},
+        style: 'cancel',
+      },
+      {
+        text: 'Sim',
+        onPress: () => {
+          setLoading(true);
+          excluir(id);
+          setLoading(false);
+          navigation.goBack();
+          firestore()
+            .collection('users')
+            .doc(id)
+            .delete()
+            .then(() => {
+              showToast('Usuário excluído.');
+            })
+            .catch(e => {
+              console.error('User, excluir: ', e);
+            });
+        },
+      },
+    ]);
+  };
+
   return (
     <Container>
       <TextInput
@@ -60,6 +93,9 @@ const User = ({route, navigation}) => {
         value={email}
       />
       <Button texto="Salvar" onClick={salvar} />
+      {/* <DeleteButton texto="Excluir" onClick={'teste'} /> */}
+      {id ? <DeleteButton texto="Excluir" onClick={excluir} /> : null}
+      {loading && <Loading />}
     </Container>
   );
 };

@@ -2,14 +2,14 @@ import React from 'react';
 import {Text, StyleSheet, TouchableHighlight} from 'react-native';
 import {COLORS} from '../assets/colors';
 
-const Button = ({texto, onClick}) => {
+const DeleteButton = ({texto, onClick}) => {
   return (
     <TouchableHighlight style={styles.button} onPress={() => onClick()}>
       <Text style={styles.text}>{texto}</Text>
     </TouchableHighlight>
   );
 };
-export default Button;
+export default DeleteButton;
 
 const styles = StyleSheet.create({
   texto: {
