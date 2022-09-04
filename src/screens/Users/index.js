@@ -8,7 +8,7 @@ import firestore from '@react-native-firebase/firestore';
 import {CommonActions} from '@react-navigation/native';
 import Loading from '../../components/Loading';
 
-const Home = ({navigation}) => {
+const Users = ({navigation}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -82,4 +82,4 @@ const Home = ({navigation}) => {
     </Container>
   );
 };
-export default Home;
+export default Users;

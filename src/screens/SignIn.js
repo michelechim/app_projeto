@@ -12,7 +12,6 @@ import {
 import Button from '../components/Button';
 import {COLORS} from '../assets/colors';
 import auth from '@react-native-firebase/auth';
-import {CommonActions} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import firestore from '@react-native-firebase/firestore';
 import Loading from '../components/Loading';
@@ -32,12 +31,12 @@ const SignIn = ({navigation}) => {
       const jsonValue = JSON.stringify(value);
       await AsyncStorage.setItem('user', jsonValue);
       setLoading(false);
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{name: 'Home'}],
-        }),
-      );
+      // navigation.dispatch(
+      //   CommonActions.reset({
+      //     index: 0,
+      //     routes: [{name: 'Estoques'}],
+      //   }),
+      // );
     } catch (e) {
       console.log('SignIn: erro em storeUserCache: ' + e);
     }
@@ -222,11 +221,11 @@ const styles = StyleSheet.create({
   },
   textNormal: {
     fontSize: 18,
-    backgroundColor: COLORS.accent,
     color: COLORS.black,
   },
   textCadastrarSe: {
     fontSize: 16,
+    backgroundColor: COLORS.accent,
     color: COLORS.accentSecundary,
     marginLeft: 5,
   },

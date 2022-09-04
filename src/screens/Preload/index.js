@@ -21,40 +21,40 @@ const Preload = ({navigation}) => {
   const loginUser = async () => {
     const user = await getUserCache();
     if (user) {
-      auth()
-        .signInWithEmailAndPassword(user.email, user.pass)
-        .then(() => {
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{name: 'Home'}],
-            }),
-          );
-        })
-        .catch(e => {
-          console.log('SignIn: erro em entrar: ' + e);
-          switch (e.code) {
-            case 'auth/user-not-found':
-              Alert.alert('Erro', 'Usuário não cadastrado.');
-              break;
-            case 'auth/wrong-password':
-              Alert.alert('Erro', 'Erro na senha.');
-              break;
-            case 'auth/invalid-email':
-              Alert.alert('Erro', 'Email inválido.');
-              break;
-            case 'auth/user-disabled':
-              Alert.alert('Erro', 'Usuário desabilitado.');
-              break;
-          }
-        });
-    } else {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'SignIn'}],
+          routes: [{name: 'Estoques'}],
         }),
       );
+
+      // auth()
+      //   .signInWithEmailAndPassword(user.email, user.pass)
+      //   .then(() => {})
+      //   .catch(e => {
+      //     console.log('SignIn: erro em entrar: ' + e);
+      //     switch (e.code) {
+      //       case 'auth/user-not-found':
+      //         Alert.alert('Erro', 'Usuário não cadastrado.');
+      //         break;
+      //       case 'auth/wrong-password':
+      //         Alert.alert('Erro', 'Erro na senha.');
+      //         break;
+      //       case 'auth/invalid-email':
+      //         Alert.alert('Erro', 'Email inválido.');
+      //         break;
+      //       case 'auth/user-disabled':
+      //         Alert.alert('Erro', 'Usuário desabilitado.');
+      //         break;
+      //     }
+      //   });
+    } else {
+      // navigation.dispatch(
+      //   CommonActions.reset({
+      //     index: 0,
+      //     routes: [{name: 'SignIn'}],
+      //   }),
+      // );
     }
   };
   useEffect(() => {
