@@ -1,5 +1,5 @@
 import React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import {COLORS} from '../assets/colors';
 import Preload from '../screens/Preload';
@@ -9,24 +9,41 @@ import Clients from '../screens/Clients';
 import Client from '../screens/Client';
 import Users from '../screens/Users';
 import User from '../screens/User';
+import LogoutButton from '../components/LogoutButton';
+import CustomDrawerContent from '../components/CustomDrawerContent';
 
-const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const AppStack = () => {
   return (
-    <Stack.Navigator initialRouteName="Preload">
-      <Stack.Screen name="Preload" component={Preload} options={preloadStyle} />
-      <Stack.Screen name="Estoques" component={Stocks} options={stocksStyle} />
-      <Stack.Screen name="Estoque" component={Stock} options={stockStyle} />
-      <Stack.Screen
+    <Drawer.Navigator
+      initialRouteName="Preload"
+      screenOptions={{
+        headerShown: 'true',
+        headerStyle: {
+          backgroundColor: COLORS.primary,
+          paddingRight: 5,
+        },
+        headerTintColor: COLORS.white,
+        headerRight: () => <LogoutButton />,
+      }}
+      drawerContent={props => <CustomDrawerContent {...props} />}>
+      <Drawer.Screen
+        name="Preload"
+        component={Preload}
+        options={preloadStyle}
+      />
+      <Drawer.Screen name="Estoques" component={Stocks} options={stocksStyle} />
+      <Drawer.Screen name="Estoque" component={Stock} options={stockStyle} />
+      <Drawer.Screen
         name="Clientes"
         component={Clients}
         options={clientsStyle}
       />
-      <Stack.Screen name="Cliente" component={Client} options={clientStyle} />
-      <Stack.Screen name="Usuários" component={Users} options={usersStyle} />
-      <Stack.Screen name="Usuário" component={User} options={userStyle} />
-    </Stack.Navigator>
+      <Drawer.Screen name="Cliente" component={Client} options={clientStyle} />
+      <Drawer.Screen name="Usuários" component={Users} options={usersStyle} />
+      <Drawer.Screen name="Usuário" component={User} options={userStyle} />
+    </Drawer.Navigator>
   );
 };
 
@@ -38,38 +55,20 @@ const preloadStyle = {
 
 const stocksStyle = {
   title: 'Estoques',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
-  headerTintColor: {color: COLORS.white},
 };
 const stockStyle = {
   title: 'Estoque',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
-  headerTintColor: {color: COLORS.white},
 };
 const clientsStyle = {
   title: 'Clientes',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
-  headerTintColor: {color: COLORS.white},
 };
 const clientStyle = {
   title: 'Cliente',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
-  headerTintColor: {color: COLORS.white},
 };
 const usersStyle = {
   title: 'Usuários',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
-  headerTintColor: {color: COLORS.white},
 };
 
 const userStyle = {
   title: 'Usuário',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
-  headerTintColor: {color: COLORS.white},
 };
