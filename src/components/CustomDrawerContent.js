@@ -1,10 +1,12 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import DrawerHeader from '../components/DrawerHeader';
-import {AuthUserContext} from '../context/AuthUserProvider';
-//import Icon from 'react-native-vector-icons/Ioincons';
+import DrawerHeader from './DrawerHeader';
+// import {AuthUserContext} from '../context/AuthUserProvider';
+//import Icon from 'react-native-vector-icons/Ionicons';
+import auth from '@react-native-firebase/auth';
+import {CommonActions} from '@react-navigation/native';
 
-import COLORS from '../assets/colors';
+import {COLORS} from '../assets/colors';
 
 const Page = styled.View`
   flex: 1;
@@ -26,6 +28,7 @@ const Body = styled.View`
   align-items: flex-start;
   padding-left: 18px;
   padding-top: 30px;
+  border-color: 'red';
 `;
 
 const ScrollView = styled.ScrollView`
@@ -34,7 +37,7 @@ const ScrollView = styled.ScrollView`
 
 const DivItem = styled.View`
   width: 100%;
-  height: 20px;
+  height: auto;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -42,23 +45,42 @@ const DivItem = styled.View`
 `;
 
 const ItemMenuText = styled.Text`
-  font-size: 16px;
+  font-size: 20px;
   margin: 10px;
   color: ${COLORS.primaryDark};
 `;
 
 const CustomDrawerContent = ({navigation}) => {
+  // const {sigOut} = useContext(AuthUserContext);
+
+  const signOut = async () => {
+    alert('implementar');
+  };
+
   return (
     <Page>
-      <Header />
+      <Header>
+        <DrawerHeader />
+      </Header>
       <Body>
-        <ScrollView style={{width: '100%'}}>
+        <ScrollView>
           <DivItem>
+            {/* <Icon name="school-outline" size={25} color={COLORS.primaryDark} /> */}
             <ItemMenuText
               onPress={() => {
-                navigation.navigate('Cliente');
-              }}
-            />
+                navigation.navigate('Clientes');
+              }}>
+              Clientes
+            </ItemMenuText>
+          </DivItem>
+          <DivItem>
+            {/* <Icon name="exit-outline" size={25} color={COLORS.primaryDark} /> */}
+            <ItemMenuText
+              onPress={() => {
+                signOut();
+              }}>
+              Sair
+            </ItemMenuText>
           </DivItem>
         </ScrollView>
       </Body>

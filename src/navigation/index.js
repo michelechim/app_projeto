@@ -1,12 +1,11 @@
 import React from 'react';
-
 import {AuthUserProvider} from '../context/AuthUserProvider';
-import Routes from './Routes';
+import Navigator from './Navigator';
 
 export default function Providers() {
   return (
     <AuthUserProvider>
-      <Routes />
+      <Navigator />
     </AuthUserProvider>
   );
 }
