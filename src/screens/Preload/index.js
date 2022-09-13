@@ -1,17 +1,20 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect} from 'react';
-import {Alert} from 'react-native';
-import {Container, Image} from './styles';
-import auth from '@react-native-firebase/auth';
+import React, {useEffect, useContext} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {CommonActions} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
+
+import {Container, Image} from './styles';
+import {AuthUserContext} from '../../context/AuthUserProvider';
 
 const Preload = ({navigation}) => {
+  const {setUser} = useContext(AuthUserContext);
+
   const getUserCache = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('user');
-      console.log('getUserCache');
-      console.log(jsonValue);
+      // console.log('getUserCache');
+      // console.log(jsonValue);
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
       console.log('Home: erro em getUserCache: ' + e);
@@ -20,34 +23,15 @@ const Preload = ({navigation}) => {
 
   const loginUser = async () => {
     const user = await getUserCache();
+    setUser(user);
     if (user) {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'AppStack'}],
+          routes: [{name: 'Estoque'}],
+          // routes: [{name: 'AppStack'}],
         }),
       );
-
-      // auth()
-      //   .signInWithEmailAndPassword(user.email, user.pass)
-      //   .then(() => {})
-      //   .catch(e => {
-      //     console.log('SignIn: erro em entrar: ' + e);
-      //     switch (e.code) {
-      //       case 'auth/user-not-found':
-      //         Alert.alert('Erro', 'Usuário não cadastrado.');
-      //         break;
-      //       case 'auth/wrong-password':
-      //         Alert.alert('Erro', 'Erro na senha.');
-      //         break;
-      //       case 'auth/invalid-email':
-      //         Alert.alert('Erro', 'Email inválido.');
-      //         break;
-      //       case 'auth/user-disabled':
-      //         Alert.alert('Erro', 'Usuário desabilitado.');
-      //         break;
-      //     }
-      //   });
     } else {
       navigation.dispatch(
         CommonActions.reset({
@@ -59,6 +43,7 @@ const Preload = ({navigation}) => {
   };
   useEffect(() => {
     loginUser();
+    Icon.loadFont();
   }, []);
   return (
     <Container>

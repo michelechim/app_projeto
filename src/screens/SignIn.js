@@ -12,72 +12,76 @@ import {
 import Button from '../components/Button';
 import {COLORS} from '../assets/colors';
 import auth from '@react-native-firebase/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import firestore from '@react-native-firebase/firestore';
+import {CommonActions} from '@react-navigation/native';
+//import AsyncStorage from '@react-native-async-storage/async-storage';
+import EncryptedStorage from 'react-native-encrypted-storage';
+
 import Loading from '../components/Loading';
+//import {AuthUserContext} from '../context/AuthUserProvider';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPass, setShowPass] = useState(true);
+  //const {signIn} = useContext(AuthUserContext);
 
   const recuperarSenha = () => {
     navigation.navigate('ForgotPassword');
   };
 
-  const storeUserCache = async value => {
+  async function storeUserSession(value) {
     try {
-      value.pass = pass;
-      const jsonValue = JSON.stringify(value);
-      await AsyncStorage.setItem('user', jsonValue);
-      setLoading(false);
-      // navigation.dispatch(
-      //   CommonActions.reset({
-      //     index: 0,
-      //     routes: [{name: 'Estoques'}],
-      //   }),
-      // );
-    } catch (e) {
-      console.log('SignIn: erro em storeUserCache: ' + e);
+      await EncryptedStorage.setItem('user_session', JSON.stringify(value));
+    } catch (error) {
+      console.error('SignIn, storeUserSession: ' + error);
     }
-  };
+  }
 
-  const getUser = () => {
-    firestore()
-      .collection('users')
-      .doc(auth().currentUser.uid)
-      .get()
-      .then(doc => {
-        if (doc.exists) {
-          storeUserCache(doc.data());
-        } else {
-          console.log('O documento não existe na base de dados!');
-        }
-      })
-      .catch(e => {
-        console.log('SignIn: erro em getUser: ' + e);
-      });
-  };
+  async function retrieveUserSession() {
+    try {
+      const session = await EncryptedStorage.getItem('user_session');
+      if (session !== undefined) {
+        console.log(JSON.parse(session));
+      }
+    } catch (error) {
+      console.error('SignIn, storeUserSession: ' + error);
+    }
+  }
 
-  const entrar = () => {
+  const entrar = async () => {
     if (email !== '' && pass !== '') {
       setLoading(true);
       auth()
         .signInWithEmailAndPassword(email, pass)
-        .then(() => {
-          if (!auth().currentUser.emailVerified) {
+        .then(async () => {
+          if (auth().currentUser.emailVerified) {
+            await storeUserSession({
+              email,
+              pass,
+            });
+            await retrieveUserSession();
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{name: 'AppStack'}],
+              }),
+            );
+          } else {
             Alert.alert(
               'Erro',
-              'Você deve verificar seu email para prosseguir.',
+              'Você deve verificar o seu email para prosseguir.',
             );
-            setLoading(false);
-            return;
+            auth()
+              .signOut()
+              .then(() => {})
+              .catch(e => {
+                console.error('SignIn, entrar: ' + e);
+              });
           }
-          getUser();
         })
         .catch(e => {
-          setLoading(false);
-          console.log('SignIn: erro em entrar: ' + e);
+          console.error('SignIn, entrar: ' + e);
           switch (e.code) {
             case 'auth/user-not-found':
               Alert.alert('Erro', 'Usuário não cadastrado.');
@@ -93,6 +97,7 @@ const SignIn = ({navigation}) => {
               break;
           }
         });
+      setLoading(false);
     } else {
       Alert.alert('Erro', 'Por favor, digite email e senha.');
     }
@@ -101,6 +106,54 @@ const SignIn = ({navigation}) => {
   const cadastrar = () => {
     navigation.navigate('SignUp');
   };
+
+  //const storeUserCache = async value => {
+  //   try {
+  //     value.pass = pass;
+  //     const jsonValue = JSON.stringify(value);
+  //     await AsyncStorage.setItem('user', jsonValue);
+  //     setLoading(false);
+  //     // navigation.dispatch(
+  //     //   CommonActions.reset({
+  //     //     index: 0,
+  //     //     routes: [{name: 'Estoques'}],
+  //     //   }),
+  //     // );
+  //   } catch (e) {
+  //     console.log('SignIn: erro em storeUserCache: ' + e);
+  //   }
+  // };
+
+  // const getUser = () => {
+  //   firestore()
+  //     .collection('users')
+  //     .doc(auth().currentUser.uid)
+  //     .get()
+  //     .then(doc => {
+  //       if (doc.exists) {
+  //         storeUserCache(doc.data());
+  //       } else {
+  //         console.log('O documento não existe na base de dados!');
+  //       }
+  //     })
+  //     .catch(e => {
+  //       console.log('SignIn: erro em getUser: ' + e);
+  //     });
+  // };
+
+  // const entrar = async () => {
+  //   if (email !== '' && pass !== '') {
+  //     setLoading(true);
+  //     await signIn(email, pass);
+  //     setLoading(false);
+  //   } else {
+  //     Alert.alert('Erro', 'Por favor, digite email e senha.');
+  //   }
+  // };
+
+  // const cadastrar = () => {
+  //   navigation.navigate('SignUp');
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
@@ -124,12 +177,12 @@ const SignIn = ({navigation}) => {
               this.passTextInput = ref;
             }}
             style={styles.input}
-            secureTextEntry={true}
+            secureTextEntry={showPass}
             placeholder="Senha"
             keyboardType="default"
             returnKeyType="send"
             onChangeText={t => setPass(t)}
-            onEndEditing={() => entrar()}
+            onSubmitEditing={value => setShowPass(false)}
           />
           <Text style={styles.textEsqueceuSenha} onPress={recuperarSenha}>
             Esqueceu a senha?

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components/native';
-// import {AuthUserContext} from '../context/AuthUserProvider';
-// import Icon from 'react-native-vector-icons/Ionicons';
+import {AuthUserContext} from '../context/AuthUserProvider';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {COLORS} from '../assets/colors';
 
@@ -50,16 +50,16 @@ const TextUserName = styled.Text`
 `;
 
 const DrawerHeader = () => {
-  // const {user} = useContext(AuthUserContext);
+  const {user} = useContext(AuthUserContext);
 
   return (
     <Container>
       <DivIcon>
-        {/* <Icon name="person-outline" size={40} color={COLORS.white} /> */}
+        <Icon name="person-outline" size={40} color={COLORS.white} />
       </DivIcon>
       <DivText>
         <TextWelcome>Bem vindo,</TextWelcome>
-        <TextUserName>Nome do user logado aqui</TextUserName>
+        <TextUserName>{user ? user.nome : ''}</TextUserName>
       </DivText>
     </Container>
   );

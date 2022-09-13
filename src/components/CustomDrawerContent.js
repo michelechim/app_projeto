@@ -1,11 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components/native';
-import DrawerHeader from './DrawerHeader';
-// import {AuthUserContext} from '../context/AuthUserProvider';
-//import Icon from 'react-native-vector-icons/Ionicons';
-import auth from '@react-native-firebase/auth';
-import {CommonActions} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
 
+import DrawerHeader from '../components/DrawerHeader';
+import {AuthUserContext} from '../context/AuthUserProvider';
 import {COLORS} from '../assets/colors';
 
 const Page = styled.View`
@@ -51,11 +49,7 @@ const ItemMenuText = styled.Text`
 `;
 
 const CustomDrawerContent = ({navigation}) => {
-  // const {sigOut} = useContext(AuthUserContext);
-
-  const signOut = async () => {
-    alert('implementar');
-  };
+  const {sigOut} = useContext(AuthUserContext);
 
   return (
     <Page>
@@ -65,19 +59,37 @@ const CustomDrawerContent = ({navigation}) => {
       <Body>
         <ScrollView>
           <DivItem>
-            {/* <Icon name="school-outline" size={25} color={COLORS.primaryDark} /> */}
+            <Icon name="person-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
-                navigation.navigate('Clientes');
+                navigation.navigate('Clients');
               }}>
               Clientes
             </ItemMenuText>
           </DivItem>
-          <DivItem>
-            {/* <Icon name="exit-outline" size={25} color={COLORS.primaryDark} /> */}
+          {/* <DivItem>
+            <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
-                signOut();
+                navigation.navigate('Stocks');
+              }}>
+              Estoques
+            </ItemMenuText>
+          </DivItem> */}
+          <DivItem>
+            <Icon name="people-outline" size={25} color={COLORS.primaryDark} />
+            <ItemMenuText
+              onPress={() => {
+                navigation.navigate('Users');
+              }}>
+              Usuários
+            </ItemMenuText>
+          </DivItem>
+          <DivItem>
+            <Icon name="exit-outline" size={25} color={COLORS.primaryDark} />
+            <ItemMenuText
+              onPress={() => {
+                sigOut();
               }}>
               Sair
             </ItemMenuText>

@@ -3,6 +3,7 @@ import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+
 import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
 import ForgotPassWord from '../screens/ForgotPassWord';
@@ -15,6 +16,7 @@ import Users from '../screens/Users';
 import User from '../screens/User';
 import {COLORS} from '../assets/colors';
 import CustomDrawerContent from '../components/CustomDrawerContent';
+import LogoutButton from '../components/LogoutButton';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -23,34 +25,27 @@ const Navigator = () => {
   const AppStack = () => {
     return (
       <Drawer.Navigator
-        initialRouteName="Estoques"
+        initialRouteName="Stocks"
         screenOptions={{
           headerShown: 'true',
           headerStyle: {
-            backgroundColor: COLORS.primary,
-            paddingRight: 5,
+            backgroundColor: COLORS.primaryDark,
+            //paddingRight: 5,
           },
           headerTintColor: COLORS.white,
+          headerRight: () => <LogoutButton />,
         }}
         drawerContent={props => <CustomDrawerContent {...props} />}>
+        <Drawer.Screen name="Stocks" component={Stocks} options={stocksStyle} />
+        <Drawer.Screen name="Stock" component={Stock} options={stockStyle} />
         <Drawer.Screen
-          name="Estoques"
-          component={Stocks}
-          options={stocksStyle}
-        />
-        <Drawer.Screen name="Estoque" component={Stock} options={stockStyle} />
-        <Drawer.Screen
-          name="Clientes"
+          name="Clients"
           component={Clients}
           options={clientsStyle}
         />
-        <Drawer.Screen
-          name="Cliente"
-          component={Client}
-          options={clientStyle}
-        />
-        <Drawer.Screen name="Usuários" component={Users} options={usersStyle} />
-        <Drawer.Screen name="Usuário" component={User} options={userStyle} />
+        <Drawer.Screen name="Client" component={Client} options={clientStyle} />
+        <Drawer.Screen name="Users" component={Users} options={usersStyle} />
+        <Drawer.Screen name="User" component={User} options={userStyle} />
       </Drawer.Navigator>
     );
   };

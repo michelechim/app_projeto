@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useEffect, useState} from 'react';
+import firestore from '@react-native-firebase/firestore';
+import {CommonActions} from '@react-navigation/native';
+
 import Item from './Item';
 import {Container, FlatList} from './styles';
 import {COLORS} from '../../assets/colors';
 import LogoutButton from '../../components/LogoutButton';
-import firestore from '@react-native-firebase/firestore';
-import {CommonActions} from '@react-navigation/native';
+import AddFloatButton from '../../components/AddFloatButton';
 import Loading from '../../components/Loading';
 
 const Users = ({navigation}) => {
@@ -71,6 +73,15 @@ const Users = ({navigation}) => {
     <Item item={item} onPress={() => routerUser(item)} />
   );
 
+  const routeAddUser = () => {
+    navigation.dispatch(
+      CommonActions.navigate({
+        name: 'User',
+        params: {user: null},
+      }),
+    );
+  };
+
   return (
     <Container>
       <FlatList
@@ -78,6 +89,7 @@ const Users = ({navigation}) => {
         renderItem={renderItem}
         keyExtractor={item => item.id}
       />
+      <AddFloatButton onClick={routeAddUser} />
       {loading && <Loading />}
     </Container>
   );
