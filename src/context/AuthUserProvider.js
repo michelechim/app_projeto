@@ -6,12 +6,14 @@ export const AuthUserContext = createContext({});
 
 export const AuthUserProvider = ({children}) => {
   const [user, setUser] = useState(null);
+
+  //SignOut
   const sigOut = () => {
     //setUser(null);
     AsyncStorage.removeItem('user')
       .then(() => {
         auth()
-          .signOut()
+          .sigOut()
           .then(() => {})
           .catch(e => {
             console.error('AuthUserProvider, sigOut firebase: ' + e);

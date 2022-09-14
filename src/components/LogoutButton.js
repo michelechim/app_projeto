@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import {Icon} from 'react-native-vector-icons/Ionicons';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 import {COLORS} from '../assets/colors';
 import {AuthUserContext} from '../context/AuthUserProvider';

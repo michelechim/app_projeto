@@ -48,7 +48,9 @@ const Users = ({navigation}) => {
       title: 'Usuários',
       headerStyle: {background: COLORS.primary},
       headerTitleStyle: {color: COLORS.accentSecundary},
-      headerRight: () => <LogoutButton nav={navigation} />,
+      headerRight: () => {
+        <LogoutButton nav={navigation} />;
+      },
     });
     const unsubscribe = getUsers();
 

@@ -13,7 +13,7 @@ const Button = styled.TouchableOpacity`
   position: absolute;
   bottom: 10px;
   right: 10px;
-  background-color: ${COLORS.accent};
+  background-color: ${COLORS.primaryDark};
   border-radius: 100px;
 `;
 

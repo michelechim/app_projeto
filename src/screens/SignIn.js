@@ -14,6 +14,7 @@ import {COLORS} from '../assets/colors';
 import auth from '@react-native-firebase/auth';
 import {CommonActions} from '@react-navigation/native';
 //import AsyncStorage from '@react-native-async-storage/async-storage';
+//import firestore from '@react-native-firebase/firestore';
 import EncryptedStorage from 'react-native-encrypted-storage';
 
 import Loading from '../components/Loading';
@@ -24,105 +25,46 @@ const SignIn = ({navigation}) => {
   const [pass, setPass] = useState('');
   const [loading, setLoading] = useState(false);
   const [showPass, setShowPass] = useState(true);
-  //const {signIn} = useContext(AuthUserContext);
+  // const {signIn} = useContext(AuthUserContext);
 
   const recuperarSenha = () => {
     navigation.navigate('ForgotPassword');
   };
 
-  async function storeUserSession(value) {
+  async function storeUserCache(value) {
     try {
-      await EncryptedStorage.setItem('user_session', JSON.stringify(value));
-    } catch (error) {
-      console.error('SignIn, storeUserSession: ' + error);
+      await EncryptedStorage.setItem('user', JSON.stringify(value));
+    } catch (e) {
+      console.log('SignIn: erro em storeUserCache: ' + e);
     }
   }
 
-  async function retrieveUserSession() {
-    try {
-      const session = await EncryptedStorage.getItem('user_session');
-      if (session !== undefined) {
-        console.log(JSON.parse(session));
-      }
-    } catch (error) {
-      console.error('SignIn, storeUserSession: ' + error);
-    }
-  }
-
-  const entrar = async () => {
-    if (email !== '' && pass !== '') {
-      setLoading(true);
-      auth()
-        .signInWithEmailAndPassword(email, pass)
-        .then(async () => {
-          if (auth().currentUser.emailVerified) {
-            await storeUserSession({
-              email,
-              pass,
-            });
-            await retrieveUserSession();
-            navigation.dispatch(
-              CommonActions.reset({
-                index: 0,
-                routes: [{name: 'AppStack'}],
-              }),
-            );
-          } else {
-            Alert.alert(
-              'Erro',
-              'Você deve verificar o seu email para prosseguir.',
-            );
-            auth()
-              .signOut()
-              .then(() => {})
-              .catch(e => {
-                console.error('SignIn, entrar: ' + e);
-              });
-          }
-        })
-        .catch(e => {
-          console.error('SignIn, entrar: ' + e);
-          switch (e.code) {
-            case 'auth/user-not-found':
-              Alert.alert('Erro', 'Usuário não cadastrado.');
-              break;
-            case 'auth/wrong-password':
-              Alert.alert('Erro', 'Erro na senha.');
-              break;
-            case 'auth/invalid-email':
-              Alert.alert('Erro', 'Email inválido.');
-              break;
-            case 'auth/user-disabled':
-              Alert.alert('Erro', 'Usuário desabilitado.');
-              break;
-          }
-        });
-      setLoading(false);
-    } else {
-      Alert.alert('Erro', 'Por favor, digite email e senha.');
-    }
-  };
-
-  const cadastrar = () => {
-    navigation.navigate('SignUp');
-  };
-
-  //const storeUserCache = async value => {
+  // const storeUserCache = async value => {
   //   try {
   //     value.pass = pass;
   //     const jsonValue = JSON.stringify(value);
   //     await AsyncStorage.setItem('user', jsonValue);
   //     setLoading(false);
-  //     // navigation.dispatch(
-  //     //   CommonActions.reset({
-  //     //     index: 0,
-  //     //     routes: [{name: 'Estoques'}],
-  //     //   }),
-  //     // );
+  //     navigation.dispatch(
+  //       CommonActions.reset({
+  //         index: 0,
+  //         routes: [{name: 'Estoques'}],
+  //       }),
+  //     );
   //   } catch (e) {
   //     console.log('SignIn: erro em storeUserCache: ' + e);
   //   }
   // };
+  async function retrieveUser() {
+    try {
+      const session = await EncryptedStorage.getItem('user');
+      if (session !== undefined) {
+        console.log(JSON.parse(session));
+      }
+    } catch (e) {
+      console.log('SignIn, erro em storeUserCache: ' + e);
+    }
+  }
 
   // const getUser = () => {
   //   firestore()
@@ -141,19 +83,99 @@ const SignIn = ({navigation}) => {
   //     });
   // };
 
-  // const entrar = async () => {
+  const entrar = async () => {
+    if (email !== '' && pass !== '') {
+      setLoading(true);
+      auth()
+        .signInWithEmailAndPassword(email, pass)
+        .then(async () => {
+          if (auth().currentUser.emailVerified) {
+            await storeUserCache({
+              email,
+              pass,
+            });
+            await retrieveUser();
+            navigation.dispatch(
+              CommonActions.reset({
+                index: 0,
+                routes: [{name: 'AppStack'}],
+              }),
+            );
+          } else {
+            Alert.alert(
+              'Erro',
+              'Você deve verificar seu email para prosseguir.',
+            );
+            auth()
+              .sigOut.then(() => {})
+              .catch(e => {
+                console.log('SignIn: erro em entrar: ' + e);
+              });
+          }
+        })
+        .catch(e => {
+          console.log('SignIn: erro em entrar: ' + e);
+          switch (e.code) {
+            case 'auth/user-not-found':
+              Alert.alert('Erro', 'Usuário não cadastrado.');
+              break;
+            case 'auth/wrong-password':
+              Alert.alert('Erro', 'Erro na senha.');
+              break;
+            case 'auth/invalid-email':
+              Alert.alert('Erro', 'Email inválido.');
+              break;
+            case 'auth/user-disabled':
+              Alert.alert('Erro', 'Usuário desabilitado.');
+              break;
+          }
+        });
+    } else {
+      Alert.alert('Erro', 'Por favor, digite email e senha.');
+    }
+  };
+  // const entrar = () => {
   //   if (email !== '' && pass !== '') {
   //     setLoading(true);
-  //     await signIn(email, pass);
-  //     setLoading(false);
+  //     auth()
+  //       .signInWithEmailAndPassword(email, pass)
+  //       .then(() => {
+  //         if (!auth().currentUser.emailVerified) {
+  //           Alert.alert(
+  //             'Erro',
+  //             'Você deve verificar seu email para prosseguir.',
+  //           );
+  //           setLoading(false);
+  //           return;
+  //         }
+  //         getUser();
+  //       })
+  //       .catch(e => {
+  //         setLoading(false);
+  //         console.log('SignIn: erro em entrar: ' + e);
+  //         switch (e.code) {
+  //           case 'auth/user-not-found':
+  //             Alert.alert('Erro', 'Usuário não cadastrado.');
+  //             break;
+  //           case 'auth/wrong-password':
+  //             Alert.alert('Erro', 'Erro na senha.');
+  //             break;
+  //           case 'auth/invalid-email':
+  //             Alert.alert('Erro', 'Email inválido.');
+  //             break;
+  //           case 'auth/user-disabled':
+  //             Alert.alert('Erro', 'Usuário desabilitado.');
+  //             break;
+  //         }
+  //       });
   //   } else {
   //     Alert.alert('Erro', 'Por favor, digite email e senha.');
   //   }
   // };
 
-  // const cadastrar = () => {
-  //   navigation.navigate('SignUp');
-  // };
+  const cadastrar = () => {
+    navigation.navigate('SignUp');
+  };
 
   return (
     <SafeAreaView style={styles.container}>

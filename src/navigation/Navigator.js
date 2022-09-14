@@ -29,11 +29,13 @@ const Navigator = () => {
         screenOptions={{
           headerShown: 'true',
           headerStyle: {
-            backgroundColor: COLORS.primaryDark,
+            backgroundColor: COLORS.primary,
             //paddingRight: 5,
           },
           headerTintColor: COLORS.white,
-          headerRight: () => <LogoutButton />,
+          headerRight: () => {
+            <LogoutButton />;
+          },
         }}
         drawerContent={props => <CustomDrawerContent {...props} />}>
         <Drawer.Screen name="Stocks" component={Stocks} options={stocksStyle} />

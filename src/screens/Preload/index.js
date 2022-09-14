@@ -13,8 +13,8 @@ const Preload = ({navigation}) => {
   const getUserCache = async () => {
     try {
       const jsonValue = await AsyncStorage.getItem('user');
-      // console.log('getUserCache');
-      // console.log(jsonValue);
+      console.log('getUserCache');
+      console.log(jsonValue);
       return jsonValue != null ? JSON.parse(jsonValue) : null;
     } catch (e) {
       console.log('Home: erro em getUserCache: ' + e);
@@ -28,8 +28,8 @@ const Preload = ({navigation}) => {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{name: 'Estoque'}],
-          // routes: [{name: 'AppStack'}],
+          // routes: [{name: 'Estoque'}],
+          routes: [{name: 'AppStack'}],
         }),
       );
     } else {
