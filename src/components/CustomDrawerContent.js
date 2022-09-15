@@ -67,7 +67,7 @@ const CustomDrawerContent = ({navigation}) => {
               Clientes
             </ItemMenuText>
           </DivItem>
-          {/* <DivItem>
+          <DivItem>
             <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
@@ -75,7 +75,7 @@ const CustomDrawerContent = ({navigation}) => {
               }}>
               Estoques
             </ItemMenuText>
-          </DivItem> */}
+          </DivItem>
           <DivItem>
             <Icon name="people-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText

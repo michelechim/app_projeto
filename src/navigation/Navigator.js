@@ -33,9 +33,7 @@ const Navigator = () => {
             //paddingRight: 5,
           },
           headerTintColor: COLORS.white,
-          headerRight: () => {
-            <LogoutButton />;
-          },
+          headerRight: () => <LogoutButton />,
         }}
         drawerContent={props => <CustomDrawerContent {...props} />}>
         <Drawer.Screen name="Stocks" component={Stocks} options={stocksStyle} />
@@ -89,22 +87,22 @@ export default Navigator;
 const signInStyle = {
   title: 'Chim - mãe & filha',
   //  title: 'Bem vindo ao aplicativo',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
+  // headerStyle: {backgroundColor: COLORS.primary},
+  // headerTitle: {color: COLORS.white},
 };
 
 const signUpStyle = {
   title: 'Cadastra -se',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
-  headerTintColor: {color: COLORS.white},
+  // headerStyle: {backgroundColor: COLORS.primary},
+  // headerTitle: {color: COLORS.white},
+  // headerTintColor: {color: COLORS.white},
 };
 
 const forgotPassWordStyle = {
   title: 'Recuperar senha',
-  headerStyle: {backgroundColor: COLORS.primary},
-  headerTitle: {color: COLORS.white},
-  headerTintColor: {color: COLORS.white},
+  // headerStyle: {backgroundColor: COLORS.primary},
+  // headerTitle: {color: COLORS.white},
+  // headerTintColor: {color: COLORS.white},
 };
 
 const preloadStyle = {

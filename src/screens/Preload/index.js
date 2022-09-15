@@ -6,9 +6,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import {Container, Image} from './styles';
 import {AuthUserContext} from '../../context/AuthUserProvider';
+import {ClientContext} from '../../context/ClientProvider';
 
 const Preload = ({navigation}) => {
   const {setUser} = useContext(AuthUserContext);
+  const {getClients} = useContext(ClientContext);
 
   const getUserCache = async () => {
     try {
@@ -28,7 +30,6 @@ const Preload = ({navigation}) => {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          // routes: [{name: 'Estoque'}],
           routes: [{name: 'AppStack'}],
         }),
       );
@@ -43,8 +44,14 @@ const Preload = ({navigation}) => {
   };
   useEffect(() => {
     loginUser();
-    Icon.loadFont();
+    Icon.loadFont(); // tem que ler os icons da fonte ao inicializar o app
+    const unsubribeClients = getClients(); // faz cache dos clientes
+
+    return () => {
+      unsubribeClients;
+    };
   }, []);
+
   return (
     <Container>
       <Image
