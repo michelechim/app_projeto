@@ -7,10 +7,6 @@ export const ClientContext = createContext({});
 export const ClientProvider = ({children}) => {
   const [clients, setClients] = useState([]);
 
-  // const showToast = message => {
-  //   ToastAndroid.show(message, ToastAndroid.SHORT);
-  // };
-
   const getClients = async () => {
     const unsubscribe = firestore()
       .collection('clients')
@@ -19,8 +15,9 @@ export const ClientProvider = ({children}) => {
         querySnapshot => {
           let d = [];
           querySnapshot.forEach(doc => {
+            // console.log(doc.id, ' => ', doc.data());
             const val = {
-              uid: doc.data().id,
+              uid: doc.id,
               endereco: doc.data().endereco,
               nome: doc.data().nome,
               telefone: doc.data().telefone,
@@ -30,7 +27,7 @@ export const ClientProvider = ({children}) => {
           setClients(d);
         },
         e => {
-          console.log('ClientProvider, getClients: ' + e);
+          console.error('ClientProvider, getClients: ' + e);
         },
       );
     return unsubscribe;
@@ -56,10 +53,10 @@ export const ClientProvider = ({children}) => {
       });
   };
 
-  const deleteClient = async val => {
+  const deleteClient = async uid => {
     firestore()
       .collection('clients')
-      .doc(val.uid)
+      .doc(uid)
       .delete()
       .then(() => {
         ToastAndroid.show('Cliente excluído.', ToastAndroid.SHORT);

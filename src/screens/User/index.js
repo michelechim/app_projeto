@@ -1,78 +1,63 @@
-//TODO: problema no alert do excluir
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, {useEffect, useState} from 'react';
-import Button from '../../components/Button';
-import {Container, TextInput} from './styles';
-import firestore from '@react-native-firebase/firestore';
-import {ToastAndroid} from 'react-native';
-import DeleteButton from '../../components/DeleteButton';
+import React, {useContext, useEffect, useState} from 'react';
 import {Alert} from 'react-native';
+import {Container, TextInput} from './styles';
+
+import Button from '../../components/Button';
+import DeleteButton from '../../components/DeleteButton';
 import Loading from '../../components/Loading';
+import {UserContext} from '../../context/UserProvider';
 
 const User = ({route, navigation}) => {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [id, setId] = useState('');
+  const [uid, setUid] = useState('');
   const [loading, setLoading] = useState(false);
-
-  //console.log(route.params.user);
+  const {saveUser, deleteUser} = useContext(UserContext);
 
   useEffect(() => {
-    setNome(route.params.user.nome);
-    setEmail(route.params.user.email);
-    setId(route.params.user.id);
-  }, []);
+    console.log(route.params.course);
+    setNome('');
+    setEmail('');
+    setUid(null);
+    if (route.params.user) {
+      setNome(route.params.user.nome);
+      setEmail(route.params.user.email);
+      setUid(route.params.user.uid);
+    }
+    return () => {
+      console.log('desmontou User');
+    };
+  }, [route]);
 
-  const showToast = message => {
-    ToastAndroid.show(message, ToastAndroid.SHORT);
-  };
-
-  const salvar = () => {
-    firestore()
-      .collection('users')
-      .doc(id)
-      .set(
-        {
-          nome: nome,
-        },
-        {merge: true},
-      )
-      .then(() => {
-        setNome('');
-        setEmail('');
-        setId('');
-        showToast('Dados salvos.');
-        navigation.goBack();
-      })
-      .catch(e => {
-        console.log('User, salvar: ' + e);
-      });
+  const salvar = async () => {
+    if (nome && email) {
+      let user = {};
+      user.uid = uid;
+      user.nome = nome;
+      user.email = email;
+      setLoading(true);
+      await saveUser(user);
+      setLoading(false);
+      navigation.goBack();
+    } else {
+      Alert.alert('Atenção', 'Digite todos os campos.');
+    }
   };
 
   const excluir = () => {
-    Alert.alert('Atenção', 'Você tem certeza que deseja excluir o curso?', [
+    Alert.alert('Atenção', 'Vocẽ tem certeza que deseja excluir o cliente?', [
       {
         text: 'Não',
         onPress: () => {},
-        style: 'cancel',
+        styles: 'cancel',
       },
       {
         text: 'Sim',
-        onPress: () => {
+        onPress: async () => {
           setLoading(true);
-          excluir(id);
+          await deleteUser(uid);
           setLoading(false);
           navigation.goBack();
-          firestore()
-            .collection('users')
-            .doc(id)
-            .delete()
-            .then(() => {
-              showToast('Usuário excluído.');
-            })
-            .catch(e => {
-              console.error('User, excluir: ', e);
-            });
         },
       },
     ]);
@@ -95,7 +80,7 @@ const User = ({route, navigation}) => {
       />
       <Button texto="Salvar" onClick={salvar} />
       {/* <DeleteButton texto="Excluir" onClick={'teste'} /> */}
-      {id ? <DeleteButton texto="Excluir" onClick={excluir} /> : null}
+      {uid ? <DeleteButton texto="Excluir" onClick={excluir} /> : null}
       {loading && <Loading />}
     </Container>
   );

@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useState, useContext, useEffect} from 'react';
 import {
   View,
   StyleSheet,
@@ -11,167 +12,41 @@ import {
 } from 'react-native';
 import Button from '../components/Button';
 import {COLORS} from '../assets/colors';
-import auth from '@react-native-firebase/auth';
-import {CommonActions} from '@react-navigation/native';
-//import AsyncStorage from '@react-native-async-storage/async-storage';
-//import firestore from '@react-native-firebase/firestore';
-import EncryptedStorage from 'react-native-encrypted-storage';
 
 import Loading from '../components/Loading';
-//import {AuthUserContext} from '../context/AuthUserProvider';
+import {AuthUserContext} from '../context/AuthUserProvider';
+import {CommonActions} from '@react-navigation/native';
 
 const SignIn = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
   const [loading, setLoading] = useState(false);
-  const [showPass, setShowPass] = useState(true);
-  // const {signIn} = useContext(AuthUserContext);
+  const {signIn, user} = useContext(AuthUserContext);
+
+  useEffect(() => {
+    if (user) {
+      navigation.dispatch(
+        CommonActions.reset({
+          index: 0,
+          routes: [{name: 'AppStack'}],
+        }),
+      );
+    }
+  }, [user]);
 
   const recuperarSenha = () => {
     navigation.navigate('ForgotPassword');
   };
 
-  async function storeUserCache(value) {
-    try {
-      await EncryptedStorage.setItem('user', JSON.stringify(value));
-    } catch (e) {
-      console.log('SignIn: erro em storeUserCache: ' + e);
-    }
-  }
-
-  // const storeUserCache = async value => {
-  //   try {
-  //     value.pass = pass;
-  //     const jsonValue = JSON.stringify(value);
-  //     await AsyncStorage.setItem('user', jsonValue);
-  //     setLoading(false);
-  //     navigation.dispatch(
-  //       CommonActions.reset({
-  //         index: 0,
-  //         routes: [{name: 'Estoques'}],
-  //       }),
-  //     );
-  //   } catch (e) {
-  //     console.log('SignIn: erro em storeUserCache: ' + e);
-  //   }
-  // };
-  async function retrieveUser() {
-    try {
-      const session = await EncryptedStorage.getItem('user');
-      if (session !== undefined) {
-        console.log(JSON.parse(session));
-      }
-    } catch (e) {
-      console.log('SignIn, erro em storeUserCache: ' + e);
-    }
-  }
-
-  // const getUser = () => {
-  //   firestore()
-  //     .collection('users')
-  //     .doc(auth().currentUser.uid)
-  //     .get()
-  //     .then(doc => {
-  //       if (doc.exists) {
-  //         storeUserCache(doc.data());
-  //       } else {
-  //         console.log('O documento não existe na base de dados!');
-  //       }
-  //     })
-  //     .catch(e => {
-  //       console.log('SignIn: erro em getUser: ' + e);
-  //     });
-  // };
-
   const entrar = async () => {
     if (email !== '' && pass !== '') {
       setLoading(true);
-      auth()
-        .signInWithEmailAndPassword(email, pass)
-        .then(async () => {
-          if (auth().currentUser.emailVerified) {
-            await storeUserCache({
-              email,
-              pass,
-            });
-            await retrieveUser();
-            navigation.dispatch(
-              CommonActions.reset({
-                index: 0,
-                routes: [{name: 'AppStack'}],
-              }),
-            );
-          } else {
-            Alert.alert(
-              'Erro',
-              'Você deve verificar seu email para prosseguir.',
-            );
-            auth()
-              .sigOut.then(() => {})
-              .catch(e => {
-                console.log('SignIn: erro em entrar: ' + e);
-              });
-          }
-        })
-        .catch(e => {
-          console.log('SignIn: erro em entrar: ' + e);
-          switch (e.code) {
-            case 'auth/user-not-found':
-              Alert.alert('Erro', 'Usuário não cadastrado.');
-              break;
-            case 'auth/wrong-password':
-              Alert.alert('Erro', 'Erro na senha.');
-              break;
-            case 'auth/invalid-email':
-              Alert.alert('Erro', 'Email inválido.');
-              break;
-            case 'auth/user-disabled':
-              Alert.alert('Erro', 'Usuário desabilitado.');
-              break;
-          }
-        });
+      await signIn(email, pass);
+      setLoading(false);
     } else {
       Alert.alert('Erro', 'Por favor, digite email e senha.');
     }
   };
-  // const entrar = () => {
-  //   if (email !== '' && pass !== '') {
-  //     setLoading(true);
-  //     auth()
-  //       .signInWithEmailAndPassword(email, pass)
-  //       .then(() => {
-  //         if (!auth().currentUser.emailVerified) {
-  //           Alert.alert(
-  //             'Erro',
-  //             'Você deve verificar seu email para prosseguir.',
-  //           );
-  //           setLoading(false);
-  //           return;
-  //         }
-  //         getUser();
-  //       })
-  //       .catch(e => {
-  //         setLoading(false);
-  //         console.log('SignIn: erro em entrar: ' + e);
-  //         switch (e.code) {
-  //           case 'auth/user-not-found':
-  //             Alert.alert('Erro', 'Usuário não cadastrado.');
-  //             break;
-  //           case 'auth/wrong-password':
-  //             Alert.alert('Erro', 'Erro na senha.');
-  //             break;
-  //           case 'auth/invalid-email':
-  //             Alert.alert('Erro', 'Email inválido.');
-  //             break;
-  //           case 'auth/user-disabled':
-  //             Alert.alert('Erro', 'Usuário desabilitado.');
-  //             break;
-  //         }
-  //       });
-  //   } else {
-  //     Alert.alert('Erro', 'Por favor, digite email e senha.');
-  //   }
-  // };
 
   const cadastrar = () => {
     navigation.navigate('SignUp');
@@ -199,12 +74,11 @@ const SignIn = ({navigation}) => {
               this.passTextInput = ref;
             }}
             style={styles.input}
-            secureTextEntry={showPass}
+            secureTextEntry={true}
             placeholder="Senha"
             keyboardType="default"
             returnKeyType="send"
             onChangeText={t => setPass(t)}
-            onSubmitEditing={value => setShowPass(false)}
           />
           <Text style={styles.textEsqueceuSenha} onPress={recuperarSenha}>
             Esqueceu a senha?

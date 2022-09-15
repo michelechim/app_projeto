@@ -8,10 +8,10 @@ import Loading from '../../components/Loading';
 import {ClientContext} from '../../context/ClientProvider';
 
 const Client = ({route, navigation}) => {
+  const [uid, setUid] = useState('');
   const [endereco, setEndereco] = useState('');
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [uid, setUid] = useState('');
   const [loading, setLoading] = useState(false);
   const {saveClient, deleteClient} = useContext(ClientContext);
 
@@ -20,7 +20,7 @@ const Client = ({route, navigation}) => {
     setEndereco('');
     setNome('');
     setTelefone('');
-    setUid('');
+    setUid(null);
     if (route.params.client) {
       setEndereco(route.params.client.endereco);
       setNome(route.params.client.nome);
@@ -33,6 +33,9 @@ const Client = ({route, navigation}) => {
   }, [route]);
 
   const salvar = async () => {
+    console.log(nome);
+    console.log(telefone);
+    console.log(endereco);
     if (nome && telefone && endereco) {
       let client = {};
       client.endereco = endereco;
@@ -73,21 +76,21 @@ const Client = ({route, navigation}) => {
         placeholder="Nome do cliente"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setNome()}
+        onChangeText={t => setNome(t)}
         value={nome}
       />
       <TextInput
         placeholder="Telefone"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setTelefone()}
+        onChangeText={t => setTelefone(t)}
         value={telefone}
       />
       <TextInput
         placeholder="Endereço completo"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setEndereco()}
+        onChangeText={t => setEndereco(t)}
         value={endereco}
       />
       <Button texto="Salvar" onClick={salvar} />

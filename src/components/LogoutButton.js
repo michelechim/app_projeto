@@ -5,14 +5,14 @@ import {COLORS} from '../assets/colors';
 import {AuthUserContext} from '../context/AuthUserProvider';
 
 const LogoutButton = ({navigation}) => {
-  const {sigOut} = useContext(AuthUserContext);
+  const {signOut} = useContext(AuthUserContext);
 
   return (
     <Icon
       name="exit-outline"
       size={25}
       color={COLORS.white}
-      onPress={() => sigOut()}
+      onPress={() => signOut()}
     />
   );
 };

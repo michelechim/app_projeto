@@ -49,7 +49,7 @@ const ItemMenuText = styled.Text`
 `;
 
 const CustomDrawerContent = ({navigation}) => {
-  const {sigOut} = useContext(AuthUserContext);
+  const {signOut} = useContext(AuthUserContext);
 
   return (
     <Page>
@@ -89,7 +89,7 @@ const CustomDrawerContent = ({navigation}) => {
             <Icon name="exit-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
-                sigOut();
+                signOut();
               }}>
               Sair
             </ItemMenuText>

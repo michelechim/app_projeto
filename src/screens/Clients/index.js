@@ -19,7 +19,7 @@ const Clients = ({navigation}) => {
   }, [clients]);
 
   const routerClient = item => {
-    //console.log(item);
+    console.log(item);
     navigation.dispatch(
       CommonActions.navigate({
         name: 'Client',
