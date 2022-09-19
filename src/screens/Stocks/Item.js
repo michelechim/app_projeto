@@ -26,11 +26,11 @@ const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
       <>
-        <TextGeral>{item.uid}</TextGeral>
         <Texto>{item.nome}</Texto>
+        {/* <TextGeral>{item.uid}</TextGeral> */}
+        <TextGeral>{item.custo}</TextGeral>
         <TextGeral>{item.quantidade}</TextGeral>
         <TextGeral>{item.validade}</TextGeral>
-        <TextGeral>{item.custo}</TextGeral>
         <TextGeral>{item.venda}</TextGeral>
       </>
     </Button>

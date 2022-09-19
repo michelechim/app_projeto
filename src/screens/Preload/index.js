@@ -11,7 +11,7 @@ import {ClientContext} from '../../context/ClientProvider';
 const Preload = ({navigation}) => {
   const {signIn, getUserCache, user} = useContext(AuthUserContext);
   const {getClients} = useContext(ClientContext);
-  //  const {getStocks} = useContext(StockContext);
+  //const {getStocks} = useContext(StockContext);
 
   const loginUser = async () => {
     const userLocal = await getUserCache();
