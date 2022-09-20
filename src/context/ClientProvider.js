@@ -21,6 +21,8 @@ export const ClientProvider = ({children}) => {
               endereco: doc.data().endereco,
               nome: doc.data().nome,
               telefone: doc.data().telefone,
+              latitude: doc.data().latitude,
+              longitude: doc.data().longitude,
             };
             d.push(val);
           });
@@ -42,6 +44,8 @@ export const ClientProvider = ({children}) => {
           endereco: val.endereco,
           nome: val.nome,
           telefone: val.telefone,
+          latitude: val.latitude,
+          longitude: val.longitude,
         },
         {merge: true},
       )

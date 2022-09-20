@@ -22,7 +22,7 @@ const TextTelefone = styled.Text`
   color: ${COLORS.white};
 `;
 
-const TextEndereco = styled.Text`
+const TextGeral = styled.Text`
   font-size: 16px;
   color: ${COLORS.white};
 `;
@@ -33,7 +33,9 @@ const Item = ({item, onPress}) => {
       <>
         <TextNome>{item.nome}</TextNome>
         <TextTelefone>Telefone:{item.telefone}</TextTelefone>
-        <TextEndereco>Endereço:{item.endereco}</TextEndereco>
+        <TextGeral>Endereço:{item.endereco}</TextGeral>
+        {/* <TextGeral>{item.latitude}</TextGeral>
+        <TextGeral>{item.longitude}</TextGeral> */}
       </>
     </Button>
   );

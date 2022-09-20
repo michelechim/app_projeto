@@ -12,6 +12,8 @@ const Client = ({route, navigation}) => {
   const [endereco, setEndereco] = useState('');
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
+  const [latitude, setLatitude] = useState('');
+  const [longitude, setLongitude] = useState('');
   const [loading, setLoading] = useState(false);
   const {saveClient, deleteClient} = useContext(ClientContext);
 
@@ -20,11 +22,15 @@ const Client = ({route, navigation}) => {
     setEndereco('');
     setNome('');
     setTelefone('');
+    setLatitude('');
+    setLongitude('');
     setUid(null);
     if (route.params.client) {
       setEndereco(route.params.client.endereco);
       setNome(route.params.client.nome);
       setTelefone(route.params.client.telefone);
+      setLatitude(route.params.client.latitude);
+      setLongitude(route.params.client.longitude);
       setUid(route.params.client.uid);
     }
     return () => {
@@ -36,11 +42,13 @@ const Client = ({route, navigation}) => {
     console.log(nome);
     console.log(telefone);
     console.log(endereco);
-    if (nome && telefone && endereco) {
+    if (nome && telefone && endereco && latitude && longitude) {
       let client = {};
       client.endereco = endereco;
       client.nome = nome;
       client.telefone = telefone;
+      client.latitude = latitude;
+      client.longitude = longitude;
       client.uid = uid;
       setLoading(true);
       await saveClient(client);
@@ -92,6 +100,20 @@ const Client = ({route, navigation}) => {
         returnKeyType="go"
         onChangeText={t => setEndereco(t)}
         value={endereco}
+      />
+      <TextInput
+        placeholder="Latitude"
+        keyboardType="numeric"
+        returnKeyType="go"
+        onChangeText={t => setLatitude(t)}
+        value={latitude}
+      />
+      <TextInput
+        placeholder="Longitude"
+        keyboardType="numeric"
+        returnKeyType="go"
+        onChangeText={t => setLongitude(t)}
+        value={longitude}
       />
       <Button texto="Salvar" onClick={salvar} />
       {uid ? <DeleteButton texto="Excluir" onClick={exclui} /> : null}
