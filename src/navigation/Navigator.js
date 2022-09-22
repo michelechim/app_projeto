@@ -14,6 +14,8 @@ import Clients from '../screens/Clients';
 import Client from '../screens/Client';
 import Users from '../screens/Users';
 import User from '../screens/User';
+import Companies from '../screens/Companies';
+import Company from '../screens/Company';
 import {COLORS} from '../assets/colors';
 import CustomDrawerContent from '../components/CustomDrawerContent';
 import LogoutButton from '../components/LogoutButton';
@@ -46,6 +48,16 @@ const Navigator = () => {
         <Drawer.Screen name="Client" component={Client} options={clientStyle} />
         <Drawer.Screen name="Users" component={Users} options={usersStyle} />
         <Drawer.Screen name="User" component={User} options={userStyle} />
+        <Drawer.Screen
+          name="Companies"
+          component={Companies}
+          options={companiesStyle}
+        />
+        <Drawer.Screen
+          name="Company"
+          component={Company}
+          options={companyStyle}
+        />
       </Drawer.Navigator>
     );
   };
@@ -86,23 +98,14 @@ export default Navigator;
 
 const signInStyle = {
   title: 'Chim - mãe & filha',
-  //  title: 'Bem vindo ao aplicativo',
-  // headerStyle: {backgroundColor: COLORS.primary},
-  // headerTitle: {color: COLORS.white},
 };
 
 const signUpStyle = {
   title: 'Cadastra -se',
-  // headerStyle: {backgroundColor: COLORS.primary},
-  // headerTitle: {color: COLORS.white},
-  // headerTintColor: {color: COLORS.white},
 };
 
 const forgotPassWordStyle = {
   title: 'Recuperar senha',
-  // headerStyle: {backgroundColor: COLORS.primary},
-  // headerTitle: {color: COLORS.white},
-  // headerTintColor: {color: COLORS.white},
 };
 
 const preloadStyle = {
@@ -124,7 +127,12 @@ const clientStyle = {
 const usersStyle = {
   title: 'Usuários',
 };
-
 const userStyle = {
   title: 'Usuário',
+};
+const companyStyle = {
+  title: 'Fornecedor',
+};
+const companiesStyle = {
+  title: 'Fornecedores',
 };

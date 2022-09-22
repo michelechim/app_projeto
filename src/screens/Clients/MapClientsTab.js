@@ -17,12 +17,13 @@ const MapClientsTab = () => {
       m.push({
         key: c.uid,
         coords: {
-          latitude: Number(c.latitude),
+          latitude: Number('-31.766296792'),
           longitude: Number(c.longitude),
         },
         title: c.nome,
         description: c.endereco,
-        image: require('../../assets/images/person_map_accent.png'),
+        image: require('../../assets/images/maps/person_map_xxxhdpi.png'),
+        // image: require('../../assets/images/person_map_accent.png'),
       });
     });
     setMarkers(m);
@@ -32,7 +33,6 @@ const MapClientsTab = () => {
     <View style={styles.container}>
       <MapView
         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-        ref={map => (this.map = map)}
         style={styles.map}
         mapType={mapType}
         showsUserLocation={true}

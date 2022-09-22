@@ -86,6 +86,19 @@ const CustomDrawerContent = ({navigation}) => {
             </ItemMenuText>
           </DivItem>
           <DivItem>
+            <Icon
+              name="business-outline"
+              size={25}
+              color={COLORS.primaryDark}
+            />
+            <ItemMenuText
+              onPress={() => {
+                navigation.navigate('Companies');
+              }}>
+              Fornecedor
+            </ItemMenuText>
+          </DivItem>
+          <DivItem>
             <Icon name="exit-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {

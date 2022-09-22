@@ -41,8 +41,9 @@ const Stock = ({route, navigation}) => {
   const salvar = async () => {
     console.log(nome);
     console.log(validade);
-    if (custo && nome && quantidade && validade && venda) {
-      let stock = {}
+    if (uid && custo && nome && quantidade && validade && venda) {
+      let stock = {};
+      stock.uid = uid;
       stock.custo = custo;
       stock.nome = nome;
       stock.quantidade = quantidade;
@@ -78,13 +79,13 @@ const Stock = ({route, navigation}) => {
 
   return (
     <Container>
-      {/* <TextInput
+      <TextInput
         placeholder="código do produto"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setUid(t)}
         value={uid}
-      /> */}
+      />
       <TextInput
         placeholder="Nome do produto"
         keyboardType="default"
