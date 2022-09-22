@@ -9,7 +9,8 @@ export const CompanyProvider = ({children}) => {
   const [errorMessage, setErrorMessage] = useState({});
   const {api} = useContext(ApiContext);
 
-  //console.log(api);
+  console.log('companyProvider');
+  console.log(api);
 
   const showToast = message => {
     ToastAndroid.show(message, ToastAndroid.SHORT);

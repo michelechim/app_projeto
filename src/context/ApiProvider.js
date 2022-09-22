@@ -14,15 +14,12 @@ export const ApiProvider = ({children}) => {
         .then(idToken => {
           const apiLocal = create({
             baseURL:
-              'https://firestore.googleapis.com/v1/projects/app-projeto-30539/databases/(default)/documents/ ',
-            header: {Authorization: 'Bearer ' + idToken},
+              'https://firestore.googleapis.com/v1/projects/app-projeto-30539/databases/(default)/documents/',
+            headers: {Authorization: 'Bearer ' + idToken},
           });
-          console.log('ApiLocal');
-          console.log(apiLocal);
 
           //middeleware
           apiLocal.addRequestTransform(response => {
-            console.log(response);
             if (!response.ok) {
               throw response;
             }

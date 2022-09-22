@@ -20,15 +20,15 @@ const Companies = ({navigation}) => {
 
   useEffect(() => {
     fetchData(); //busca as companies
-    setData([
-      {uid: 'bschbsch', nome: 'boticario', lucratividade: '15%'},
-      {uid: 'wnjkwdbnj', nome: 'natura', lucratividade: '30%'},
-    ]);
+    // setData([
+    //   {uid: 'bschbsch', nome: 'boticario', lucratividade: '15%'},
+    //   {uid: 'Ng9IyHKAEQbLPJNCxHFj', nome: 'natura', lucratividade: '30%'},
+    // ]);
   }, []);
 
   useEffect(() => {
     //console.log(companies);
-    //setData(companies);
+    setData(companies);
   }, [companies]);
 
   const routeCompany = item => {
