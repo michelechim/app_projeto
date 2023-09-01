@@ -1,5 +1,4 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Alert} from 'react-native';
 import {Container, TextInput} from './styles';
 
 import Button from '../../components/Button';
@@ -14,7 +13,6 @@ const Product = ({route, navigation}) => {
   const [img, setImg] = useState('');
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
-  //const [sku, setSku] = useState('');
   const [validade, setValidade] = useState('');
   const [valorCusto, setValorCusto] = useState('');
   const [valorVenda, setValorVenda] = useState('');
@@ -29,7 +27,6 @@ const Product = ({route, navigation}) => {
     setImg('');
     setNome('');
     setQuantidade('');
-    //setSku('');
     setValidade('');
     setValorCusto('');
     setValorVenda('');
@@ -40,7 +37,6 @@ const Product = ({route, navigation}) => {
       setImg(route.params.product.img);
       setNome(route.params.product.nome);
       setQuantidade(route.params.product.quantidade);
-      //setSku(route.params.product.sku);
       setValidade(route.params.product.validade);
       setValorCusto(route.params.product.valorCusto);
       setValorVenda(route.params.product.valorVenda);
@@ -52,7 +48,6 @@ const Product = ({route, navigation}) => {
 
   const salvar = async () => {
     // console.log(nome);
-    // console.log(validade);
     if (
       uid &&
       descricao &&
@@ -71,13 +66,11 @@ const Product = ({route, navigation}) => {
       product.img = img;
       product.nome = nome;
       product.quantidade = quantidade;
-      // product.sku = sku;
       product.validade = validade;
       product.valorCusto = valorCusto;
       product.valorVenda = valorVenda;
       setLoading(true);
       await saveProduct(product);
-      //await saveProduct(product);
       setLoading(false);
       navigation.goBack();
     } else {
@@ -148,13 +141,6 @@ const Product = ({route, navigation}) => {
         onChangeText={t => setQuantidade(t)}
         value={quantidade}
       />
-      {/* <TextInput
-        placeholder="SKU"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setSku(t)}
-        value={sku}
-      /> */}
       <TextInput
         placeholder="Validade"
         keyboardType="default"
@@ -179,7 +165,6 @@ const Product = ({route, navigation}) => {
       <Button texto="Salvar" onClick={salvar} />
       {uid ? <DeleteButton texto="Excluir" onClick={exclui} /> : null}
 
-      {/* <AddFloatButton onClick={routeAddUser} /> */}
       {loading && <Loading />}
     </Container>
   );

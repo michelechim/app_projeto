@@ -9,6 +9,7 @@ MERGED from [com.facebook.flipper:flipper:0.125.0] /home/michele/.gradle/caches/
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] /home/michele/.gradle/caches/transforms-3/8d25490ee3025a0177b17393fb8d25d2/transformed/jetified-flipper-network-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/michele/.gradle/caches/transforms-3/a891bd324838e11dd18e7a7f43ce1bec/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:8:1-15:12
 MERGED from [androidx.multidex:multidex:2.0.1] /home/michele/.gradle/caches/transforms-3/a9ba02bd5f16fe84b6cc571515a89342/transformed/multidex-2.0.1/AndroidManifest.xml:17:1-22:12
+MERGED from [:bam.tech_react-native-image-resizer] /home/michele/VSCode/app_projeto/node_modules/@bam.tech/react-native-image-resizer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-async-storage_async-storage] /home/michele/VSCode/app_projeto/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-firebase_auth] /home/michele/VSCode/app_projeto/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-13:12
 MERGED from [:react-native-firebase_firestore] /home/michele/VSCode/app_projeto/node_modules/@react-native-firebase/firestore/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -16,6 +17,7 @@ MERGED from [:react-native-firebase_storage] /home/michele/VSCode/app_projeto/no
 MERGED from [:react-native-firebase_app] /home/michele/VSCode/app_projeto/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-32:12
 MERGED from [:react-native-encrypted-storage] /home/michele/VSCode/app_projeto/node_modules/react-native-encrypted-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-10:12
 MERGED from [:react-native-gesture-handler] /home/michele/VSCode/app_projeto/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
+MERGED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-21:12
 MERGED from [:react-native-maps] /home/michele/VSCode/app_projeto/node_modules/react-native-maps/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-restart] /home/michele/VSCode/app_projeto/node_modules/react-native-restart/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-safe-area-context] /home/michele/VSCode/app_projeto/node_modules/react-native-safe-area-context/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:2:1-9:12
@@ -62,6 +64,7 @@ MERGED from [androidx.browser:browser:1.4.0] /home/michele/.gradle/caches/transf
 MERGED from [androidx.interpolator:interpolator:1.0.0] /home/michele/.gradle/caches/transforms-3/80f2d5452f626b62840b582ca8f3e319/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.security:security-crypto:1.1.0-alpha03] /home/michele/.gradle/caches/transforms-3/62c69a062d81a9d2a6a801ddb0f0d165/transformed/jetified-security-crypto-1.1.0-alpha03/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.core:core-ktx:1.6.0] /home/michele/.gradle/caches/transforms-3/3dd0a6f0bbb027df2cb4c257332688c3/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:2:1-9:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /home/michele/.gradle/caches/transforms-3/b889f779beadb8d36062cb7edf838c36/transformed/exifinterface-1.3.3/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/michele/.gradle/caches/transforms-3/52c8b74a8d5ff6c17a10ce66a5f060ff/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] /home/michele/.gradle/caches/transforms-3/b40d1c2621611dc23667fcbd57c0296b/transformed/sqlite-2.1.0/AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.android.gms:play-services-auth:20.5.0] /home/michele/.gradle/caches/transforms-3/162830d0372a1b607417d06c0a48b337/transformed/jetified-play-services-auth-20.5.0/AndroidManifest.xml:17:1-40:12
@@ -154,6 +157,8 @@ MERGED from /home/michele/VSCode/app_projeto/android/app/src/main/AndroidManifes
 MERGED from /home/michele/VSCode/app_projeto/android/app/src/main/AndroidManifest.xml:6:5-31:19
 MERGED from [:react-native-firebase_app] /home/michele/VSCode/app_projeto/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-30:19
 MERGED from [:react-native-firebase_app] /home/michele/VSCode/app_projeto/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:5-30:19
+MERGED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-19:19
+MERGED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:9:5-19:19
 MERGED from [com.facebook.react:react-native:0.69.4] /home/michele/.gradle/caches/transforms-3/166c744563be95e6659969ef2082b149/transformed/jetified-react-native-0.69.4-debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.react:react-native:0.69.4] /home/michele/.gradle/caches/transforms-3/166c744563be95e6659969ef2082b149/transformed/jetified-react-native-0.69.4-debug/AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.soloader:soloader:0.10.3] /home/michele/.gradle/caches/transforms-3/92f6f6afeeda3eb053ad0025719c0a6f/transformed/jetified-soloader-0.10.3/AndroidManifest.xml:11:5-20
@@ -272,6 +277,8 @@ MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/michele/.
 MERGED from [com.facebook.flipper:flipper-fresco-plugin:0.125.0] /home/michele/.gradle/caches/transforms-3/a891bd324838e11dd18e7a7f43ce1bec/transformed/jetified-flipper-fresco-plugin-0.125.0/AndroidManifest.xml:11:5-13:41
 MERGED from [androidx.multidex:multidex:2.0.1] /home/michele/.gradle/caches/transforms-3/a9ba02bd5f16fe84b6cc571515a89342/transformed/multidex-2.0.1/AndroidManifest.xml:20:5-43
 MERGED from [androidx.multidex:multidex:2.0.1] /home/michele/.gradle/caches/transforms-3/a9ba02bd5f16fe84b6cc571515a89342/transformed/multidex-2.0.1/AndroidManifest.xml:20:5-43
+MERGED from [:bam.tech_react-native-image-resizer] /home/michele/VSCode/app_projeto/node_modules/@bam.tech/react-native-image-resizer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:bam.tech_react-native-image-resizer] /home/michele/VSCode/app_projeto/node_modules/@bam.tech/react-native-image-resizer/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-async-storage_async-storage] /home/michele/VSCode/app_projeto/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-async-storage_async-storage] /home/michele/VSCode/app_projeto/node_modules/@react-native-async-storage/async-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-firebase_auth] /home/michele/VSCode/app_projeto/node_modules/@react-native-firebase/auth/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
@@ -286,6 +293,8 @@ MERGED from [:react-native-encrypted-storage] /home/michele/VSCode/app_projeto/n
 MERGED from [:react-native-encrypted-storage] /home/michele/VSCode/app_projeto/node_modules/react-native-encrypted-storage/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:6:5-8:41
 MERGED from [:react-native-gesture-handler] /home/michele/VSCode/app_projeto/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-gesture-handler] /home/michele/VSCode/app_projeto/node_modules/react-native-gesture-handler/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-maps] /home/michele/VSCode/app_projeto/node_modules/react-native-maps/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-maps] /home/michele/VSCode/app_projeto/node_modules/react-native-maps/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-restart] /home/michele/VSCode/app_projeto/node_modules/react-native-restart/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:5:5-7:41
@@ -378,6 +387,8 @@ MERGED from [androidx.security:security-crypto:1.1.0-alpha03] /home/michele/.gra
 MERGED from [androidx.security:security-crypto:1.1.0-alpha03] /home/michele/.gradle/caches/transforms-3/62c69a062d81a9d2a6a801ddb0f0d165/transformed/jetified-security-crypto-1.1.0-alpha03/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.core:core-ktx:1.6.0] /home/michele/.gradle/caches/transforms-3/3dd0a6f0bbb027df2cb4c257332688c3/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
 MERGED from [androidx.core:core-ktx:1.6.0] /home/michele/.gradle/caches/transforms-3/3dd0a6f0bbb027df2cb4c257332688c3/transformed/jetified-core-ktx-1.6.0/AndroidManifest.xml:5:5-7:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /home/michele/.gradle/caches/transforms-3/b889f779beadb8d36062cb7edf838c36/transformed/exifinterface-1.3.3/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.3] /home/michele/.gradle/caches/transforms-3/b889f779beadb8d36062cb7edf838c36/transformed/exifinterface-1.3.3/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/michele/.gradle/caches/transforms-3/52c8b74a8d5ff6c17a10ce66a5f060ff/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.1.0] /home/michele/.gradle/caches/transforms-3/52c8b74a8d5ff6c17a10ce66a5f060ff/transformed/coordinatorlayout-1.1.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.sqlite:sqlite:2.1.0] /home/michele/.gradle/caches/transforms-3/b40d1c2621611dc23667fcbd57c0296b/transformed/sqlite-2.1.0/AndroidManifest.xml:20:5-22:41
@@ -562,6 +573,22 @@ ADDED from [:react-native-firebase_app] /home/michele/VSCode/app_projeto/node_mo
 		ADDED from [:react-native-firebase_app] /home/michele/VSCode/app_projeto/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:29:13-35
 	android:name
 		ADDED from [:react-native-firebase_app] /home/michele/VSCode/app_projeto/node_modules/@react-native-firebase/app/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:26:13-88
+provider#com.imagepicker.ImagePickerProvider
+ADDED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:10:9-18:20
+	android:grantUriPermissions
+		ADDED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:14:13-47
+	android:authorities
+		ADDED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:12:13-71
+	android:exported
+		ADDED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:13:13-37
+	android:name
+		ADDED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:11:13-63
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:15:13-17:70
+	android:resource
+		ADDED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:17:17-67
+	android:name
+		ADDED from [:react-native-image-picker] /home/michele/VSCode/app_projeto/node_modules/react-native-image-picker/android/build/intermediates/merged_manifest/debug/AndroidManifest.xml:16:17-67
 meta-data#com.google.firebase.components:com.google.firebase.firestore.FirestoreRegistrar
 ADDED from [com.google.firebase:firebase-firestore:24.6.1] /home/michele/.gradle/caches/transforms-3/f5674d50129e44376b196921105f03b6/transformed/jetified-firebase-firestore-24.6.1/AndroidManifest.xml:19:13-21:85
 	android:value

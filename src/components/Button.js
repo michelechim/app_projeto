@@ -14,7 +14,7 @@ export default Button;
 const styles = StyleSheet.create({
   texto: {
     fontSize: 20,
-    color: COLORS.white,
+    color: COLORS.grey,
   },
   button: {
     width: '95%',
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: COLORS.primaryDark,
+    backgroundColor: COLORS.accent,
     fontSize: 16,
     marginTop: 10,
     borderRadius: 5,

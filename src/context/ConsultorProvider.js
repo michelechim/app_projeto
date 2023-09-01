@@ -6,6 +6,7 @@ export const ConsultorContext = createContext({});
 
 export const ConsultorProvider = ({children}) => {
   const [users, setUsers] = useState([]);
+  const [profile, setProfile] = useState([]);
 
   const showToast = message => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -47,7 +48,8 @@ export const ConsultorProvider = ({children}) => {
           });
         });
         setUsers(d);
-        // setData(d);
+        setProfile(d);
+        //setData(d);
         console.log(d);
       },
       error => {
@@ -58,37 +60,62 @@ export const ConsultorProvider = ({children}) => {
     return usersCollection;
   };
 
-  const saveUser = async val => {
-    console.log(val);
-    await firestore()
-      .collection('users')
-      .doc(val.uid)
-      .set(
-        {
-          nome: val.nome,
-          dataNasc: val.dataNasc,
-          endereco: val.endereco,
-          telefone: val.telefone,
-          email: val.email,
-          uid: val.id,
-          codigo: val.codigo,
-          dataCriacao: val.dataCriacao,
-          nivel: val.nivel,
-          lucratividade: val.lucratividade,
-          usuario: val.usuario,
-          senha: val.senha,
-        },
-        {
-          merge: true,
-        },
-      )
-      .then(() => {
-        showToast('Dados salvos');
-      })
-      .catch(e => {
-        console.error('ConsultorProvider, save:' + e);
-      });
-  };
+  // const saveUser = async val => {
+  //   console.log(val);
+  //   await firestore()
+  //     .collection('users')
+  //     .doc(val.uid)
+  //     .set(
+  //       {
+  //         nome: val.nome,
+  //         dataNasc: val.dataNasc,
+  //         endereco: val.endereco,
+  //         telefone: val.telefone,
+  //         email: val.email,
+  //         uid: val.id,
+  //         codigo: val.profileDoc.codigo,
+  //         dataCriacao: val.dataCriacao,
+  //         nivel: val.nivel,
+  //         lucratividade: val.lucratividade,
+  //         usuario: val.usuario,
+  //         senha: val.senha,
+  //       },
+  //       {
+  //         merge: true,
+  //       },
+  //     )
+  //     .then(() => {
+  //       showToast('Dados salvos');
+  //     })
+  //     .catch(e => {
+  //       console.error('ConsultorProvider, save:' + e);
+  //     });
+  // };
+  
+  const saveUser = async () => {
+    const colecaoRef = firestore().collection('users');
+    const profileRef = colecaoRef.doc('uid').collection('profile');
+      colecaoRef && profileRef.add({
+        nome: users.nome,
+        dataNasc: users.dataNasc,
+        endereco: users.endereco,
+        telefone: users.telefone, 
+        email: users.email,
+        uid: profile.id,
+        codigo: profile.codigo,
+        dataCriacao: profile.dataCriacao,
+        nivel: profile.nivel,
+        lucratividade: profile.lucratividade,
+        usuario: profile.usuario,
+        senha: profile.senha,  
+    })
+    .then(docRef => {
+      console.log('Dados salvos ');
+    })
+    .catch(error => {
+      console.error('ConsultorProvider, save:' + e);
+    });
+  }
 
   const deleteUser = async val => {
     // console.log('teste');

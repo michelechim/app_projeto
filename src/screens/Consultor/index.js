@@ -13,32 +13,32 @@ const Consultor = ({route, navigation}) => {
   const [dataNasc, setDataNasc] = useState('');
   const [endereco, setEndereco] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [email, setEmail] = useState('');
-  const [id, setId] = useState('');
-  const [codigo, setCodigo] = useState('');
-  const [dataCriacao, setDataCriacao] = useState('');
-  const [lucratividade, setLucratividade] = useState('');
-  const [nivel, setNivel] = useState('');
-  const [senha, setSenha] = useState('');
-  const [usuario, setUsuario] = useState('');
+  const [email, setEmail] = useState('')
+  // const [id, setId] = useState('');
+  // const [codigo, setCodigo] = useState('');
+  // const [dataCriacao, setDataCriacao] = useState('');
+  // const [lucratividade, setLucratividade] = useState('');
+  // const [nivel, setNivel] = useState('');
+  // const [senha, setSenha] = useState('');
+  // const [usuario, setUsuario] = useState('');
   const [loading, setLoading] = useState(false);
   const {saveUser, deleteUser} = useContext(ConsultorContext);
 
   useEffect(() => {
-    //console.log(route.params.users);
+    // console.log(route.params.users);
     setUid('');
     setNome('');
     setDataNasc('');
     setEndereco('');
     setTelefone('');
     setEmail('');
-    setId('');
-    setCodigo('');
-    setDataCriacao('');
-    setLucratividade('');
-    setNivel('');
-    setSenha('');
-    setUsuario('');
+    // setId('');
+    // setCodigo('');
+    // setDataCriacao('');
+    // setLucratividade('');
+    // setNivel('');
+    // setSenha('');
+    // setUsuario('');
     if (route.params.users) {
       setUid(route.params.users.uid);
       setNome(route.params.users.nome);
@@ -46,14 +46,13 @@ const Consultor = ({route, navigation}) => {
       setEndereco(route.params.users.endereco);
       setTelefone(route.params.users.telefone);
       setEmail(route.params.users.email);
-    } else if (route.params.profile) {
-      setId(route.params.profile.id);
-      setCodigo(route.params.profile.codigo);
-      setDataCriacao(route.params.profile.dataCriacao);
-      setLucratividade(route.params.profile.lucratividade);
-      setNivel(route.params.profile.nivel);
-      setSenha(route.params.profile.senha);
-      setUsuario(route.params.profile.usuario);
+    //  setId(route.params.profile.id);
+    //   setCodigo(route.params.profile.codi;go);
+    //   setDataCriacao(route.params.profile.dataCriacao);
+    //   setLucratividade(route.params.profile.lucratividade);
+    //   setNivel(route.params.profile.nivel);
+    //   setSenha(route.params.profile.senha);
+    //   setUsuario(route.params.profile.usuario);
     }
     return () => {
       console.log('desmontou consultor');
@@ -80,7 +79,7 @@ const Consultor = ({route, navigation}) => {
       users.dataNasc = dataNasc;
       users.endereco = endereco;
       users.email = email;
-      users.uid = id;
+      profile.uid = id;
       users.codigo = codigo;
       users.dataCriacao = dataCriacao;
       users.lucratividade = lucratividade;
