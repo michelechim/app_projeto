@@ -9,29 +9,32 @@ import {ClientContext} from '../../context/ClientProvider';
 
 const Client = ({route, navigation}) => {
   const [uid, setUid] = useState('');
-  const [endereco, setEndereco] = useState('');
   const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('')
+  const [endereco, setEndereco] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [latitude, setLatitude] = useState('');
-  const [longitude, setLongitude] = useState('');
+  const [dataNasc, setDataNasc] = useState('');
+  const [enderecoEntrega, setEnderecoEntrega] = useState('');
   const [loading, setLoading] = useState(false);
   const {saveClient, deleteClient} = useContext(ClientContext);
 
   useEffect(() => {
-    console.log(route.params.client);
-    setEndereco('');
+    console.log(route.params.users);
+    setUid('');
     setNome('');
+    setEmail('');
+    setEndereco('');
     setTelefone('');
-    setLatitude('');
-    setLongitude('');
-    setUid(null);
-    if (route.params.client) {
-      setEndereco(route.params.client.endereco);
-      setNome(route.params.client.nome);
-      setTelefone(route.params.client.telefone);
-      setLatitude(route.params.client.latitude);
-      setLongitude(route.params.client.longitude);
-      setUid(route.params.client.uid);
+    setDataNasc('');
+    setEnderecoEntrega('');
+    if (route.params.users) {
+      setUid(route.params.users.uid);
+      setNome(route.params.users.nome);
+      setEmail(route.params.users.email);
+      setEndereco(route.params.users.endereco);
+      setTelefone(route.params.users.telefone);
+      setDataNasc(route.params.users.dataNasc);
+      setEnderecoEntrega(route.params.users.enderecoEntrega);
     }
     return () => {
       console.log('desmontou cliente');
@@ -39,19 +42,25 @@ const Client = ({route, navigation}) => {
   }, [route]);
 
   const salvar = async () => {
-    console.log(nome);
-    console.log(telefone);
-    console.log(endereco);
-    if (nome && telefone && endereco && latitude && longitude) {
-      let client = {};
-      client.endereco = endereco;
-      client.nome = nome;
-      client.telefone = telefone;
-      client.latitude = latitude;
-      client.longitude = longitude;
-      client.uid = uid;
+    // console.log(nome);
+    if (//uid &&
+      nome &&
+      email &&
+      endereco &&
+      telefone &&
+      dataNasc &&
+      enderecoEntrega
+    ) {
+      let users = {};
+      users.uid = uid;
+      users.nome = nome;
+      users.email = email;
+      users.endereco = endereco;
+      users.telefone = telefone;
+      users.dataNasc = dataNasc;
+      users.enderecoEntrega = enderecoEntrega;
       setLoading(true);
-      await saveClient(client);
+      await saveClient(users);
       setLoading(false);
       navigation.goBack();
     } else {
@@ -59,7 +68,7 @@ const Client = ({route, navigation}) => {
     }
   };
 
-  const exclui = () => {
+  const excluir = () => {
     Alert.alert('Atenção', 'Vocẽ tem certeza que deseja excluir o cliente?', [
       {
         text: 'Não',
@@ -81,11 +90,25 @@ const Client = ({route, navigation}) => {
   return (
     <Container>
       <TextInput
-        placeholder="Nome do cliente"
+        placeholder="Nome"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setNome(t)}
         value={nome}
+      />
+      <TextInput
+        placeholder="Email"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={t => setEmail(t)}
+        value={email}
+      />
+      <TextInput 
+        placeholder="Endereço"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={t => setEndereco(t)}
+        value={endereco}
       />
       <TextInput
         placeholder="Telefone"
@@ -94,31 +117,22 @@ const Client = ({route, navigation}) => {
         onChangeText={t => setTelefone(t)}
         value={telefone}
       />
-      <TextInput
-        placeholder="Endereço completo"
+      <TextInput 
+        placeholder="Data de Nascimento"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setEndereco(t)}
-        value={endereco}
+        onChangeText={t => setDataNasc(t)}
+        value={dataNasc}
       />
-      <TextInput
-        placeholder="Latitude"
-        keyboardType="numeric"
+      <TextInput 
+        placeholder="Endereço de entrega"
+        keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setLatitude(t)}
-        value={latitude}
+        onChangeText={t => setEnderecoEntrega(t)}
+        value={enderecoEntrega}
       />
-      <TextInput
-        placeholder="Longitude"
-        keyboardType="numeric"
-        returnKeyType="go"
-        onChangeText={t => setLongitude(t)}
-        value={longitude}
-      />
-      <Button texto="Salvar" onClick={salvar} />
-      {uid ? <DeleteButton texto="Excluir" onClick={exclui} /> : null}
-
-      {/* <AddFloatButton onClick={routeAddUser} /> */}
+      <Button texto="Salvar" onClick={salvar}/>
+      {uid ? <DeleteButton texto="Excluir" onClick={excluir} /> : null}
       {loading && <Loading />}
     </Container>
   );

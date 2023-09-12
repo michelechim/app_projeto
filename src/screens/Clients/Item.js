@@ -6,36 +6,31 @@ const Button = styled.TouchableHighlight`
   width: 100%;
   height: 120px;
   background-color: ${COLORS.primaryDark};
-  padding: 20px;
-  margin-top: 10px;
-  border-radius: 10px;
+  padding: 5px;
+  margin-top: 5px;
+  border-radius: 5px;
 `;
-
-const TextNome = styled.Text`
-  font-size: 24px;
+const Texto = styled.Text`
+  font-size: 15px;
   color: ${COLORS.white};
 `;
-
-const TextTelefone = styled.Text`
-  font-size: 16px;
-  text-align: justify;
-  color: ${COLORS.white};
-`;
-
 const TextGeral = styled.Text`
-  font-size: 16px;
-  color: ${COLORS.white};
+  font-size: 10px;
+  //text-align: justify;
+  color: ${COLORS.black};
 `;
 
 const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
       <>
-        <TextNome>{item.nome}</TextNome>
-        <TextTelefone>Telefone:{item.telefone}</TextTelefone>
-        <TextGeral>Endereço:{item.endereco}</TextGeral>
-        {/* <TextGeral>{item.latitude}</TextGeral>
-        <TextGeral>{item.longitude}</TextGeral> */}
+        <Texto>Nome:{item.nome}</Texto>
+        <TextGeral>Email:{item.email}</TextGeral>
+        <TextGeral>Data de Nasc.:{item.dataNasc} - Telefone: {item.telefone}</TextGeral>
+        <Texto>Endereço</Texto>
+        <TextGeral>Residencial:{item.endereco}</TextGeral>
+        <TextGeral>Entrega: {item.enderecoEntrega}</TextGeral>
+        
       </>
     </Button>
   );

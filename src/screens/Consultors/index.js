@@ -15,11 +15,11 @@ const Consultor = ({navigation}) => {
   useEffect(() => {
     setData(users);
     setLoading(false);
-    console.log(users); // aparece vazio
+    // console.log(users); //aparece vazio
   }, [users]);
 
-  const routerConsultor = item => {
-    console.log(item);
+  const routerUser = item => {
+    //console.log(item);
     navigation.dispatch(
       CommonActions.navigate({
         name: 'Consultor',
@@ -28,7 +28,7 @@ const Consultor = ({navigation}) => {
     );
   };
 
-  const routeAddConsultor = () => {
+  const routeAddUser = () => {
     navigation.dispatch(
       CommonActions.navigate({
         name: 'Consultor',
@@ -38,7 +38,7 @@ const Consultor = ({navigation}) => {
   };
 
   const renderItem = ({item}) => (
-    <Item item={item} onPress={() => routerConsultor(item)} />
+    <Item item={item} onPress={() => routerUser(item)} />
   );
 
   return (
@@ -48,7 +48,7 @@ const Consultor = ({navigation}) => {
         renderItem={renderItem}
         keyExtractor={item => item.uid}
       />
-      <AddFloatButton onClick={routeAddConsultor} />
+      <AddFloatButton onClick={routeAddUser} />
       {loading && <Loading />}
     </Container>
   );

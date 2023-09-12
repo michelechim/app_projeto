@@ -4,46 +4,36 @@ import {COLORS} from '../../assets/colors';
 
 const Button = styled.TouchableHighlight`
   width: 100%;
-  height: 200px;
+  height: 150px;
   background-color: ${COLORS.primaryDark};
-  padding: 10px;
+  padding: 5px;
   margin-top: 5px;
   border-radius: 5px;
 `;
-
-const TextGeral = styled.Text`
-  font-size: 10px;
-  text-align: justify;
+const Texto = styled.Text`
+  font-size: 15px;
   color: ${COLORS.white};
 `;
-
-const Text = styled.Text`
-  font-size: 15px;
-  //text-align: center;
+const TextGeral = styled.Text`
+  font-size: 10px;
+  //text-align: justify;
   color: ${COLORS.black};
 `;
-
 const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
       <>
-        <Text>Dados Pessoais</Text>
+        <Texto>Dados Pessoais</Texto>
+        {/* <TextGeral>Id: {item.uid}</TextGeral> */}
         <TextGeral>Nome:{item.nome}</TextGeral>
-        <TextGeral>Data de Nasc.:{item.dataNasc}</TextGeral>
+        <TextGeral>Email:{item.email}</TextGeral>
         <TextGeral>Endereço:{item.endereco}</TextGeral>
         <TextGeral>Telefone:{item.telefone}</TextGeral>
-        <TextGeral>Email:{item.email}</TextGeral>
-        <Text>Perfil</Text>
-        <TextGeral>
-          Marca:{item.uid} e Código:{item.codigo}
-        </TextGeral>
-        <TextGeral>Data de criação:{item.dataCriacao}</TextGeral>
-        <TextGeral>
-          Nivel:{item.nivel} e Lucratividade:{item.lucratividade}%
-        </TextGeral>
-        <TextGeral>
-          Usuário:{item.usuario} e Senha:{item.senha}
-        </TextGeral>
+        {/* <TextGeral>Data de Nascimento: {item.dataNasc}</TextGeral> */}
+        <Texto>Marca: {item.marca}</Texto>
+        <TextGeral>Código de consultor:{item.perfilCodigo}</TextGeral>
+        <TextGeral>Senha de acesso: {item.perfilSenha} - Usuário de acesso:{item.perfilUsuario}</TextGeral>
+        <TextGeral>Nivel: {item.perfilNivel} - Lucratividade: {item.perfilLucratividade}</TextGeral>
       </>
     </Button>
   );

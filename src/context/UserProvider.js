@@ -1,4 +1,4 @@
-import React, {useState, createContext} from 'react';
+import React, {useState, createContext, useEffect} from 'react';
 import {ToastAndroid} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
@@ -6,6 +6,13 @@ export const UserContext = createContext({});
 
 export const UserProvider = ({children}) => {
   const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const unsubscribeUsers = getUsers();
+    return () => {
+      unsubscribeUsers;
+    };
+  }, []);
 
   const showToast = message => {
     ToastAndroid.show(message, ToastAndroid.SHORT);
@@ -72,13 +79,7 @@ export const UserProvider = ({children}) => {
   };
 
   return (
-    <UserContext.Provider
-      value={{
-        users,
-        getUsers,
-        saveUser,
-        deleteUser,
-      }}>
+    <UserContext.Provider value={{users, getUsers, saveUser, deleteUser}}>
       {children}
     </UserContext.Provider>
   );

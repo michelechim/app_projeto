@@ -1,83 +1,96 @@
-import React, {useState, createContext} from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 import {ToastAndroid} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 export const ClientContext = createContext({});
 
 export const ClientProvider = ({children}) => {
-  const [clients, setClients] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const showToast = message => {
+    ToastAndroid.show(message, ToastAndroid.SHORT);
+  };
+
+  useEffect(() => {
+    const unsubscribeUser = getClients();
+    return () => {
+      unsubscribeUser;
+    };
+  }, []);
 
   const getClients = async () => {
     const unsubscribe = firestore()
-      .collection('clients')
-      .orderBy('nome')
+      .collection('users')
+      .where ('dataNasc','!=', null)
       .onSnapshot(
         querySnapshot => {
           let d = [];
           querySnapshot.forEach(doc => {
-            // console.log(doc.id, ' => ', doc.data());
             const val = {
               uid: doc.id,
-              endereco: doc.data().endereco,
               nome: doc.data().nome,
+              email: doc.data().email,
+              endereco: doc.data().endereco,
               telefone: doc.data().telefone,
-              latitude: doc.data().latitude,
-              longitude: doc.data().longitude,
+              dataNasc: doc.data().dataNasc,
+              enderecoEntrega: doc.data().enderecoEntrega,
             };
             d.push(val);
           });
-          setClients(d);
+          setUsers(d);
+          //console.log(d);
         },
-        e => {
-          console.error('ClientProvider, getClients: ' + e);
+        error => {
+          console.log('ClientProvider, getClients:' + error);
         },
       );
     return unsubscribe;
   };
 
-  const saveClient = async val => {
+  const saveClient = async (val) => {
     await firestore()
-      .collection('clients')
+      .collection('users')
       .doc(val.uid)
       .set(
         {
-          endereco: val.endereco,
+          uid: val.uid,
           nome: val.nome,
+          email: val.email,
+          endereco: val.endereco,
           telefone: val.telefone,
-          latitude: val.latitude,
-          longitude: val.longitude,
+          dataNasc: val.dataNasc,
+          enderecoEntrega: val.enderecoEntrega,
         },
-        {merge: true},
+        {
+          merge: true,
+        },
       )
       .then(() => {
-        ToastAndroid.show('Dados salvos.', ToastAndroid.SHORT);
+        showToast('Dados salvos');
       })
       .catch(e => {
-        console.error('ClienteProvider, saveClient: ' + e);
+        console.error('ClientProvider, saveClient:' + e);
       });
   };
 
-  const deleteClient = async uid => {
+  const deleteClient = async (val) => {
+    // console.log('teste');
+    // console.log(val);
     firestore()
-      .collection('clients')
-      .doc(uid)
+      .collection('users')
+      .doc(val)
       .delete()
       .then(() => {
-        ToastAndroid.show('Cliente excluído.', ToastAndroid.SHORT);
+        showToast('Cliente deletado!');
       })
       .catch(e => {
-        console.error('ClientProvider, deleteClient: ' + e);
+        console.error('ClientProvider, deleteClient:' + e);
       });
   };
 
   return (
-    <ClientContext.Provider
-      value={{
-        clients,
-        getClients,
-        saveClient,
-        deleteClient,
-      }}>
+    <ClientContext.Provider 
+    value={{users, getClients, saveClient, deleteClient}}>
       {children}
     </ClientContext.Provider>
   );

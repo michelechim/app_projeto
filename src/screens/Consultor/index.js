@@ -10,49 +10,46 @@ import {ConsultorContext} from '../../context/ConsultorProvider';
 const Consultor = ({route, navigation}) => {
   const [uid, setUid] = useState('');
   const [nome, setNome] = useState('');
-  const [dataNasc, setDataNasc] = useState('');
+  const [email, setEmail] = useState('')
   const [endereco, setEndereco] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [email, setEmail] = useState('')
-  // const [id, setId] = useState('');
-  // const [codigo, setCodigo] = useState('');
-  // const [dataCriacao, setDataCriacao] = useState('');
-  // const [lucratividade, setLucratividade] = useState('');
-  // const [nivel, setNivel] = useState('');
-  // const [senha, setSenha] = useState('');
-  // const [usuario, setUsuario] = useState('');
+  //const [dataNasc, setDataNasc] = useState('');
+  const [marca, setMarca] = useState('');
+  const [perfilCodigo, setPerfilCodigo] = useState('');
+  const [perfilSenha, setPerfilSenha] = useState('');
+  const [perfilUsuario, setPerfilUsuario] = useState('');
+  const [perfilNivel, setPerfilNivel] = useState('');
+  const [perfilLucratividade, setPerfilLucratividade] = useState('');
   const [loading, setLoading] = useState(false);
   const {saveUser, deleteUser} = useContext(ConsultorContext);
 
   useEffect(() => {
-    // console.log(route.params.users);
+    console.log(route.params.users);
     setUid('');
     setNome('');
-    setDataNasc('');
+    setEmail('');
     setEndereco('');
     setTelefone('');
-    setEmail('');
-    // setId('');
-    // setCodigo('');
-    // setDataCriacao('');
-    // setLucratividade('');
-    // setNivel('');
-    // setSenha('');
-    // setUsuario('');
+    //setDataNasc('');
+    setMarca('');
+    setPerfilCodigo('');
+    setPerfilSenha('');
+    setPerfilUsuario('');
+    setPerfilNivel('');
+    setPerfilLucratividade('');
     if (route.params.users) {
       setUid(route.params.users.uid);
       setNome(route.params.users.nome);
-      setDataNasc(route.params.users.dataNasc);
+      setEmail(route.params.users.email);
       setEndereco(route.params.users.endereco);
       setTelefone(route.params.users.telefone);
-      setEmail(route.params.users.email);
-    //  setId(route.params.profile.id);
-    //   setCodigo(route.params.profile.codi;go);
-    //   setDataCriacao(route.params.profile.dataCriacao);
-    //   setLucratividade(route.params.profile.lucratividade);
-    //   setNivel(route.params.profile.nivel);
-    //   setSenha(route.params.profile.senha);
-    //   setUsuario(route.params.profile.usuario);
+      //setDataNasc(route.params.users.dataNasc);
+      setMarca(route.params.users.marca);
+      setPerfilCodigo(route.params.users.perfilCodigo);
+      setPerfilSenha(route.params.users.perfilSenha);
+      setPerfilUsuario(route.params.users.perfilUsuario);
+      setPerfilNivel(route.params.users.perfilNivel);
+      setPerfilLucratividade(route.params.users.perfilLucratividade);
     }
     return () => {
       console.log('desmontou consultor');
@@ -60,32 +57,33 @@ const Consultor = ({route, navigation}) => {
   }, [route]);
 
   const salvar = async () => {
-    if (
+    // console.log(nome);
+    if (//uid &&
       nome &&
-      dataNasc &&
+      email &&
       endereco &&
       telefone &&
-      email &&
-      id &&
-      nivel &&
-      codigo &&
-      dataCriacao &&
-      lucratividade &&
-      senha &&
-      usuario
+      //dataNasc &&
+      marca &&
+      perfilCodigo &&
+      perfilSenha &&
+      perfilUsuario &&
+      perfilNivel &&
+      perfilLucratividade
     ) {
       let users = {};
+      users.uid = uid;
       users.nome = nome;
-      users.dataNasc = dataNasc;
-      users.endereco = endereco;
       users.email = email;
-      profile.uid = id;
-      users.codigo = codigo;
-      users.dataCriacao = dataCriacao;
-      users.lucratividade = lucratividade;
-      users.nivel = nivel;
-      users.senha = senha;
-      users.usuario = usuario;
+      users.endereco = endereco;
+      users.telefone = telefone;
+      //users.dataNasc = dataNasc;
+      users.marca = marca;
+      users.perfilCodigo = perfilCodigo;
+      users.perfilSenha = perfilSenha;
+      users.perfilUsuario = perfilUsuario;
+      users.perfilNivel = perfilNivel;
+      users.perfilLucratividade = perfilLucratividade;
       setLoading(true);
       await saveUser(users);
       setLoading(false);
@@ -95,7 +93,7 @@ const Consultor = ({route, navigation}) => {
     }
   };
 
-  const exclui = () => {
+  const excluir = () => {
     Alert.alert('Atenção', 'Vocẽ tem certeza que deseja excluir o consultor?', [
       {
         text: 'Não',
@@ -116,6 +114,13 @@ const Consultor = ({route, navigation}) => {
 
   return (
     <Container>
+      {/* <TextInput
+        placeholder="Identificação"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={t => setUid(t)}
+        value={uid}
+      /> */}
       <TextInput
         placeholder="Nome"
         keyboardType="default"
@@ -124,13 +129,13 @@ const Consultor = ({route, navigation}) => {
         value={nome}
       />
       <TextInput
-        placeholder="Data de Nascimento"
+        placeholder="Email"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setDataNasc(t)}
-        value={dataNasc}
+        onChangeText={t => setEmail(t)}
+        value={email}
       />
-      <TextInput
+      <TextInput 
         placeholder="Endereço"
         keyboardType="default"
         returnKeyType="go"
@@ -144,67 +149,58 @@ const Consultor = ({route, navigation}) => {
         onChangeText={t => setTelefone(t)}
         value={telefone}
       />
-      <TextInput
-        placeholder="Email"
+      {/* <TextInput 
+        placeholder="Data de Nascimento"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setEmail(t)}
-        value={email}
-      />
-      <TextInput
+        onChangeText={t => setDataNasc(t)}
+        value={dataNasc}
+      /> */}
+      <TextInput 
         placeholder="Marca"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setId(t)}
-        value={id}
+        onChangeText={t => setMarca(t)}
+        value={marca}
       />
       <TextInput
-        placeholder="Código"
+        placeholder="Código do consultor"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setCodigo(t)}
-        value={codigo}
+        onChangeText={t=> setPerfilCodigo(t)}
+        value={perfilCodigo}
       />
-      <TextInput
-        placeholder="Data de Criação"
+      <TextInput 
+        placeholder="Senha de acesso"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setDataCriacao(t)}
-        value={dataCriacao}
+        onChangeText={t=> setPerfilSenha(t)}
+        value={perfilSenha}
       />
-      <TextInput
+      <TextInput 
+        placeholder="Usuário de acesso"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={t=> setPerfilUsuario(t)}
+        value={perfilUsuario}
+      />
+      <TextInput 
         placeholder="Nivel"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setNivel(t)}
-        value={nivel}
+        onChangeText={t=> setPerfilNivel(t)}
+        value={perfilNivel}
       />
       <TextInput
         placeholder="Lucratividade"
         keyboardType="default"
         returnKeyType="go"
-        onChangeText={t => setLucratividade(t)}
-        value={lucratividade}
-      />
-      <TextInput
-        placeholder="Usuário"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setUsuario(t)}
-        value={usuario}
-      />
-      <TextInput
-        placeholder="Senha"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setSenha(t)}
-        value={senha}
+        onChangeText={t=> setPerfilLucratividade(t)}
+        value={perfilLucratividade}
       />
 
-      <Button texto="Salvar" onClick={salvar} />
-      {uid ? <DeleteButton texto="Excluir" onClick={exclui} /> : null}
-
-      {/* <AddFloatButton onClick={routeAddUser} /> */}
+      <Button texto="Salvar" onClick={salvar}/>
+      {uid ? <DeleteButton texto="Excluir" onClick={excluir} /> : null}
       {loading && <Loading />}
     </Container>
   );
