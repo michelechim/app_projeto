@@ -12,9 +12,9 @@ export const ProductProvider = ({children}) => {
   };
 
   useEffect(() => {
-    const unsubscribeUsers = getProduct();
+    const unsubscribeProduct = getProduct();
     return () => {
-      unsubscribeUsers;
+      unsubscribeProduct;
     };
   }, []);
 

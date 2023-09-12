@@ -20,3 +20,13 @@ export const TextInput = styled.TextInput`
 export const Text = styled.Text`
   font-size: 24px;
 `;
+
+export const Image = styled.Image`
+  border-bottom-color: ${COLORS.primary};
+  align-self: center;
+  height: 20%;
+  width: 90%;
+  border-radius: 10px;
+  border-color: black;
+  background-color: ${COLORS.primary};
+`;

@@ -1,19 +1,18 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {COLORS} from '../../assets/colors';
-import {Container, Image} from './styles';
 
 const Button = styled.TouchableHighlight`
   width: 100%;
   height: 150px;
   background-color: ${COLORS.primaryDark};
-  padding: 10px;
+  padding: 5px;
   margin-top: 5px;
   border-radius: 5px;
 `;
 
 const Texto = styled.Text`
-  font-size: 20px;
+  font-size: 15px;
   color: ${COLORS.white};
 `;
 
@@ -31,7 +30,7 @@ const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
       <>
-        <TextGeral>{item.img}</TextGeral>
+       <TextGeral>{item.img}</TextGeral>
         <Text>
           {item.uid} :
           <Texto>

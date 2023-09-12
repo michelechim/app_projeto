@@ -1,5 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Container, TextInput} from './styles';
+import {Alert} from 'react-native';
+import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import storage from '@react-native-firebase/storage';
+import {Container, TextInput, Image} from './styles';
 
 import Button from '../../components/Button';
 import DeleteButton from '../../components/DeleteButton';
@@ -97,8 +100,60 @@ const Product = ({route, navigation}) => {
     ]);
   };
 
+  const selectImage = () => {
+    const options = {
+      storageOptions: {
+        title: 'Tirar uma foto',
+        skipBackup: true,
+        path: 'images',
+        mediaType: 'photo',
+      },
+    };
+
+    launchImageLibrary(options, response => {
+      if (response.errorCode) {
+        console.log('Image picker Error:', response.errorMessage);
+      } else if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else {
+        const path = response.assets[0].uri;
+        setImg(path);
+      }
+    });
+  };
+
+  const takePicker = () => {
+    const options = {
+      storageOptions: {
+        title: 'Selecionar  uma imagem',
+        skipBackup: true,
+        path: 'images',
+        mediaType: 'photo',
+      },
+    };
+    launchCamera(options, response => {
+      if (response.errorCode) {
+        console.log('errorMessage-> ', response.errorMessage);
+      } else if (response.didCancel) {
+        console.log('User Cancel Photograph:');
+      } else {
+        const path = response?.assets[0]?.uri;
+        setImg(path);
+      }
+    });
+  };
+
   return (
     <Container>
+      <Image
+      source={{ uri: img !== '' ? img
+        : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXusGK_JYWv_WvhPl9PAVKb7g71ny6lRMiA&usqp=CAUss',
+      }}
+    />
+    <Button texto="Selecionar Imagem" onClick={selectImage}/>
+    <Button texto="Tirar a foto" onClick={takePicker}/>
+    
+
       <TextInput
         placeholder="Código do produto"
         keyboardType="default"
@@ -162,7 +217,7 @@ const Product = ({route, navigation}) => {
         onChangeText={t => setValorVenda(t)}
         value={valorVenda}
       />
-      <Button texto="Salvar" onClick={salvar} />
+      <Button texto="Salvar" onClick={salvar}/>
       {uid ? <DeleteButton texto="Excluir" onClick={exclui} /> : null}
 
       {loading && <Loading />}
