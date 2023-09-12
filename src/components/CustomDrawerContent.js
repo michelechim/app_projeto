@@ -11,14 +11,12 @@ const Page = styled.View`
   justify-content: flex-start;
   align-items: flex-start;
 `;
-
 const Header = styled.View`
   flex: 1;
   justify-content: center;
   align-items: flex-start;
   background-color: ${COLORS.primaryDark};
 `;
-
 const Body = styled.View`
   flex: 6;
   width: 100%;
@@ -28,11 +26,9 @@ const Body = styled.View`
   padding-top: 30px;
   border-color: 'red';
 `;
-
 const ScrollView = styled.ScrollView`
   width: 100%;
 `;
-
 const DivItem = styled.View`
   width: 100%;
   height: auto;
@@ -41,13 +37,11 @@ const DivItem = styled.View`
   align-items: center;
   margin: 10px;
 `;
-
 const ItemMenuText = styled.Text`
   font-size: 20px;
   margin: 10px;
   color: ${COLORS.primaryDark};
 `;
-
 const CustomDrawerContent = ({navigation}) => {
   const {signOut} = useContext(AuthUserContext);
 
@@ -58,6 +52,15 @@ const CustomDrawerContent = ({navigation}) => {
       </Header>
       <Body>
         <ScrollView>
+        <DivItem>
+            <Icon name="people-outline" size={25} color={COLORS.primaryDark} />
+            <ItemMenuText
+              onPress={() => {
+                navigation.navigate('Users');
+              }}>
+              Usuários
+            </ItemMenuText>
+          </DivItem>
           <DivItem>
             <Icon name="person-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
@@ -68,36 +71,14 @@ const CustomDrawerContent = ({navigation}) => {
             </ItemMenuText>
           </DivItem>
           <DivItem>
-            <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
+            <Icon name="person-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
-                navigation.navigate('Stocks');
+                navigation.navigate('Consultors');
               }}>
-              Estoques
+              Consultor
             </ItemMenuText>
-          </DivItem>
-          <DivItem>
-            <Icon name="people-outline" size={25} color={COLORS.primaryDark} />
-            <ItemMenuText
-              onPress={() => {
-                navigation.navigate('Users');
-              }}>
-              Usuários
-            </ItemMenuText>
-          </DivItem>
-          <DivItem>
-            <Icon
-              name="business-outline"
-              size={25}
-              color={COLORS.primaryDark}
-            />
-            <ItemMenuText
-              onPress={() => {
-                navigation.navigate('Companies');
-              }}>
-              Fornecedor
-            </ItemMenuText>
-          </DivItem>
+          </DivItem>        
           <DivItem>
             <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
@@ -107,13 +88,14 @@ const CustomDrawerContent = ({navigation}) => {
               Produtos
             </ItemMenuText>
           </DivItem>
+          
           <DivItem>
-            <Icon name="person-outline" size={25} color={COLORS.primaryDark} />
+            <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
-                navigation.navigate('Consultors');
+                navigation.navigate('Catalogo');
               }}>
-              Consultor
+              Catálogo
             </ItemMenuText>
           </DivItem>
           <DivItem>
@@ -125,6 +107,20 @@ const CustomDrawerContent = ({navigation}) => {
               Sair
             </ItemMenuText>
           </DivItem>
+           {/* <DivItem>
+            <Icon
+              name="business-outline"
+              size={25}
+              color={COLORS.primaryDark}
+            />
+            <ItemMenuText
+              onPress={() => {
+                navigation.navigate('Companies');
+              }}>
+              Fornecedor
+            </ItemMenuText>
+          </DivItem> */}
+          
         </ScrollView>
       </Body>
     </Page>

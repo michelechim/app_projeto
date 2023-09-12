@@ -4,10 +4,9 @@ import {AuthUserProvider} from '../context/AuthUserProvider';
 import {ApiProvider} from '../context/ApiProvider';
 import {UserProvider} from '../context/UserProvider';
 import {ClientProvider} from '../context/ClientProvider';
-import {CompanyProvider} from '../context/CompanyProvider';
-import {StockProvider} from '../context/StockProvider';
 import {ProductProvider} from '../context/ProductProvider';
 import {ConsultorProvider} from '../context/ConsultorProvider';
+import {CatalogoProvider} from '../context/CatalogoProvider';
 import Navigator from './Navigator';
 
 export default function Providers() {
@@ -16,15 +15,13 @@ export default function Providers() {
       <UserProvider>
         <ApiProvider>
           <ClientProvider>
-            <StockProvider>
               <ProductProvider>
-                <CompanyProvider>
-                  <ConsultorProvider>
+                <ConsultorProvider>
+                  <CatalogoProvider>
                     <Navigator />
-                  </ConsultorProvider>
-                </CompanyProvider>
+                  </CatalogoProvider>
+                </ConsultorProvider>
               </ProductProvider>
-            </StockProvider>
           </ClientProvider>
         </ApiProvider>
       </UserProvider>

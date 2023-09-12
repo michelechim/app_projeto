@@ -8,18 +8,16 @@ import SignIn from '../screens/SignIn';
 import SignUp from '../screens/SignUp';
 import ForgotPassWord from '../screens/ForgotPassWord';
 import Preload from '../screens/Preload';
-import Stocks from '../screens/Stocks';
-import Stock from '../screens/Stock';
 import Clients from '../screens/Clients';
 import Client from '../screens/Client';
 import Users from '../screens/Users';
 import User from '../screens/User';
-import Companies from '../screens/Companies';
-import Company from '../screens/Company';
 import Products from '../screens/Products';
 import Product from '../screens/Product';
 import Consultor from '../screens/Consultor';
 import Consultors from '../screens/Consultors';
+import Catalogo from '../screens/Catalogo';
+import Catalogos from '../screens/Catalogos';
 import {COLORS} from '../assets/colors';
 import CustomDrawerContent from '../components/CustomDrawerContent';
 import LogoutButton from '../components/LogoutButton';
@@ -31,7 +29,7 @@ const Navigator = () => {
   const AppStack = () => {
     return (
       <Drawer.Navigator
-        initialRouteName="Stocks"
+        initialRouteName="Consultors"
         screenOptions={{
           headerShown: 'true',
           headerStyle: {
@@ -41,8 +39,6 @@ const Navigator = () => {
           headerRight: () => <LogoutButton />,
         }}
         drawerContent={props => <CustomDrawerContent {...props} />}>
-        <Drawer.Screen name="Stocks" component={Stocks} options={stocksStyle} />
-        <Drawer.Screen name="Stock" component={Stock} options={stockStyle} />
         <Drawer.Screen
           name="Products"
           component={Products}
@@ -62,16 +58,6 @@ const Navigator = () => {
         <Drawer.Screen name="Users" component={Users} options={usersStyle} />
         <Drawer.Screen name="User" component={User} options={userStyle} />
         <Drawer.Screen
-          name="Companies"
-          component={Companies}
-          options={companiesStyle}
-        />
-        <Drawer.Screen
-          name="Company"
-          component={Company}
-          options={companyStyle}
-        />
-        <Drawer.Screen
           name="Consultors"
           component={Consultors}
           options={consultorsStyle}
@@ -80,6 +66,16 @@ const Navigator = () => {
           name="Consultor"
           component={Consultor}
           options={consultorStyle}
+        />
+        <Drawer.Screen
+          name="Catalogos"
+          component={Catalogos}
+          options={catalogosStyle}
+        />
+        <Drawer.Screen
+          name="Catalogo"
+          component={Catalogo}
+          options={catalogoStyle}
         />
       </Drawer.Navigator>
     );
@@ -134,13 +130,6 @@ const forgotPassWordStyle = {
 const preloadStyle = {
   headerShown: false,
 };
-
-const stocksStyle = {
-  title: 'Estoques',
-};
-const stockStyle = {
-  title: 'Estoque',
-};
 const clientsStyle = {
   title: 'Clientes',
 };
@@ -153,12 +142,6 @@ const usersStyle = {
 const userStyle = {
   title: 'Usuário',
 };
-const companyStyle = {
-  title: 'Fornecedor',
-};
-const companiesStyle = {
-  title: 'Fornecedores',
-};
 const productStyle = {
   title: 'Produto',
 };
@@ -170,4 +153,10 @@ const consultorStyle = {
 };
 const consultorsStyle = {
   title: 'Consultores',
+};
+const catalogoStyle = {
+  title: 'Catálogo'
+};
+const catalogosStyle = {
+  title: 'Catálogos'
 };
