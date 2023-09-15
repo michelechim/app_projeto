@@ -1,7 +1,8 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Alert} from 'react-native';
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
+import ImageResizer from '@bam.tech/react-native-image-resizer';
 import storage from '@react-native-firebase/storage';
+import {Alert} from 'react-native';
 import {Container, TextInput, Image} from './styles';
 
 import Button from '../../components/Button';
@@ -20,7 +21,8 @@ const Product = ({route, navigation}) => {
   const [valorCusto, setValorCusto] = useState('');
   const [valorVenda, setValorVenda] = useState('');
   const [loading, setLoading] = useState(false);
-  const {saveProduct, deleteProduct} = useContext(ProductContext);
+  const {saveProduct, deleteProduct, product} = useContext(ProductContext);
+  const [setVisible] = useState(false);
 
   useEffect(() => {
     console.log(route.params.product);
@@ -142,17 +144,46 @@ const Product = ({route, navigation}) => {
       }
     });
   };
+  const sendDados = async (urlImageParcial, urlCompleta) => {
+    await saveProduct(product, urlImageParcial, urlCompleta, () => {
+      setVisible(false);
+    });
+  };
+  async function sendImageDatabase(data) {
+    let imageRefact = await ImageResizer.createResizedImage(
+      img, 200, 350, 'PNG', 100,
+    );
+    const urlImageParcial = `images/${product.uid}/${product.nome}.jpeg`;
+    const task = storage().ref(urlImageParcial).putFile(imageRefact?.uri);
+    task.on('state_changed', taskSnapshot => {
+      console.log('Transf:\n' +
+        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`
+      );
+    });
+    
+    task
+    .then(async () => {
+      const urlCompleta = await storage()
+      .ref(urlImageParcial)
+      .getDownloadURL();
+      sendDados(urlImageParcial, urlCompleta);
+    })
+    .catch(e => {
+      console.log(' Catch  Task =>');
+      Alert.alert('Erro !', 'Impossivel salvar seu produto, tente mais tarde!!');
+      console.error(e);
+    });
+  }
+  
 
   return (
     <Container>
-      <Image
-      source={{ uri: img !== '' ? img
+      <Image  source={{ uri: img !== '' ? img
         : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXusGK_JYWv_WvhPl9PAVKb7g71ny6lRMiA&usqp=CAUss',
-      }}
-    />
-    <Button texto="Selecionar Imagem" onClick={selectImage}/>
-    <Button texto="Tirar a foto" onClick={takePicker}/>
-    
+      }} />
+      <Button texto="Selecionar Imagem" onClick={selectImage}/>
+      <Button texto="Tirar foto" onClick={takePicker}/>
+      {/* <Button texto="Salvar Imagem" onClick={sendImageDatabase}/> */}
 
       <TextInput
         placeholder="Código do produto"
@@ -182,13 +213,13 @@ const Product = ({route, navigation}) => {
         onChangeText={t => setFornecedor(t)}
         value={fornecedor}
       />
-      <TextInput
+      {/* <TextInput
         placeholder="Imagem"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setImg(t)}
         value={img}
-      />
+      /> */}
       <TextInput
         placeholder="Quantidade"
         keyboardType="default"
@@ -217,7 +248,8 @@ const Product = ({route, navigation}) => {
         onChangeText={t => setValorVenda(t)}
         value={valorVenda}
       />
-      <Button texto="Salvar" onClick={salvar}/>
+      {/* <Button texto="Salvar" onClick={salvar}/> */}
+      <Button texto="Salvar Imagem" onClick={sendImageDatabase}/>
       {uid ? <DeleteButton texto="Excluir" onClick={exclui} /> : null}
 
       {loading && <Loading />}

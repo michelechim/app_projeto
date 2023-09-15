@@ -4,7 +4,7 @@ import {COLORS} from '../../assets/colors';
 
 const Button = styled.TouchableHighlight`
   width: 100%;
-  height: 150px;
+  height: 200px;
   background-color: ${COLORS.primaryDark};
   padding: 5px;
   margin-top: 5px;
@@ -14,33 +14,28 @@ const Button = styled.TouchableHighlight`
 const Texto = styled.Text`
   font-size: 15px;
   color: ${COLORS.white};
+  text-align: center;
 `;
 
-const TextGeral = styled.Text`
-  font-size: 15px;
-  //text-align: justify;
-  color: ${COLORS.white};
+const Image = styled.Image`
+  border-bottom-color: ${COLORS.primary};
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
+  border-color: black;
 `;
-const Text = styled.Text`
-  font-size: 15px;
-  //text-align: center;
-  color: ${COLORS.white};
-`;
+
 const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
       <>
-       <TextGeral>{item.img}</TextGeral>
-        <Text>
-          {item.uid} :
-          <Texto>
-            {item.nome} , {item.descricao} - {item.fornecedor}
-          </Texto>
-        </Text>
-        <TextGeral>Venda:{item.valorVenda}</TextGeral>
-        <TextGeral>Custo:{item.valorCusto}</TextGeral>
-        <TextGeral>Qtde: {item.quantidade}</TextGeral>
-        <TextGeral>Validade:{item.validade}</TextGeral>
+        <Image  source={{ uri: item.img !== '' ? item.img
+          : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXusGK_JYWv_WvhPl9PAVKb7g71ny6lRMiA&usqp=CAUss',
+        }} />     
+        <Texto>{item.uid} :{item.nome}, {item.descricao}</Texto>
+        <Texto>{item.fornecedor}</Texto>
+        <Texto>Venda:{item.valorVenda} - Custo:{item.valorCusto}</Texto>
+        <Texto>Qtde: {item.quantidade} - Validade:{item.validade}</Texto>
       </>
     </Button>
   );

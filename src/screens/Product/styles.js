@@ -24,9 +24,9 @@ export const Text = styled.Text`
 export const Image = styled.Image`
   border-bottom-color: ${COLORS.primary};
   align-self: center;
-  height: 20%;
-  width: 90%;
-  border-radius: 10px;
+  height: 100px;
+  width: 100px;
+  border-radius: 100px;
   border-color: black;
   background-color: ${COLORS.primary};
 `;
