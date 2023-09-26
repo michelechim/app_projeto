@@ -18,11 +18,12 @@ const Texto = styled.Text`
 `;
 
 const Image = styled.Image`
-  border-bottom-color: ${COLORS.primary};
+  //border-bottom-color: ${COLORS.primary};
   height: 100px;
   width: 100px;
   border-radius: 100px;
-  border-color: black;
+  background-color: white;
+  //border-color: black; 
 `;
 
 const Item = ({item, onPress}) => {

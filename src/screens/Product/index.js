@@ -22,7 +22,6 @@ const Product = ({route, navigation}) => {
   const [valorVenda, setValorVenda] = useState('');
   const [loading, setLoading] = useState(false);
   const {saveProduct, deleteProduct, product} = useContext(ProductContext);
-  const [setVisible] = useState(false);
 
   useEffect(() => {
     console.log(route.params.product);
@@ -50,38 +49,6 @@ const Product = ({route, navigation}) => {
       console.log('desmontou produto');
     };
   }, [route]);
-
-  const salvar = async () => {
-    // console.log(nome);
-    if (
-      uid &&
-      descricao &&
-      fornecedor &&
-      img &&
-      quantidade &&
-      nome &&
-      validade &&
-      valorCusto &&
-      valorVenda
-    ) {
-      let product = {};
-      product.uid = uid;
-      product.descricao = descricao;
-      product.fornecedor = fornecedor;
-      product.img = img;
-      product.nome = nome;
-      product.quantidade = quantidade;
-      product.validade = validade;
-      product.valorCusto = valorCusto;
-      product.valorVenda = valorVenda;
-      setLoading(true);
-      await saveProduct(product);
-      setLoading(false);
-      navigation.goBack();
-    } else {
-      Alert.alert('Atenção:', 'Digite todos os campos.');
-    }
-  };
 
   const exclui = () => {
     Alert.alert('Atenção', 'Vocẽ tem certeza que deseja excluir o produto?', [
@@ -144,16 +111,43 @@ const Product = ({route, navigation}) => {
       }
     });
   };
-  const sendDados = async (urlImageParcial, urlCompleta) => {
-    await saveProduct(product, urlImageParcial, urlCompleta, () => {
-      setVisible(false);
-    });
+
+  const sendDados = async (urlCompleta) => {
+    // console.log(nome);
+    if (
+      uid &&
+      descricao &&
+      fornecedor &&
+      quantidade &&
+      nome &&
+      validade &&
+      valorCusto &&
+      valorVenda
+    ) {
+      let product = {};
+      product.uid = uid;
+      product.descricao = descricao;
+      product.fornecedor = fornecedor;
+      product.img = urlCompleta;
+      product.nome = nome;
+      product.quantidade = quantidade;
+      product.validade = validade;
+      product.valorCusto = valorCusto;
+      product.valorVenda = valorVenda;
+      setLoading(true);
+      await saveProduct(product);
+      setLoading(false);
+      navigation.goBack();
+    } else {
+      Alert.alert('Atenção:', 'Digite todos os campos.');
+    }
   };
-  async function sendImageDatabase(data) {
+  
+  async function sendImageDatabase() {
     let imageRefact = await ImageResizer.createResizedImage(
       img, 200, 350, 'PNG', 100,
     );
-    const urlImageParcial = `images/${product.uid}/${product.nome}.jpeg`;
+    const urlImageParcial = `images/${product.uid}.jpeg`;
     const task = storage().ref(urlImageParcial).putFile(imageRefact?.uri);
     task.on('state_changed', taskSnapshot => {
       console.log('Transf:\n' +
@@ -166,7 +160,7 @@ const Product = ({route, navigation}) => {
       const urlCompleta = await storage()
       .ref(urlImageParcial)
       .getDownloadURL();
-      sendDados(urlImageParcial, urlCompleta);
+      sendDados(urlCompleta);
     })
     .catch(e => {
       console.log(' Catch  Task =>');
