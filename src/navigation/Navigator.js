@@ -117,6 +117,10 @@ export default Navigator;
 
 const signInStyle = {
   title: 'Revenda Fácil', //'Chim - mãe & filha',
+    headerTintColor: COLORS.primaryDark,
+    headerTitleStyle: {
+      fontWeight: 'bold',
+    },
 };
 
 const signUpStyle = {
