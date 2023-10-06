@@ -83,18 +83,18 @@ const SignIn = ({navigation}) => {
           <Text style={styles.textEsqueceuSenha} onPress={recuperarSenha}>
             Esqueceu a senha?
           </Text>
-          <Button texto="Entrar" onClick={entrar} />
+          <Button texto="ENTRAR" onClick={entrar} />
         </View>
         <View style={styles.divInferior}>
           <View style={styles.divOuHr}>
             <View style={styles.divHr} />
-            <Text style={styles.textOu}>ou</Text>
+            <Text style={styles.textOu}>OU</Text>
             <View style={styles.divHr} />
           </View>
           <View style={styles.divCadastrarSe}>
             <Text style={styles.textNormal}>Não tem uma conta? </Text>
             <Text style={styles.textCadastrarSe} onPress={cadastrar}>
-              Cadastrar-se
+              Cadastre-se
             </Text>
           </View>
         </View>
@@ -122,8 +122,8 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   image: {
-    width: 300,
-    height: 300,
+    width: 180,
+    height: 180,
     margin: 2,
   },
   input: {
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   textEsqueceuSenha: {
     fontSize: 15,
-    backgroundColor: COLORS.accent,
+    color: COLORS.primaryDark,
     alignSelf: 'flex-end',
     marginTop: 10,
     marginBottom: 10,
@@ -174,8 +174,7 @@ const styles = StyleSheet.create({
   },
   textCadastrarSe: {
     fontSize: 16,
-    backgroundColor: COLORS.accent,
-    color: COLORS.accentSecundary,
+    color: COLORS.primaryDark,
     marginLeft: 5,
   },
 });
