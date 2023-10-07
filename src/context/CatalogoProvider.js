@@ -1,5 +1,4 @@
 import React, {createContext, useState, useEffect} from 'react';
-import {ToastAndroid} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
 
 export const CatalogoContext = createContext({});
@@ -29,7 +28,7 @@ export const CatalogoProvider = ({children}) => {
               nome: doc.data().nome,
               quantidade: doc.data().quantidade,
               validade: doc.data().validade,
-              //valorCusto: doc.data().valorCusto,
+              valorCusto: doc.data().valorCusto,
               valorVenda: doc.data().valorVenda,
             };
             d.push(valor);

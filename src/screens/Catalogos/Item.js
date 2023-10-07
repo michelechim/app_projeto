@@ -4,44 +4,52 @@ import {COLORS} from '../../assets/colors';
 
 const Button = styled.TouchableHighlight`
   width: 100%;
-  height: 150px;
+  height: auto;
   background-color: ${COLORS.primaryDark};
-  padding: 5px;
+  padding: 10px;
   margin-top: 5px;
   border-radius: 5px;
 `;
-
+const DivGeral = styled.View`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+`;
+const Div = styled.View`
+  width: 75%;
+  height: auto;
+`;
+const DivImage = styled.View`
+  width: 25%;
+  flex-direction: row;
+  align-items: center;
+`;
+const Image = styled.Image`
+  height: 80px;
+  width: 80px;
+  border-radius: 50px;
+  background-color: ${COLORS.white};
+`;
 const Texto = styled.Text`
-  font-size: 15px;
-  color: ${COLORS.white};
+  font-size : 14px;
+  color: ${COLORS.black};
 `;
 
-const TextGeral = styled.Text`
-  font-size: 15px;
-  //text-align: justify;
-  color: ${COLORS.white};
-`;
-const Text = styled.Text`
-  font-size: 15px;
-  //text-align: center;
-  color: ${COLORS.white};
-`;
 const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
-      <>
-       <TextGeral>{item.img}</TextGeral>
-        <Text>
-          {item.uid} :
-          <Texto>
-            {item.nome} , {item.descricao} - {item.fornecedor}
-          </Texto>
-        </Text>
-        <TextGeral>Venda:{item.valorVenda}</TextGeral>
-        {/* <TextGeral>Custo:{item.valorCusto}</TextGeral> */}
-        <TextGeral>Qtde: {item.quantidade}</TextGeral>
-        <TextGeral>Validade:{item.validade}</TextGeral>
-      </>
+      <DivGeral>
+        <Div>
+          <Texto>Cód: {item.uid} </Texto>
+          <Texto>Descrição: {item.descricao}, {item.nome}</Texto>
+          <Texto>Quantidade: 0{item.quantidade}</Texto>
+        </Div>
+        <DivImage>
+          <Image  source={{ uri: item.img !== '' ? item.img
+            : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXusGK_JYWv_WvhPl9PAVKb7g71ny6lRMiA&usqp=CAUss',
+          }} /> 
+        </DivImage> 
+      </DivGeral> 
     </Button>
   );
 };

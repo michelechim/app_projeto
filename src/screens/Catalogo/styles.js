@@ -7,26 +7,23 @@ export const Container = styled.SafeAreaView`
   padding-top: 20px;
 `;
 
-export const TextInput = styled.TextInput`
-  width: 90%;
-  height: 30px;
-  border-bottom-color: ${COLORS.primary};
-  border-bottom-width: 2px;
-  padding-left: 2px;
-  padding-bottom: 1px;
-  margin-bottom: 5px;
-`;
-
 export const Text = styled.Text`
-  font-size: 24px;
+  font-size: 14px;
+  color: ${COLORS.accent};
+  width: 75%;
+  height: auto;
+  border-bottom-color: ${COLORS.black};
+  border-bottom-width: 2px;
+  padding-bottom: 1px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 `;
 
 export const Image = styled.Image`
-  border-bottom-color: ${COLORS.primary};
   align-self: center;
-  height: 20%;
-  width: 90%;
-  border-radius: 10px;
+  height: 200px;
+  width: 200px;
   border-color: black;
-  background-color: ${COLORS.primary};
+  margin-bottom: 30px;
 `;
