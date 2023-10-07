@@ -93,7 +93,7 @@ const CustomDrawerContent = ({navigation}) => {
             <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
-                navigation.navigate('Catalogo');
+                navigation.navigate('Catalogos');
               }}>
               Catálogo
             </ItemMenuText>

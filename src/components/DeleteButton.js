@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: '95%',
-    height: 50,
+    height: 30,
     alignSelf: 'center',
     justifyContent: 'center',
     alignItems: 'center',
@@ -19,16 +19,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     borderRadius: 5,
     borderColor: COLORS.black,
-    // width: '95%',
-    // height: 50,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: COLORS.primaryDark,
-    // padding: 10,
-    // margin: 10,
-    // borderRadius: 5,
-    // borderWidth: 1,
-    // borderColor: COLORS.white,
   },
 });
 
