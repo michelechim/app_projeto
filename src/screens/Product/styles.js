@@ -9,24 +9,23 @@ export const Container = styled.SafeAreaView`
 
 export const TextInput = styled.TextInput`
   width: 90%;
-  height: 30px;
+  height: auto;
   border-bottom-color: ${COLORS.primary};
   border-bottom-width: 2px;
-  padding-left: 2px;
+ // padding-left: 1px;
   padding-bottom: 1px;
-  margin-bottom: 5px;
+  //margin-bottom: 1px;
 `;
 
 export const Text = styled.Text`
-  font-size: 24px;
+  font-size: 18px;
 `;
 
 export const Image = styled.Image`
-  //border-bottom-color: ${COLORS.black};
   align-self: center;
   height: 100px;
   width: 100px;
-  border-radius: 100px;
+  border-radius: 50px;
   border-color: black;
   background-color: ${COLORS.grey};
 `;

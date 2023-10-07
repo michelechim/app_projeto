@@ -4,40 +4,54 @@ import {COLORS} from '../../assets/colors';
 
 const Button = styled.TouchableHighlight`
   width: 100%;
-  height: 200px;
+  height: auto;
   background-color: ${COLORS.primaryDark};
-  padding: 5px;
+  padding: 10px;
   margin-top: 5px;
   border-radius: 5px;
 `;
-
-const Texto = styled.Text`
-  font-size: 15px;
-  color: ${COLORS.white};
-  text-align: center;
+const DivGeral = styled.View`
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
 `;
-
+const Div = styled.View`
+  width: 75%;
+  height: auto;
+`;
+const DivImage = styled.View`
+  width: 25%;
+  flex-direction: row;
+  align-items: center;
+`;
 const Image = styled.Image`
-  //border-bottom-color: ${COLORS.primary};
-  height: 100px;
-  width: 100px;
-  border-radius: 100px;
-  background-color: white;
-  //border-color: black; 
+  height: 80px;
+  width: 80px;
+  border-radius: 50px;
+  background-color: ${COLORS.white};
+`;
+const Texto = styled.Text`
+  font-size : 14px;
+  color: ${COLORS.black};
 `;
 
 const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
-      <>
-        <Image  source={{ uri: item.img !== '' ? item.img
-          : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXusGK_JYWv_WvhPl9PAVKb7g71ny6lRMiA&usqp=CAUss',
-        }} />     
-        <Texto>{item.uid} :{item.nome}, {item.descricao}</Texto>
-        <Texto>{item.fornecedor}</Texto>
-        <Texto>Venda:{item.valorVenda} - Custo:{item.valorCusto}</Texto>
-        <Texto>Qtde: {item.quantidade} - Validade:{item.validade}</Texto>
-      </>
+      <DivGeral>
+        <Div>
+          <Texto>Cód: {item.uid} - {item.nome}</Texto>
+          <Texto>{item.descricao}</Texto>
+          <Texto>{item.fornecedor}</Texto>
+          <Texto>Venda:R$ {item.valorVenda} - Custo:R$ {item.valorCusto}</Texto>
+          <Texto>Qtde: 0{item.quantidade} - Validade:{item.validade}</Texto>
+        </Div>
+        <DivImage>
+          <Image  source={{ uri: item.img !== '' ? item.img
+            : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXusGK_JYWv_WvhPl9PAVKb7g71ny6lRMiA&usqp=CAUss',
+          }} /> 
+        </DivImage> 
+      </DivGeral> 
     </Button>
   );
 };

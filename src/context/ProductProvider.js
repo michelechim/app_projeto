@@ -1,6 +1,7 @@
 import React, {createContext, useState, useEffect} from 'react';
 import {ToastAndroid} from 'react-native';
 import firestore from '@react-native-firebase/firestore';
+import storage from '@react-native-firebase/storage';
 
 export const ProductContext = createContext({});
 
@@ -81,20 +82,15 @@ export const ProductProvider = ({children}) => {
         console.error('ProductProvider, save:' + e);
       });
   };
-
-  const deleteProduct = async val => {
-    console.log('teste');
-    console.log(val);
-    firestore()
-      .collection('product')
-      .doc(val)
-      .delete()
-      .then(() => {
-        showToast('Produto deletado!');
-      })
-      .catch(e => {
-        console.error('ERROR: deleteProduct:' + e);
-      });
+  const deleteProduct = async (uid,path) => {
+    try{
+      await firestore().collection('product').doc(uid).delete();
+      await storage().ref(path).delete();
+      return true;
+    }catch(e) {
+      console.error('ProductProvider: deleteProduct:' , e);
+      return false;
+    }
   };
 
   return (
