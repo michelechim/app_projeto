@@ -1,9 +1,8 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useContext} from 'react';
 import {CommonActions} from '@react-navigation/native';
 
-import {Container, FlatList} from './styles';
+import {Container, Div, FlatList} from './styles';
 import Item from './Item';
-import AddFloatButton from '../../components/AddFloatButton';
 import SearchBar from '../../components/SearchBar';
 import {CatalogoContext} from '../../context/CatalogoProvider';
 
@@ -41,7 +40,7 @@ const Catalogo = ({navigation}) => {
 
   return (
     <Container>
-      <SearchBar text="Digite o nome do produto" setSearch={filterByName} />
+        <SearchBar text="Digite o nome do produto" setSearch={filterByName} />
       <FlatList
         data={productTemp.length > 0 ? productTemp : product}
         renderItem={({item}) => (

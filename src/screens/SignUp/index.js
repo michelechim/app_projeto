@@ -37,27 +37,27 @@ const SignUp = () => {
       keyboardType="default"
       returnKeyType="next"
       onChangeText={t => setNome(t)}
-      onEndEditing={() => this.emailTextInput.focus()}
+      //onEndEditing={() => this.emailTextInput.focus()}
       />
       <TextInput
-      ref={(ref) => {this.emailTextInput = ref;}}
+      //ref={(ref) => {this.emailTextInput = ref;}}
         placeholder="Email"
         keyboardType="email-address"
         returnKeyType="next"
         onChangeText={t => setEmail(t)}
-        onEndEditing={() => this.passTextInput.focus()}
+      //onEndEditing={() => this.passTextInput.focus()}
       />
       <TextInput
-        ref={(ref) => {this.passTextInput = ref;}}
+      //ref={(ref) => {this.passTextInput = ref;}}
         secureTextEntry={true}
         placeholder="Senha"
         keyboardType="default"
         returnKeyType="next"
         onChangeText={t => setPass(t)}
-        onEndEditing={() => this.confirPassTextInput.focus()}
+      //onEndEditing={() => this.confirPassTextInput.focus()}
       />
       <TextInput
-        ref={(ref) => {this.passTextInput = ref;}}
+      //ref={(ref) => {this.passTextInput = ref;}}
         secureTextEntry={true}
         placeholder="Confirmar senha"
         keyboardType="default"

@@ -7,6 +7,7 @@ import {ClientProvider} from '../context/ClientProvider';
 import {ProductProvider} from '../context/ProductProvider';
 import {ConsultorProvider} from '../context/ConsultorProvider';
 import {CatalogoProvider} from '../context/CatalogoProvider';
+import {VendaProvider} from '../context/VendaProvider';
 import Navigator from './Navigator';
 
 export default function Providers() {
@@ -15,13 +16,15 @@ export default function Providers() {
       <UserProvider>
         <ApiProvider>
           <ClientProvider>
-              <ProductProvider>
-                <ConsultorProvider>
-                  <CatalogoProvider>
+            <ProductProvider>
+              <ConsultorProvider>
+                <CatalogoProvider>
+                  <VendaProvider>
                     <Navigator />
-                  </CatalogoProvider>
-                </ConsultorProvider>
-              </ProductProvider>
+                  </VendaProvider>
+                </CatalogoProvider>
+              </ConsultorProvider>
+            </ProductProvider>
           </ClientProvider>
         </ApiProvider>
       </UserProvider>

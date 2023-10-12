@@ -52,7 +52,7 @@ const CustomDrawerContent = ({navigation}) => {
       </Header>
       <Body>
         <ScrollView>
-        <DivItem>
+          <DivItem>
             <Icon name="people-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
@@ -88,14 +88,22 @@ const CustomDrawerContent = ({navigation}) => {
               Produtos
             </ItemMenuText>
           </DivItem>
-          
           <DivItem>
-            <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
+            <Icon name="book-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
                 navigation.navigate('Catalogos');
               }}>
-              Catálogo
+              Catálogo de Produtos
+            </ItemMenuText>
+          </DivItem>
+          <DivItem>
+          <Icon name="book-outline" size={25} color={COLORS.primaryDark} />
+            <ItemMenuText
+              onPress={() => {
+                navigation.navigate('Vendas');
+              }}>
+              Vendas
             </ItemMenuText>
           </DivItem>
           <DivItem>
@@ -106,21 +114,7 @@ const CustomDrawerContent = ({navigation}) => {
               }}>
               Sair
             </ItemMenuText>
-          </DivItem>
-           {/* <DivItem>
-            <Icon
-              name="business-outline"
-              size={25}
-              color={COLORS.primaryDark}
-            />
-            <ItemMenuText
-              onPress={() => {
-                navigation.navigate('Companies');
-              }}>
-              Fornecedor
-            </ItemMenuText>
-          </DivItem> */}
-          
+          </DivItem>          
         </ScrollView>
       </Body>
     </Page>

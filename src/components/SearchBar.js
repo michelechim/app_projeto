@@ -6,12 +6,11 @@ import { COLORS } from '../assets/colors';
 import styled from 'styled-components/native';
 
 const DivItem = styled.View`
-  width: 100px;
+  width: 100%;
   height: auto;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin: 10px;
 `;
 const TextInput = styled.TextInput`
   font-size: 14px;
@@ -21,9 +20,6 @@ const TextInput = styled.TextInput`
   border-bottom-color: ${COLORS.primaryDark};
   border-bottom-width: 2px;
   align-items: center;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
 `;
 
 export default function ({text, setSearch}) {
