@@ -1,4 +1,4 @@
-#Wed Sep 13 20:48:17 BRT 2023
+#Mon Oct 16 21:36:55 BRT 2023
 base.0=/home/michele/VSCode/app_projeto/android/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/home/michele/VSCode/app_projeto/android/app/build/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
 base.2=/home/michele/VSCode/app_projeto/android/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
