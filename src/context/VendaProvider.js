@@ -28,6 +28,7 @@ export const VendaProvider = ({children}) => {
           querySnapshot.forEach(doc => {
             const valor = {
               uid: doc.id,
+              nomeCliente: doc.data().nomeCliente,
               numeroPedido: doc.data().numeroPedido,
               dataCriacao: doc.data().dataCriacao,
               dataVenc: doc.data().dataVenc,
@@ -56,6 +57,7 @@ export const VendaProvider = ({children}) => {
       .set(
         {
           uid: val.uid,
+          nomeCliente: val.nomeCliente,
           numeroPedido: val.numeroPedido,
           dataCriacao: val.dataCriacao,
           dataVenc: val.dataVenc,

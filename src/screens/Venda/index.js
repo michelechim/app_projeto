@@ -18,6 +18,7 @@ const Venda = ({route, navigation}) => {
   const [numeroPedido, setNumeroPedido] = useState('');
   const [parcelas, setParcelas]= useState('');
   const [situacao, setSituacao]= useState('');
+  const [nomeCliente, setNomeCliente] = useState('');
   const [loading, setLoading] = useState(false);
   const {saveOrder, deleteOrder} = useContext(VendaContext);
 
@@ -33,6 +34,7 @@ const Venda = ({route, navigation}) => {
     setNumeroPedido('');
     setParcelas('');
     setSituacao('');
+    setNomeCliente('');
     if (route.params.venda) {
       setUid(route.params.venda.uid);
       setDataCriacao(route.params.venda.dataCriacao);
@@ -43,7 +45,8 @@ const Venda = ({route, navigation}) => {
       setItemUidProduto(route.params.venda.itemUidProduto);
       setNumeroPedido(route.params.venda.numeroPedido);
       setParcelas(route.params.venda.parcelas);
-      setSituacao(route.params.venda.situacao);     
+      setSituacao(route.params.venda.situacao);
+      setNomeCliente(route.params.venda.nomeCliente);    
     }
     return () => {
       console.log('desmontou a venda');
@@ -61,7 +64,8 @@ const Venda = ({route, navigation}) => {
       itemUidProduto &&
       numeroPedido &&
       parcelas &&
-      situacao
+      situacao &&
+      nomeCliente
     ) {
       let order = {};
       order.uid = uid;
@@ -74,6 +78,7 @@ const Venda = ({route, navigation}) => {
       order.numeroPedido = numeroPedido;
       order.parcelas = parcelas;
       order.situacao = situacao;
+      order.nomeCliente = nomeCliente;
       setLoading(true);
       await saveOrder(order);
       setLoading(false);
@@ -119,6 +124,27 @@ const Venda = ({route, navigation}) => {
         value={dataVenc}
       />
       <TextInput
+        placeholder="Nome do cliente"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={t => setNomeCliente(t)}
+        value={nomeCliente}
+      />
+      <TextInput
+        placeholder="Número do pedido"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={t => setNumeroPedido(t)}
+        value={numeroPedido}
+      />
+      <TextInput
+        placeholder="Codigo do produto"
+        keyboardType="default"
+        returnKeyType="go"
+        onChangeText={t => setItemUidProduto(t)}
+        value={itemUidProduto}
+      />
+      <TextInput
         placeholder="Marca"
         keyboardType="default"
         returnKeyType="go"
@@ -132,27 +158,12 @@ const Venda = ({route, navigation}) => {
         onChangeText={t => setItemQuantidade(t)}
         value={itemQuantidade}
       />
-      
       <TextInput
         placeholder="Total da venda"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setItemTotal(t)}
         value={itemTotal}
-      />
-      <TextInput
-        placeholder="Codigo do produto"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setItemUidProduto(t)}
-        value={itemUidProduto}
-      />
-      <TextInput
-        placeholder="Número do pedido"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setNumeroPedido(t)}
-        value={numeroPedido}
       />
       <TextInput
         placeholder="Número de parcelas"
@@ -168,7 +179,6 @@ const Venda = ({route, navigation}) => {
         onChangeText={t => setSituacao(t)}
         value={situacao}
       />
-      
       <Button texto="SALVAR VENDA" onClick={salvar}/>
       {uid ? <DeleteButton texto="EXCLUIR" onClick={excluir} /> : null}
       {loading && <Loading />}

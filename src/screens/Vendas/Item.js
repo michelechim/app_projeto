@@ -34,7 +34,7 @@ const Item = ({item, onPress}) => {
         <Div>
           <Texto>Data de criação: {item.dataCriacao} </Texto>
           <Texto>Data de Venc.: {item.dataVenc}</Texto>
-          <Texto>NOME DO CLIENTE</Texto>
+          <Texto>Cliente: {item.nomeCliente}</Texto>
           <Texto>N°Pedido: {item.numeroPedido}</Texto>
         </Div>
         <Div2>

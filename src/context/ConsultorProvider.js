@@ -32,7 +32,6 @@ export const ConsultorProvider = ({children}) => {
               email: doc.data().email,
               endereco: doc.data().endereco,
               telefone: doc.data().telefone,
-              //dataNasc: doc.data().dataNasc,
               marca: doc.data().marca,
               perfilCodigo: doc.data().perfilCodigo,
               perfilSenha: doc.data().perfilSenha,
@@ -63,7 +62,6 @@ export const ConsultorProvider = ({children}) => {
           email: val.email,
           endereco: val.endereco,
           telefone: val.telefone,
-          //dataNasc: val.dataNasc,
           marca: val.marca,
           perfilCodigo: val.perfilCodigo,
           perfilSenha: val.perfilSenha,
@@ -84,8 +82,6 @@ export const ConsultorProvider = ({children}) => {
   };
 
   const deleteUser = async (val) => {
-    // console.log('teste');
-    // console.log(val);
     firestore()
       .collection('users')
       .doc(val)
@@ -105,71 +101,3 @@ export const ConsultorProvider = ({children}) => {
     </ConsultorContext.Provider>
   );
 };
-
-//Coleção e subcoleção
-
-  // const getUsers = async () => {
-  //   const usersCollection = firestore().collection('users');
-  //   usersCollection.get().then(
-  //     querySnapshot => {
-  //       let d = [];
-  //       querySnapshot.forEach(userDoc => {
-  //         const userProfilesCollection = userDoc.ref.collection('profile');
-  //         userProfilesCollection.get().then(profileQuerySnapshot => {
-  //           profileQuerySnapshot.forEach(profileDoc => {
-  //             const valor = {
-  //               //uid: userDoc.data().id,
-  //               nome: userDoc.data().nome,
-  //               dataNasc: userDoc.data().dataNasc,
-  //               endereco: userDoc.data().endereco,
-  //               telefone: userDoc.data().telefone,
-  //               email: userDoc.data().email,
-  //               uid: profileDoc.id,
-  //               codigo: profileDoc.data().codigo,
-  //               dataCriacao: profileDoc.data().dataCriacao,
-  //               lucratividade: profileDoc.data().lucratividade,
-  //               nivel: profileDoc.data().nivel,
-  //               senha: profileDoc.data().senha,
-  //               usuario: profileDoc.data().usuario,
-  //             };
-  //             d.push(valor);
-  //           });
-  //         });
-  //       });
-  //       setUsers(d);
-  //       setProfile(d);
-  //       //setData(d);
-  //       console.log(d);
-  //     },
-  //     error => {
-  //       console.log('Consultor, getUsers:' + error);
-  //     },
-  //   );
-
-  //   return usersCollection;
-  // };
-
-  // const saveUser = async () => {
-  //   const colecaoRef = firestore().collection('users');
-  //   const profileRef = colecaoRef.doc('uid').collection('profile');
-  //     colecaoRef && profileRef.add({
-  //       nome: users.nome,
-  //       dataNasc: users.dataNasc,
-  //       endereco: users.endereco,
-  //       telefone: users.telefone, 
-  //       email: users.email,
-  //       uid: profile.id,
-  //       codigo: profile.codigo,
-  //       dataCriacao: profile.dataCriacao,
-  //       nivel: profile.nivel,
-  //       lucratividade: profile.lucratividade,
-  //       usuario: profile.usuario,
-  //       senha: profile.senha,  
-  //   })
-  //   .then(docRef => {
-  //     console.log('Dados salvos ');
-  //   })
-  //   .catch(error => {
-  //     console.error('ConsultorProvider, save:' + e);
-  //   });
-  // }

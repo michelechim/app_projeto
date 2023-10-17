@@ -4,7 +4,7 @@ import {COLORS} from '../../assets/colors';
 
 const Button = styled.TouchableHighlight`
   width: 100%;
-  height: 120px;
+  height: auto;
   background-color: ${COLORS.primaryDark};
   padding: 5px;
   margin-top: 5px;
@@ -15,8 +15,7 @@ const Texto = styled.Text`
   color: ${COLORS.white};
 `;
 const TextGeral = styled.Text`
-  font-size: 10px;
-  //text-align: justify;
+  font-size: 15px;
   color: ${COLORS.black};
 `;
 

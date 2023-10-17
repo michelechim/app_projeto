@@ -2,7 +2,6 @@ import React from 'react';
 
 import {AuthUserProvider} from '../context/AuthUserProvider';
 import {ApiProvider} from '../context/ApiProvider';
-import {UserProvider} from '../context/UserProvider';
 import {ClientProvider} from '../context/ClientProvider';
 import {ProductProvider} from '../context/ProductProvider';
 import {ConsultorProvider} from '../context/ConsultorProvider';
@@ -13,7 +12,6 @@ import Navigator from './Navigator';
 export default function Providers() {
   return (
     <AuthUserProvider>
-      <UserProvider>
         <ApiProvider>
           <ClientProvider>
             <ProductProvider>
@@ -27,7 +25,6 @@ export default function Providers() {
             </ProductProvider>
           </ClientProvider>
         </ApiProvider>
-      </UserProvider>
     </AuthUserProvider>
   );
 }

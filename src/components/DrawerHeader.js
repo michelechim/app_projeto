@@ -6,26 +6,20 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import {COLORS} from '../assets/colors';
 
 const Container = styled.View`
-  flex: 1;
+  display: flex;
+  justify-content: space-between;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  padding: 10px;
+  margin: 15px;
 `;
-
 const DivIcon = styled.View`
   width: 20%;
-  height: 100%;
-  justify-content: center;
-  align-items: center;
-  margin: 5px;
+  height: auto;
 `;
 const DivText = styled.View`
-  flex: 4;
-  justify-content: center;
-  align-items: flex-start;
-  margin-top: 20px;
+  width: 80%;
+  height: auto;
 `;
-
 const TextWelcome = styled.Text`
   font-family: Roboto;
   font-style: normal;
@@ -36,12 +30,11 @@ const TextWelcome = styled.Text`
   align-items: center;
   color: ${COLORS.white};
 `;
-
 const TextUserName = styled.Text`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 20px;
+  font-size: 15px;
   line-height: 19px;
   display: flex;
   align-items: center;
@@ -55,10 +48,10 @@ const DrawerHeader = () => {
   return (
     <Container>
       <DivIcon>
-        <Icon name="person-outline" size={40} color={COLORS.white} />
+        <Icon name="person-outline" size={35} color={COLORS.white} />
       </DivIcon>
       <DivText>
-        <TextWelcome>Bem vindo,</TextWelcome>
+        <TextWelcome>Bem vindo, consultor(a)</TextWelcome>
         <TextUserName>{user ? user.nome : ''}</TextUserName>
       </DivText>
     </Container>

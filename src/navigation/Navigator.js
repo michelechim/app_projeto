@@ -10,8 +10,6 @@ import ForgotPassWord from '../screens/ForgotPassWord';
 import Preload from '../screens/Preload';
 import Clients from '../screens/Clients';
 import Client from '../screens/Client';
-import Users from '../screens/Users';
-import User from '../screens/User';
 import Products from '../screens/Products';
 import Product from '../screens/Product';
 import Consultor from '../screens/Consultor';
@@ -31,11 +29,11 @@ const Navigator = () => {
   const AppStack = () => {
     return (
       <Drawer.Navigator
-        initialRouteName="Consultors"
+        initialRouteName="Catalogos"
         screenOptions={{
           headerShown: 'true',
           headerStyle: {
-            backgroundColor: COLORS.primary,
+            backgroundColor: COLORS.primaryDark,
           },
           headerTintColor: COLORS.white,
           headerRight: () => <LogoutButton />,
@@ -45,8 +43,6 @@ const Navigator = () => {
         <Drawer.Screen name="Product" component={Product} options={productStyle} />
         <Drawer.Screen name="Clients" component={Clients} options={clientsStyle} />
         <Drawer.Screen name="Client" component={Client} options={clientStyle} />
-        <Drawer.Screen name="Users" component={Users} options={usersStyle} />
-        <Drawer.Screen name="User" component={User} options={userStyle} />
         <Drawer.Screen name="Consultors" component={Consultors} options={consultorsStyle} />
         <Drawer.Screen name="Consultor" component={Consultor} options={consultorStyle} />
         <Drawer.Screen name="Catalogos" component={Catalogos} options={catalogosStyle} />
@@ -90,15 +86,12 @@ const signInStyle = {
       fontWeight: 'bold',
     },
 };
-
 const signUpStyle = {
   title: 'Cadastra -se',
 };
-
 const forgotPassWordStyle = {
   title: 'Recuperar senha',
 };
-
 const preloadStyle = {
   headerShown: false,
 };
@@ -107,12 +100,6 @@ const clientsStyle = {
 };
 const clientStyle = {
   title: 'Cliente',
-};
-const usersStyle = {
-  title: 'Usuários',
-};
-const userStyle = {
-  title: 'Usuário',
 };
 const productStyle = {
   title: 'Produto',
@@ -130,7 +117,7 @@ const catalogoStyle = {
   title: 'Catálogo'
 };
 const catalogosStyle = {
-  title: 'Catálogos'
+  title: 'Catálogo de Produtos'
 };
 const vendaStyle = {
   title: 'Venda'

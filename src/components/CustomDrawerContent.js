@@ -52,17 +52,9 @@ const CustomDrawerContent = ({navigation}) => {
       </Header>
       <Body>
         <ScrollView>
+{/* Clientes */}
           <DivItem>
             <Icon name="people-outline" size={25} color={COLORS.primaryDark} />
-            <ItemMenuText
-              onPress={() => {
-                navigation.navigate('Users');
-              }}>
-              Usuários
-            </ItemMenuText>
-          </DivItem>
-          <DivItem>
-            <Icon name="person-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
                 navigation.navigate('Clients');
@@ -70,6 +62,7 @@ const CustomDrawerContent = ({navigation}) => {
               Clientes
             </ItemMenuText>
           </DivItem>
+{/* Consultor */}
           <DivItem>
             <Icon name="person-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
@@ -78,9 +71,10 @@ const CustomDrawerContent = ({navigation}) => {
               }}>
               Consultor
             </ItemMenuText>
-          </DivItem>        
+          </DivItem>
+{/* Produtos */}        
           <DivItem>
-            <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
+            <Icon name="basket-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
                 navigation.navigate('Products');
@@ -88,6 +82,7 @@ const CustomDrawerContent = ({navigation}) => {
               Produtos
             </ItemMenuText>
           </DivItem>
+{/* Catalogo */}          
           <DivItem>
             <Icon name="book-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
@@ -97,8 +92,9 @@ const CustomDrawerContent = ({navigation}) => {
               Catálogo de Produtos
             </ItemMenuText>
           </DivItem>
+{/* Vendas */}
           <DivItem>
-          <Icon name="book-outline" size={25} color={COLORS.primaryDark} />
+          <Icon name="cart-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
                 navigation.navigate('Vendas');
@@ -106,6 +102,7 @@ const CustomDrawerContent = ({navigation}) => {
               Vendas
             </ItemMenuText>
           </DivItem>
+{/* Sair */}
           <DivItem>
             <Icon name="exit-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
