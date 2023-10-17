@@ -30,9 +30,9 @@ export const AuthUserProvider = ({children}) => {
   /*  fim Asyncstorage    */
 
   /* SignUp, SignIn, e SignOut */
-  const signUp = async (email, pass) => {
+  const signUp = async (user, pass) => {
     await auth()
-      .createUserWithEmailAndPassword(email, pass)
+      .createUserWithEmailAndPassword(user.email, pass)
       .then(async () => {
         let userF = auth().currentUser;
         await firestore()
