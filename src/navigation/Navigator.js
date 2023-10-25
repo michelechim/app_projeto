@@ -59,7 +59,7 @@ const Navigator = () => {
         <Stack.Screen name="Preload" component={Preload} options={preloadStyle} />
         <Stack.Screen name="SignIn" component={SignIn} options={signInStyle} />
         <Stack.Screen name="SignUp" component={SignUp} options={signUpStyle} />
-        <Stack.Screen name="ForgotPassWord" component={ForgotPassWord} options={forgotPassWordStyle} />
+        <Stack.Screen name="ForgotPassWord" component={ForgotPassWord} options={forgotPassWordStyle}/>
       </Stack.Navigator>
     );
   };

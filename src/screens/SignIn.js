@@ -35,7 +35,7 @@ const SignIn = ({navigation}) => {
   }, [user]);
 
   const recuperarSenha = () => {
-    navigation.navigate('ForgotPassword');
+    navigation.navigate('ForgotPassWord');
   };
 
   const entrar = async () => {

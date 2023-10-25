@@ -49,7 +49,7 @@ const ForgotPassWord = ({navigation}) => {
         onChangeText={t => setEmail(t)}
         autoFocus={true}
       />
-      <Button texto="Recuperar" onClick={recover} />
+      <Button texto="Recuperar senha" onClick={recover} />
     </View>
   );
 };

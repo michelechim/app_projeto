@@ -45,7 +45,7 @@ const Catalogo = ({route, navigation}) => {
   return (
     <Container>
       <Image  source={{ uri: img !== '' ? img
-        : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXusGK_JYWv_WvhPl9PAVKb7g71ny6lRMiA&usqp=CAUss',
+        : 'https://cdn.pixabay.com/photo/2019/05/25/14/47/eye-4228531_960_720.png',
       }} />
       <Text>FICHA COMPLETA</Text>
       <Text>Código: {uid}</Text>

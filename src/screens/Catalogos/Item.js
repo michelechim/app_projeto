@@ -46,8 +46,8 @@ const Item = ({item, onPress}) => {
         </Div>
         <DivImage>
           <Image  source={{ uri: item.img !== '' ? item.img
-            : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAXusGK_JYWv_WvhPl9PAVKb7g71ny6lRMiA&usqp=CAUss',
-          }} /> 
+            : 'https://cdn.pixabay.com/photo/2019/05/25/14/47/eye-4228531_960_720.png',
+          }} />
         </DivImage> 
       </DivGeral> 
     </Button>
