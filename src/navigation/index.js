@@ -7,6 +7,7 @@ import {ProductProvider} from '../context/ProductProvider';
 import {ConsultorProvider} from '../context/ConsultorProvider';
 import {CatalogoProvider} from '../context/CatalogoProvider';
 import {VendaProvider} from '../context/VendaProvider';
+import {FornecedorProvider} from '../context/FornecedorProvider';
 import Navigator from './Navigator';
 
 export default function Providers() {
@@ -18,7 +19,9 @@ export default function Providers() {
               <ConsultorProvider>
                 <CatalogoProvider>
                   <VendaProvider>
-                    <Navigator />
+                    <FornecedorProvider>
+                      <Navigator />
+                    </FornecedorProvider>
                   </VendaProvider>
                 </CatalogoProvider>
               </ConsultorProvider>

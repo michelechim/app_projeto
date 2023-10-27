@@ -18,6 +18,8 @@ import Catalogo from '../screens/Catalogo';
 import Catalogos from '../screens/Catalogos';
 import Venda from '../screens/Venda';
 import Vendas from '../screens/Vendas';
+import Fornecedor from '../screens/Fornecedor';
+import Fornecedors from '../screens/Fornecedors';
 import {COLORS} from '../assets/colors';
 import CustomDrawerContent from '../components/CustomDrawerContent';
 import LogoutButton from '../components/LogoutButton';
@@ -49,6 +51,8 @@ const Navigator = () => {
         <Drawer.Screen name="Catalogo" component={Catalogo} options={catalogoStyle} />
         <Drawer.Screen name="Vendas" component={Vendas} options={vendasStyle} />
         <Drawer.Screen name="Venda" component={Venda} options={vendaStyle} />
+        <Drawer.Screen name="Fornecedors" component={Fornecedors} options={fornecedorsStyle} />
+        <Drawer.Screen name="Fornecedor" component={Fornecedor} options={fornecedorStyle} />
       </Drawer.Navigator>
     );
   };
@@ -124,4 +128,10 @@ const vendaStyle = {
 };
 const vendasStyle = {
   title: 'Vendas'
+};
+const fornecedorStyle = {
+  title: 'Fornecedor'
+};
+const fornecedorsStyle = {
+  title: 'Fornecedores'
 };
