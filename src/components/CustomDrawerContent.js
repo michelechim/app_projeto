@@ -87,7 +87,7 @@ const CustomDrawerContent = ({navigation}) => {
             <Icon name="business-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
               onPress={() => {
-                navigation.navigate('Fornecedor');
+                navigation.navigate('Fornecedors');
               }}>
               Fornecedores
             </ItemMenuText>
