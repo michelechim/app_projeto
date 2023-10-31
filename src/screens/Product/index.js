@@ -3,17 +3,21 @@ import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 import ImageResizer from '@bam.tech/react-native-image-resizer';
 import storage from '@react-native-firebase/storage';
 import {Alert, ToastAndroid} from 'react-native';
-import {Container, TextInput, Image} from './styles';
+import {Container, TextInput, Image, Text} from './styles';
 
 import Button from '../../components/Button';
 import DeleteButton from '../../components/DeleteButton';
+import CustomModalFornecedor from '../../components/CustomModalFornecedor';
+import RadioButton from '../../components/RadioButton';
 import Loading from '../../components/Loading';
 import {ProductContext} from '../../context/ProductProvider';
+import {FornecedorContext} from '../../context/FornecedorProvider';
 
 const Product = ({route, navigation}) => {
   const [uid, setUid] = useState('');
-  const [descricao, setDescricao] = useState('');
-  const [fornecedor, setFornecedor] = useState('');
+  //const [descricao, setDescricao] = useState('');
+  const [fornecedor, setFornecedor] = useState([]);
+  const [modalFornecedorVisible, setModalFornecedorVisible] = useState(false);
   const [img, setImg] = useState('');
   const [nome, setNome] = useState('');
   const [quantidade, setQuantidade] = useState('');
@@ -21,13 +25,14 @@ const Product = ({route, navigation}) => {
   const [valorCusto, setValorCusto] = useState('');
   const [valorVenda, setValorVenda] = useState('');
   const [loading, setLoading] = useState(false);
+  const {supplier} = useContext(FornecedorContext);
   const {saveProduct, deleteProduct} = useContext(ProductContext);
 
   useEffect(() => {
     console.log(route.params.product);
     setUid('');
-    setDescricao('');
-    setFornecedor('');
+    //setDescricao('');
+    setFornecedor('Selecione o fornecedor');
     setImg('');
     setNome('');
     setQuantidade('');
@@ -36,7 +41,7 @@ const Product = ({route, navigation}) => {
     setValorVenda('');
     if (route.params.product) {
       setUid(route.params.product.uid);
-      setDescricao(route.params.product.descricao);
+      //setDescricao(route.params.product.descricao);
       setFornecedor(route.params.product.fornecedor);
       setImg(route.params.product.img);
       setNome(route.params.product.nome);
@@ -125,7 +130,7 @@ const Product = ({route, navigation}) => {
     // console.log(nome);
     if (
       uid &&
-      descricao &&
+      //descricao &&
       fornecedor &&
       quantidade &&
       nome &&
@@ -135,7 +140,7 @@ const Product = ({route, navigation}) => {
     ) {
       let product = {};
       product.uid = uid;
-      product.descricao = descricao;
+      //product.descricao = descricao;
       product.fornecedor = fornecedor;
       product.img = urlCompleta;
       product.nome = nome;
@@ -178,6 +183,10 @@ const Product = ({route, navigation}) => {
     });
   }
   
+  const selecionarFornecedor = (val) =>{
+    setFornecedor(val);
+    setModalFornecedorVisible(!modalFornecedorVisible);
+  };
 
   return (
     <Container>
@@ -187,6 +196,12 @@ const Product = ({route, navigation}) => {
       <Button texto="Selecione a Imagem" onClick={selectImage}/>
       <Button texto="Tirar foto" onClick={takePicker}/>
 
+      <Text
+        placeholder = "Selecione um fornecedor"
+        onPress={()=> setModalFornecedorVisible(!modalFornecedorVisible)}>
+        {fornecedor}
+      </Text>
+
       <TextInput
         placeholder="Código do produto"
         keyboardType="default"
@@ -194,27 +209,27 @@ const Product = ({route, navigation}) => {
         onChangeText={t => setUid(t)}
         value={uid}
       />
-      <TextInput
+      {/* <TextInput
         placeholder="Descrição do produto"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setDescricao(t)}
         value={descricao}
-      />
+      /> */}
       <TextInput
-        placeholder="Nome"
+        placeholder="Informe o nome e fragrância do produto"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setNome(t)}
         value={nome}
       />
-      <TextInput
+      {/* <TextInput
         placeholder="Fornecedor"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setFornecedor(t)}
         value={fornecedor}
-      />
+      /> */}
       <TextInput
         placeholder="Quantidade"
         keyboardType="default"
@@ -245,6 +260,21 @@ const Product = ({route, navigation}) => {
       />
       <Button texto="SALVAR PRODUTO" onClick={sendImageDatabase}/>
       {uid ? <DeleteButton texto="EXCLUIR" onClick={exclui} /> : null}
+      
+      <CustomModalFornecedor
+        visible={modalFornecedorVisible}
+        closeAction={() => setModalFornecedorVisible(!modalFornecedorVisible)}>
+          {supplier.map((o) => {
+            return (
+              <RadioButton 
+                key={o.uid}
+                label={o.marca}
+                selected={o.marca === fornecedor ? true : false }
+                onClick={selecionarFornecedor}
+              />
+            );
+          })}
+      </CustomModalFornecedor>
 
       {loading && <Loading />}
     </Container>

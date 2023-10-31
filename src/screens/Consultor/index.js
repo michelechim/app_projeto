@@ -1,9 +1,11 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Alert} from 'react-native';
-import {Container, TextInput} from './styles';
+import {Container, TextInput, Text} from './styles';
 
 import Button from '../../components/Button';
 import DeleteButton from '../../components/DeleteButton';
+import CustomModalNivel from '../../components/CustomModalNivel';
+import RadioButton from '../../components/RadioButton';
 import Loading from '../../components/Loading';
 import {ConsultorContext} from '../../context/ConsultorProvider';
 
@@ -13,12 +15,12 @@ const Consultor = ({route, navigation}) => {
   const [email, setEmail] = useState('')
   const [endereco, setEndereco] = useState('');
   const [telefone, setTelefone] = useState('');
-  //const [dataNasc, setDataNasc] = useState('');
   const [marca, setMarca] = useState('');
   const [perfilCodigo, setPerfilCodigo] = useState('');
   const [perfilSenha, setPerfilSenha] = useState('');
   const [perfilUsuario, setPerfilUsuario] = useState('');
-  const [perfilNivel, setPerfilNivel] = useState('');
+  const [perfilNivel, setPerfilNivel] = useState([]);
+  const [modalNivelVisible, setModalNivelVisible] = useState(false);
   const [perfilLucratividade, setPerfilLucratividade] = useState('');
   const [loading, setLoading] = useState(false);
   const {saveUser, deleteUser} = useContext(ConsultorContext);
@@ -30,12 +32,11 @@ const Consultor = ({route, navigation}) => {
     setEmail('');
     setEndereco('');
     setTelefone('');
-    //setDataNasc('');
     setMarca('');
     setPerfilCodigo('');
     setPerfilSenha('');
     setPerfilUsuario('');
-    setPerfilNivel('');
+    setPerfilNivel('Selecione o nível');
     setPerfilLucratividade('');
     if (route.params.users) {
       setUid(route.params.users.uid);
@@ -43,7 +44,6 @@ const Consultor = ({route, navigation}) => {
       setEmail(route.params.users.email);
       setEndereco(route.params.users.endereco);
       setTelefone(route.params.users.telefone);
-      //setDataNasc(route.params.users.dataNasc);
       setMarca(route.params.users.marca);
       setPerfilCodigo(route.params.users.perfilCodigo);
       setPerfilSenha(route.params.users.perfilSenha);
@@ -112,95 +112,110 @@ const Consultor = ({route, navigation}) => {
     ]);
   };
 
+  const modalNivel = [
+    'Semente',
+    'Bronze',
+    'Prata',
+    'Ouro',
+    'Diamante',
+    'Blue',
+    'Rose',
+    'Gold',
+    'Esmeralda',
+  ];
+
+  const selecionarNivel = (val) => {
+    setPerfilNivel(val);
+    setModalNivelVisible(!modalNivelVisible);
+  };
+
   return (
     <Container>
-      {/* <TextInput
-        placeholder="Identificação"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setUid(t)}
-        value={uid}
-      /> */}
       <TextInput
-        placeholder="Nome"
+        placeholder="Informe seu nome"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setNome(t)}
         value={nome}
       />
       <TextInput
-        placeholder="Email"
+        placeholder="Informe seu email"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setEmail(t)}
         value={email}
       />
       <TextInput 
-        placeholder="Endereço"
+        placeholder="Informe seu endereço"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setEndereco(t)}
         value={endereco}
       />
       <TextInput
-        placeholder="Telefone"
+        placeholder="Informe seu telefone de contato"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setTelefone(t)}
         value={telefone}
       />
-      {/* <TextInput 
-        placeholder="Data de Nascimento"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setDataNasc(t)}
-        value={dataNasc}
-      /> */}
       <TextInput 
-        placeholder="Marca"
+        placeholder="Informe a marca"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setMarca(t)}
         value={marca}
       />
+      {/* MODAL */}
+      <Text
+        onPress={() => setModalNivelVisible(!modalNivelVisible)}
+        placeholder="Selecione seu nível">
+          {perfilNivel}
+      </Text>
       <TextInput
-        placeholder="Código do consultor"
+        placeholder="Informe seu código do consultor"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t=> setPerfilCodigo(t)}
         value={perfilCodigo}
       />
       <TextInput 
-        placeholder="Senha de acesso"
+        placeholder="Salve sua senha de acesso"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t=> setPerfilSenha(t)}
         value={perfilSenha}
       />
       <TextInput 
-        placeholder="Usuário de acesso"
+        placeholder="Salve seu usuário de acesso"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t=> setPerfilUsuario(t)}
         value={perfilUsuario}
       />
-      <TextInput 
-        placeholder="Nivel"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t=> setPerfilNivel(t)}
-        value={perfilNivel}
-      />
+      
       <TextInput
-        placeholder="Lucratividade"
+        placeholder="Informe sua lucratividade"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t=> setPerfilLucratividade(t)}
         value={perfilLucratividade}
       />
+      <Button texto="SALVAR" onClick={salvar}/>
+      {uid ? <DeleteButton texto="EXCLUIR" onClick={excluir} /> : null}
 
-      <Button texto="Salvar" onClick={salvar}/>
-      {uid ? <DeleteButton texto="Excluir" onClick={excluir} /> : null}
+      <CustomModalNivel
+        visible={modalNivelVisible}
+        closeAction={() => setModalNivelVisible(!modalNivelVisible)}>
+          {modalNivel.map((o) => (
+              <RadioButton
+                label={o}
+                selected={o === perfilNivel ? true : false}
+                onClick={selecionarNivel}
+              />
+          ))}
+      </CustomModalNivel>
+
       {loading && <Loading />}
     </Container>
   );

@@ -1,40 +1,60 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Alert} from 'react-native';
-import {Container, TextInput} from './styles';
+import {Container, TextInput, Text} from './styles';
 
 import Button from '../../components/Button';
 import DeleteButton from '../../components/DeleteButton';
+import CustomModalCliente from '../../components/CustomModalCliente';
+import CustomModalProduto from '../../components/CustomModalProduto';
+import CustomModalSituacao from '../../components/CustomModalSituacao';
+import CustomModalPagamento from '../../components/CustomModalPagamento';
+import CustomModalFornecedor from '../../components/CustomModalFornecedor';
+import RadioButton from '../../components/RadioButton';
 import Loading from '../../components/Loading';
 import {VendaContext} from '../../context/VendaProvider';
+import {ClientContext} from '../../context/ClientProvider';
+import {ProductContext} from '../../context/ProductProvider';
+import {FornecedorContext} from '../../context/FornecedorProvider';
 
 const Venda = ({route, navigation}) => {
   const [uid, setUid] = useState('');
   const [dataCriacao, setDataCriacao] = useState('');
   const [dataVenc, setDataVenc]= useState('');
-  const [itemMarca, setItemMarca]= useState('');
+  const [itemMarca, setItemMarca]= useState([]);
+  const [modalItemMarcaVisible, setModalItemMarcaVisible] = useState(false);
   const [itemQuantidade, setItemQuantidade]= useState('');
   const [itemTotal, setItemTotal]= useState('');
-  const [itemUidProduto, setItemUidProduto]= useState('');
   const [numeroPedido, setNumeroPedido] = useState('');
   const [parcelas, setParcelas]= useState('');
-  const [situacao, setSituacao]= useState('');
-  const [nomeCliente, setNomeCliente] = useState('');
+  const [pagamento, setPagamento] = useState([]);
+  const [itemUidProduto, setItemUidProduto]= useState([]);
+  const [situacao, setSituacao]= useState([]);
+  const [nomeCliente, setNomeCliente] = useState([]);
+
+  const [modalPagamentoVisible, setModalPagamentoVisible] = useState(false);
+  const [modalSituacaoVisible, setModalSituacaoVisible] = useState(false);
+  const [modalProductVisible, setModalProductVisible] = useState(false);
+  const [modalClientVisible, setModalClientVisible] = useState(false);
   const [loading, setLoading] = useState(false);
   const {saveOrder, deleteOrder} = useContext(VendaContext);
+  const {users} = useContext(ClientContext);
+  const {product} = useContext(ProductContext);
+  const {supplier} = useContext(FornecedorContext);
 
   useEffect(() => {
     console.log(route.params.venda);
     setUid('');
     setDataCriacao('');
     setDataVenc('');
-    setItemMarca('');
+    setItemMarca('Selecione a marca');
     setItemQuantidade('');
     setItemTotal('');
-    setItemUidProduto('');
+    setItemUidProduto('Selecione o produto');
     setNumeroPedido('');
     setParcelas('');
-    setSituacao('');
-    setNomeCliente('');
+    setSituacao('Selecione a situação do pedido');
+    setNomeCliente('Selecione o cliente');
+    setPagamento('Selecione a forma de pagamento');
     if (route.params.venda) {
       setUid(route.params.venda.uid);
       setDataCriacao(route.params.venda.dataCriacao);
@@ -46,12 +66,13 @@ const Venda = ({route, navigation}) => {
       setNumeroPedido(route.params.venda.numeroPedido);
       setParcelas(route.params.venda.parcelas);
       setSituacao(route.params.venda.situacao);
-      setNomeCliente(route.params.venda.nomeCliente);    
+      setNomeCliente(route.params.venda.nomeCliente);
+      setPagamento(route.params.venda.pagamento);  
     }
     return () => {
       console.log('desmontou a venda');
     };
-  }, [route]);
+  }, [route])
 
   const salvar = async () => {
     if (
@@ -65,7 +86,8 @@ const Venda = ({route, navigation}) => {
       numeroPedido &&
       parcelas &&
       situacao &&
-      nomeCliente
+      nomeCliente &&
+      pagamento
     ) {
       let order = {};
       order.uid = uid;
@@ -79,6 +101,7 @@ const Venda = ({route, navigation}) => {
       order.parcelas = parcelas;
       order.situacao = situacao;
       order.nomeCliente = nomeCliente;
+      order.pagamento = pagamento;
       setLoading(true);
       await saveOrder(order);
       setLoading(false);
@@ -87,7 +110,7 @@ const Venda = ({route, navigation}) => {
       Alert.alert('Atenção:', 'Digite todos os campos.');
     }
   };
-
+  
   const excluir = () => {
     Alert.alert('Atenção', 'Vocẽ tem certeza que deseja excluir a venda?', [
       {
@@ -106,6 +129,43 @@ const Venda = ({route, navigation}) => {
       },
     ]);
   };
+  
+  const selecionarCliente = (val) => {
+    setNomeCliente(val);
+    setModalClientVisible(!modalClientVisible);
+  };
+  
+  const selecionarProduto = (val) => {
+    setItemUidProduto(val);
+    setModalProductVisible(!modalProductVisible);
+  };
+
+  const modalSituacao = [
+    'Aberto',
+    'Em faturamento',
+    'Em transporte',
+    'Entregue',
+    'Pago',
+  ];
+
+  const selecionarSituacao = (val) => {
+    setSituacao(val);
+    setModalSituacaoVisible(!modalSituacaoVisible);
+  };
+  const modalPagamento = [
+    'À vista',
+    'Parcelado',
+  ];
+
+  const selecionarPagamento = (val) => {
+    setPagamento(val);
+    setModalPagamentoVisible(!modalPagamentoVisible);
+  };
+
+  const selecionarMarca = (val) =>{
+    setItemMarca(val);
+    setModalItemMarcaVisible(!setModalItemMarcaVisible);
+  };
 
   return (
     <Container>
@@ -123,13 +183,11 @@ const Venda = ({route, navigation}) => {
         onChangeText={t => setDataVenc(t)}
         value={dataVenc}
       />
-      <TextInput
-        placeholder="Nome do cliente"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setNomeCliente(t)}
-        value={nomeCliente}
-      />
+      <Text
+        placeholder="Selecione o nome do cliente"
+        onPress={()=> setModalClientVisible(!modalClientVisible)}>
+          {nomeCliente}
+        </Text>
       <TextInput
         placeholder="Número do pedido"
         keyboardType="default"
@@ -137,20 +195,17 @@ const Venda = ({route, navigation}) => {
         onChangeText={t => setNumeroPedido(t)}
         value={numeroPedido}
       />
-      <TextInput
-        placeholder="Codigo do produto"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setItemUidProduto(t)}
-        value={itemUidProduto}
-      />
-      <TextInput
-        placeholder="Marca"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setItemMarca(t)}
-        value= {itemMarca}
-      />
+      <Text
+        placeholder="Selecione o produto"
+        onPress={()=> setModalProductVisible(!modalProductVisible)}>
+          {itemUidProduto}
+      </Text>
+      <Text
+        placeholder = "Selecione a marca"
+        onPress={()=> setModalItemMarcaVisible(!modalItemMarcaVisible)}>
+          {itemMarca}
+      </Text>
+      
       <TextInput
         placeholder="Quantidade do produto"
         keyboardType="default"
@@ -172,16 +227,90 @@ const Venda = ({route, navigation}) => {
         onChangeText={t => setParcelas(t)}
         value={parcelas}
       />
-      <TextInput
-        placeholder="Situação"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setSituacao(t)}
-        value={situacao}
-      />
-      <Button texto="SALVAR VENDA" onClick={salvar}/>
+       <Text
+        onPress={() => setModalSituacaoVisible(!modalSituacaoVisible)}
+        placeholder="Selecione a situação do pedido">
+          {situacao}
+      </Text>
+      <Text
+        onPress={() => setModalPagamentoVisible(!modalPagamentoVisible)}
+        placeholder="Selecione a forma de pagamento">
+          {pagamento}
+      </Text>
+
+      <Button texto="SALVAR" onClick={salvar}/>
       {uid ? <DeleteButton texto="EXCLUIR" onClick={excluir} /> : null}
-      {loading && <Loading />}
+      
+      <CustomModalCliente
+        visible={modalClientVisible}
+        closeAction={() => setModalClientVisible(!modalClientVisible)}>
+          {users.map((o) => {
+            return (
+              <RadioButton 
+                label={o.nome}
+                selected={o.nome === nomeCliente ? true : false }
+                onClick={selecionarCliente}
+              />
+            );
+          })}
+      </CustomModalCliente>
+
+      <CustomModalProduto
+        visible={modalProductVisible}
+        closeAction={() => setModalProductVisible(!modalProductVisible)}>
+          {product.map((o) => {
+            return (
+              <RadioButton 
+                label={o.nome}
+                selected={o.nome === itemUidProduto ? true : false }
+                onClick={selecionarProduto}
+              />
+            );
+          })}
+      </CustomModalProduto>
+      
+      <CustomModalSituacao
+        visible={modalSituacaoVisible}
+        closeAction={() => setModalSituacaoVisible(!modalSituacaoVisible)}>
+          {modalSituacao.map((o) => {
+            return (
+              <RadioButton 
+                label={o}
+                selected={o=== situacao ? true : false }
+                onClick={selecionarSituacao}
+              />
+            );
+          })}
+      </CustomModalSituacao>
+
+      <CustomModalPagamento
+        visible={modalPagamentoVisible}
+        closeAction={() => setModalPagamentoVisible(!modalPagamentoVisible)}>
+          {modalPagamento.map((o) => {
+            return (
+              <RadioButton 
+                label={o}
+                selected={o=== pagamento ? true : false }
+                onClick={selecionarPagamento}
+              />
+            );
+          })}
+      </CustomModalPagamento>
+
+      <CustomModalFornecedor
+        visible={modalItemMarcaVisible}
+        closeAction={() => setModalItemMarcaVisible(!modalItemMarcaVisible)}>
+          {supplier.map((o) => {
+            return (
+              <RadioButton 
+                label={o.marca}
+                selected={o.marca === itemMarca ? true : false }
+                onClick={selecionarMarca}
+              />
+            );
+          })}
+      </CustomModalFornecedor>
+    {loading && <Loading />}
     </Container>
   );
 };
