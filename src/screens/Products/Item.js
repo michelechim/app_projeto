@@ -40,9 +40,8 @@ const Item = ({item, onPress}) => {
     <Button onPress={onPress} underlayColor="transparent">
       <DivGeral>
         <Div>
-          <Texto>Cód: {item.uid} - {item.nome}</Texto>
-          <Texto>{item.descricao}</Texto>
-          <Texto>{item.fornecedor}</Texto>
+          <Texto>Cód: {item.uid}</Texto>
+          <Texto>Nome: {item.nome} , {item.fornecedor}</Texto>
           <Texto>Venda:R$ {item.valorVenda} - Custo:R$ {item.valorCusto}</Texto>
           <Texto>Qtde: 0{item.quantidade} - Validade:{item.validade}</Texto>
         </Div>

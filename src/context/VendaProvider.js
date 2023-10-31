@@ -38,6 +38,7 @@ export const VendaProvider = ({children}) => {
               itemQuantidade: doc.data().itemQuantidade,
               itemUidProduto: doc.data().itemUidProduto,
               itemTotal: doc.data().itemTotal,
+              pagamento: doc.data().pagamento,
             };
             d.push(valor);
           });
@@ -67,6 +68,7 @@ export const VendaProvider = ({children}) => {
           itemQuantidade: val.itemQuantidade,
           itemUidProduto: val.itemUidProduto,
           itemTotal: val.itemTotal,
+          pagamento: val.pagamento,
         },
         {
           merge: true,

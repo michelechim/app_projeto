@@ -25,17 +25,13 @@ export const ProductProvider = ({children}) => {
       .onSnapshot(
         querySnapshot => {
           let d = [];
-          // console.log('TESTE');
-          // console.log(querySnapshot);
           querySnapshot.forEach(doc => {
             const valor = {
               uid: doc.data().uid,
-              descricao: doc.data().descricao,
               fornecedor: doc.data().fornecedor,
               img: doc.data().img,
               nome: doc.data().nome,
               quantidade: doc.data().quantidade,
-              // sku: doc.data().sku,
               validade: doc.data().validade,
               valorCusto: doc.data().valorCusto,
               valorVenda: doc.data().valorVenda,
@@ -53,7 +49,6 @@ export const ProductProvider = ({children}) => {
 
     return unsubscribe;
   };
-
   const saveProduct = async val => {
     console.log(val);
     await firestore()
@@ -62,7 +57,6 @@ export const ProductProvider = ({children}) => {
       .set(
         {
           uid: val.uid,
-          descricao: val.descricao,
           fornecedor: val.fornecedor,
           img: val.img,
           nome: val.nome,

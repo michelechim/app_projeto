@@ -3,20 +3,30 @@ import {CommonActions} from '@react-navigation/native';
 
 import {Container, FlatList} from './styles';
 import Item from './Item';
-import Loading from '../../components/Loading';
 import AddFloatButton from '../../components/AddFloatButton';
+import SearchBar from '../../components/SearchBar';
 import {ConsultorContext} from '../../context/ConsultorProvider';
 
 const Consultor = ({navigation}) => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
   const {users} = useContext(ConsultorContext);
+  const [usersTemp, setUsersTemp] = useState([]);
 
-  useEffect(() => {
-    setData(users);
-    setLoading(false);
-    // console.log(users); //aparece vazio
-  }, [users]);
+  const filterByName = text => {
+    if (text !== ''){
+      let a = [];
+
+      a.push(
+        ...users.filter(e =>
+          e.marca.toLowerCase().includes(text.toLowerCase()),
+        ),
+      );
+      if (a.length > 0) {
+        setUsersTemp(a);
+      }
+    }else {
+      setUsersTemp([]);
+    }
+  };
 
   const routerUser = item => {
     //console.log(item);
@@ -28,28 +38,17 @@ const Consultor = ({navigation}) => {
     );
   };
 
-  const routeAddUser = () => {
-    navigation.dispatch(
-      CommonActions.navigate({
-        name: 'Consultor',
-        params: {users: null},
-      }),
-    );
-  };
-
-  const renderItem = ({item}) => (
-    <Item item={item} onPress={() => routerUser(item)} />
-  );
-
   return (
     <Container>
+      <SearchBar text="Digite o nome da marca" setSearch={filterByName} />
       <FlatList
-        data={data}
-        renderItem={renderItem}
+        data={usersTemp.length > 0 ? usersTemp : users}
+        renderItem={({item}) => (
+          <Item item={item} onPress={() => routerUser(item)} key={item.uid} />
+        )}
         keyExtractor={item => item.uid}
       />
-      <AddFloatButton onClick={routeAddUser} />
-      {loading && <Loading />}
+      <AddFloatButton onClick={() => routerUser(null)} />
     </Container>
   );
 };

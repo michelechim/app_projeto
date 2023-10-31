@@ -18,7 +18,14 @@ export const TextInput = styled.TextInput`
 `;
 
 export const Text = styled.Text`
-  font-size: 18px;
+  font-weight: bold;
+  font-size: 20px;
+  width: 90%;
+  height: auto;
+  border-bottom-color: ${COLORS.primary};
+  border-bottom-width: 2px;
+  padding-bottom: 1px;
+  padding-top: 20px;
 `;
 
 export const Image = styled.Image`

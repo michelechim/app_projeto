@@ -22,7 +22,6 @@ export const CatalogoProvider = ({children}) => {
           querySnapshot.forEach(doc => {
             const valor = {
               uid: doc.data().uid,
-              descricao: doc.data().descricao,
               fornecedor: doc.data().fornecedor,
               img: doc.data().img,
               nome: doc.data().nome,

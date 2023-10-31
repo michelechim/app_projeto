@@ -5,7 +5,7 @@ import Loading from '../../components/Loading';
 
 const Catalogo = ({route, navigation}) => {
   const [uid, setUid] = useState('');
-  const [descricao, setDescricao] = useState('');
+  //const [descricao, setDescricao] = useState('');
   const [fornecedor, setFornecedor] = useState('');
   const [img, setImg] = useState('');
   const [nome, setNome] = useState('');
@@ -18,7 +18,7 @@ const Catalogo = ({route, navigation}) => {
   useEffect(() => {
     console.log(route.params.catalogo);
     setUid('');
-    setDescricao('');
+    //setDescricao('');
     setFornecedor('');
     setImg('');
     setNome('');
@@ -28,7 +28,7 @@ const Catalogo = ({route, navigation}) => {
     setValorVenda('');
     if (route.params.catalogo) {
       setUid(route.params.catalogo.uid);
-      setDescricao(route.params.catalogo.descricao);
+      //setDescricao(route.params.catalogo.descricao);
       setFornecedor(route.params.catalogo.fornecedor);
       setImg(route.params.catalogo.img);
       setNome(route.params.catalogo.nome);
@@ -49,7 +49,7 @@ const Catalogo = ({route, navigation}) => {
       }} />
       <Text>FICHA COMPLETA</Text>
       <Text>Código: {uid}</Text>
-      <Text>Descrição: {descricao}</Text>
+      {/* <Text>Descrição: {descricao}</Text> */}
       <Text>Nome: {nome}</Text>
       <Text>Fornecedor: {fornecedor}</Text>
       <Text>Quantidade: 0{quantidade}</Text>

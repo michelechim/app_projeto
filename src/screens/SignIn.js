@@ -67,12 +67,9 @@ const SignIn = ({navigation}) => {
             keyboardType="email-address"
             returnKeyType="next"
             onChangeText={t => setEmail(t)}
-            onEndEditing={() => this.passTextInput.focus()}
+            //onEndEditing={() => this.passTextInput.focus()}
           />
           <TextInput
-            ref={ref => {
-              this.passTextInput = ref;
-            }}
             style={styles.input}
             secureTextEntry={true}
             placeholder="Senha"

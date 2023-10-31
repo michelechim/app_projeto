@@ -17,7 +17,7 @@ const Venda = ({navigation}) => {
       let a = [];
       a.push(
         ...order.filter(e =>
-          e.nome.toLowerCase().includes(text.toLowerCase()),
+          e.nomeCliente.toLowerCase().includes(text.toLowerCase()),
         ),
       );
       if (a.length > 0) {

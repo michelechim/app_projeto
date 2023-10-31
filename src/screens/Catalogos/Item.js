@@ -41,7 +41,7 @@ const Item = ({item, onPress}) => {
       <DivGeral>
         <Div>
           <Texto>Cód: {item.uid} </Texto>
-          <Texto>Descrição: {item.descricao}, {item.nome}</Texto>
+          <Texto>Nome: {item.nome}</Texto>
           <Texto>Quantidade: 0{item.quantidade}</Texto>
         </Div>
         <DivImage>
