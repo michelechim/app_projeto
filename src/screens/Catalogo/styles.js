@@ -8,9 +8,9 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Text = styled.Text`
-  font-size: 14px;
+  font-size: 18px;
   color: ${COLORS.accent};
-  width: 75%;
+  width: 80%;
   height: auto;
   border-bottom-color: ${COLORS.black};
   border-bottom-width: 2px;
@@ -24,6 +24,7 @@ export const Image = styled.Image`
   align-self: center;
   height: 200px;
   width: 200px;
+  border-radius: 10px;
   border-color: black;
-  margin-bottom: 30px;
+  background-color: ${COLORS.white};
 `;

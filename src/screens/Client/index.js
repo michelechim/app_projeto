@@ -90,42 +90,48 @@ const Client = ({route, navigation}) => {
   return (
     <Container>
       <TextInput
-        placeholder="Nome"
+        placeholder="Informe o nome completo"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setNome(t)}
         value={nome}
       />
       <TextInput
-        placeholder="Email"
+        placeholder="Informe o email"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setEmail(t)}
         value={email}
       />
       <TextInput 
-        placeholder="Endereço"
+        placeholder="Informe o endereço"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setEndereco(t)}
         value={endereco}
       />
       <TextInput
-        placeholder="Telefone"
+        placeholder="Informe o Telefone"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setTelefone(t)}
         value={telefone}
       />
       <TextInput 
-        placeholder="Data de Nascimento"
+        placeholder="Informe a data de nascimento"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setDataNasc(t)}
         value={dataNasc}
       />
       <TextInput 
-        placeholder="Endereço de entrega"
+        placeholder="Informe o endereço de entrega"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setEnderecoEntrega(t)}

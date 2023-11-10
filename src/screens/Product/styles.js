@@ -8,18 +8,22 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const TextInput = styled.TextInput`
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: ${COLORS.black};
   width: 90%;
   height: auto;
   border-bottom-color: ${COLORS.primary};
   border-bottom-width: 2px;
- // padding-left: 1px;
   padding-bottom: 1px;
-  //margin-bottom: 1px;
 `;
 
 export const Text = styled.Text`
-  font-weight: bold;
-  font-size: 20px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: ${COLORS.black};
   width: 90%;
   height: auto;
   border-bottom-color: ${COLORS.primary};
@@ -32,7 +36,7 @@ export const Image = styled.Image`
   align-self: center;
   height: 100px;
   width: 100px;
-  border-radius: 50px;
+  border-radius: 10px;
   border-color: black;
   background-color: ${COLORS.grey};
 `;

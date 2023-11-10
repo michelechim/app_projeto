@@ -11,7 +11,7 @@ const Button = styled.TouchableHighlight`
   border-radius: 5px;
 `;
 const TextGeral = styled.Text`
-  font-size: 15px;
+  font-size: 18px;
   color: ${COLORS.black};
 `;
 

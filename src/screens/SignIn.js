@@ -64,15 +64,16 @@ const SignIn = ({navigation}) => {
           <TextInput
             style={styles.input}
             placeholder="Email"
+            placeholderTextColor="black"
             keyboardType="email-address"
             returnKeyType="next"
             onChangeText={t => setEmail(t)}
-            //onEndEditing={() => this.passTextInput.focus()}
           />
           <TextInput
             style={styles.input}
             secureTextEntry={true}
             placeholder="Senha"
+            placeholderTextColor="black"
             keyboardType="default"
             returnKeyType="send"
             onChangeText={t => setPass(t)}

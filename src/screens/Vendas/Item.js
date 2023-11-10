@@ -16,15 +16,19 @@ const DivGeral = styled.View`
   flex-direction: row;
 `;
 const Div = styled.View`
-  width: 40%;
+  width: 30%;
   height: auto;
 `;
 const Div2 = styled.View`
-  width: 60%;
+  width: 70%;
   height: auto;
 `;
 const Texto = styled.Text`
-  font-size : 14px;
+  font-size : 18px;
+  color: ${COLORS.black};
+`;
+const Text = styled.Text`
+  font-size : 16px;
   color: ${COLORS.black};
 `;
 const Item = ({item, onPress}) => {
@@ -32,13 +36,13 @@ const Item = ({item, onPress}) => {
     <Button onPress={onPress} underlayColor="transparent">
       <DivGeral>
         <Div>
-          <Texto>Data de criação: {item.dataCriacao} </Texto>
-          <Texto>Data de Venc.: {item.dataVenc}</Texto>
-          <Texto>Cliente: {item.nomeCliente}</Texto>
-          <Texto>N°Pedido: {item.numeroPedido}</Texto>
+          <Text>Data de criação: {item.dataCriacao} </Text>
+          <Text>Data de Venc.: {item.dataVenc}</Text>
+          <Text>Cliente: {item.nomeCliente}</Text>
+          <Text>N°Pedido: {item.numeroPedido}</Text>
         </Div>
         <Div2>
-          <Texto>Código do produto: {item.itemUidProduto}</Texto>
+          <Texto>Nome do produto: {item.itemNomeProduto}</Texto>
           <Texto>Marca: {item.itemMarca}</Texto>
           <Texto>Quantidade: {item.itemQuantidade}</Texto>
           <Texto>Total: {item.itemTotal}</Texto>          

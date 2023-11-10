@@ -34,28 +34,30 @@ const SignUp = () => {
     <Body>
       <TextInput 
         placeholder="Nome Completo"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="next"
         onChangeText={t => setNome(t)}
       />
       <TextInput
         placeholder="Email"
+        placeholderTextColor="black"
         keyboardType="email-address"
         returnKeyType="next"
         onChangeText={t => setEmail(t)}
       />
       <TextInput
-      
         secureTextEntry={true}
         placeholder="Senha"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="next"
         onChangeText={t => setPass(t)}
       />
       <TextInput
-      
         secureTextEntry={true}
         placeholder="Confirmar senha"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="send"
         onChangeText={t => setConfirPass(t)}

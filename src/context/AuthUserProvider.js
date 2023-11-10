@@ -128,11 +128,11 @@ export const AuthUserProvider = ({children}) => {
           .signOut()
           .then(() => {})
           .catch(e => {
-            console.error('AuthUserProvider, sigOut firebase: ' + e);
+            console.error('AuthUserProvider, signOut firebase: ' + e);
           });
       })
       .catch(e => {
-        console.error('AuthUserProvider, sigOut cache: ' + e);
+        console.error('AuthUserProvider, signOut cache: ' + e);
       });
   };
   /* Fim SignUp, SignIn, e SignOut */

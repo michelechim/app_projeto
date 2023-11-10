@@ -16,7 +16,6 @@ const Fornecedor = ({route, navigation}) => {
   const {saveSupplier, deleteSupplier} = useContext(FornecedorContext);
 
   useEffect(() => {
-    //erro no app
     console.log(route.params.fornecedor);
     setUid('');
     setMarca('');
@@ -76,21 +75,24 @@ const Fornecedor = ({route, navigation}) => {
   return (
     <Container>
       <TextInput
-        placeholder="Marca"
+        placeholder="Informe o nome da marca"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setMarca(t)}
         value={marca}
       />
       <TextInput
-        placeholder="Responsavel"
+        placeholder="Informe o nome do responsável"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setResponsavel(t)}
         value={responsavel}
       />
       <TextInput
-        placeholder="Contato"
+        placeholder="Informe o contato do responsável"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setContato(t)}

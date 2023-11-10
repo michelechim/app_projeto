@@ -29,6 +29,7 @@ export default function ({text, setSearch}) {
         <Icon name="search" size={30} color={COLORS.primaryDark}/>
         <TextInput
           placeholder={text}
+          placeholderTextColor="black"
           keyboardType="default"
           returnKeyType="next"
           onChangeText={t => setSearch(t)}

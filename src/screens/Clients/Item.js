@@ -11,11 +11,11 @@ const Button = styled.TouchableHighlight`
   border-radius: 5px;
 `;
 const Texto = styled.Text`
-  font-size: 15px;
+  font-size: 18px;
   color: ${COLORS.white};
 `;
 const TextGeral = styled.Text`
-  font-size: 15px;
+  font-size: 18px;
   color: ${COLORS.black};
 `;
 
@@ -25,7 +25,8 @@ const Item = ({item, onPress}) => {
       <>
         <Texto>Nome:{item.nome}</Texto>
         <TextGeral>Email:{item.email}</TextGeral>
-        <TextGeral>Data de Nasc.:{item.dataNasc} - Telefone: {item.telefone}</TextGeral>
+        <TextGeral>Data de Nasc.:{item.dataNasc}</TextGeral>
+        <TextGeral>Telefone: {item.telefone}</TextGeral>
         <Texto>Endereço</Texto>
         <TextGeral>Residencial:{item.endereco}</TextGeral>
         <TextGeral>Entrega: {item.enderecoEntrega}</TextGeral>

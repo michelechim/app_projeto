@@ -133,6 +133,7 @@ const Consultor = ({route, navigation}) => {
     <Container>
       <TextInput
         placeholder="Informe seu nome"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setNome(t)}
@@ -140,6 +141,7 @@ const Consultor = ({route, navigation}) => {
       />
       <TextInput
         placeholder="Informe seu email"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setEmail(t)}
@@ -147,6 +149,7 @@ const Consultor = ({route, navigation}) => {
       />
       <TextInput 
         placeholder="Informe seu endereço"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setEndereco(t)}
@@ -154,6 +157,7 @@ const Consultor = ({route, navigation}) => {
       />
       <TextInput
         placeholder="Informe seu telefone de contato"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setTelefone(t)}
@@ -161,6 +165,7 @@ const Consultor = ({route, navigation}) => {
       />
       <TextInput 
         placeholder="Informe a marca"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setMarca(t)}
@@ -174,6 +179,7 @@ const Consultor = ({route, navigation}) => {
       </Text>
       <TextInput
         placeholder="Informe seu código do consultor"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t=> setPerfilCodigo(t)}
@@ -181,6 +187,7 @@ const Consultor = ({route, navigation}) => {
       />
       <TextInput 
         placeholder="Salve sua senha de acesso"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t=> setPerfilSenha(t)}
@@ -188,6 +195,7 @@ const Consultor = ({route, navigation}) => {
       />
       <TextInput 
         placeholder="Salve seu usuário de acesso"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t=> setPerfilUsuario(t)}
@@ -196,6 +204,7 @@ const Consultor = ({route, navigation}) => {
       
       <TextInput
         placeholder="Informe sua lucratividade"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t=> setPerfilLucratividade(t)}

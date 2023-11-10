@@ -16,22 +16,22 @@ const DivGeral = styled.View`
   flex-direction: row;
 `;
 const Div = styled.View`
-  width: 75%;
+  width: 70%;
   height: auto;
 `;
 const DivImage = styled.View`
-  width: 25%;
+  width: 30%;
   flex-direction: row;
   align-items: center;
 `;
 const Image = styled.Image`
-  height: 80px;
-  width: 80px;
-  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
   background-color: ${COLORS.white};
 `;
 const Texto = styled.Text`
-  font-size : 14px;
+  font-size : 18px;
   color: ${COLORS.black};
 `;
 
@@ -42,7 +42,7 @@ const Item = ({item, onPress}) => {
         <Div>
           <Texto>Cód: {item.uid} </Texto>
           <Texto>Nome: {item.nome}</Texto>
-          <Texto>Quantidade: 0{item.quantidade}</Texto>
+          <Texto>Quantidade: {item.quantidade}</Texto>
         </Div>
         <DivImage>
           <Image  source={{ uri: item.img !== '' ? item.img

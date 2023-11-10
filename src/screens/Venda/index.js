@@ -27,7 +27,7 @@ const Venda = ({route, navigation}) => {
   const [numeroPedido, setNumeroPedido] = useState('');
   const [parcelas, setParcelas]= useState('');
   const [pagamento, setPagamento] = useState([]);
-  const [itemUidProduto, setItemUidProduto]= useState([]);
+  const [itemNomeProduto, setItemNomeProduto]= useState([]);
   const [situacao, setSituacao]= useState([]);
   const [nomeCliente, setNomeCliente] = useState([]);
 
@@ -49,7 +49,7 @@ const Venda = ({route, navigation}) => {
     setItemMarca('Selecione a marca');
     setItemQuantidade('');
     setItemTotal('');
-    setItemUidProduto('Selecione o produto');
+    setItemNomeProduto('Selecione o produto');
     setNumeroPedido('');
     setParcelas('');
     setSituacao('Selecione a situação do pedido');
@@ -62,7 +62,7 @@ const Venda = ({route, navigation}) => {
       setItemMarca(route.params.venda.itemMarca);
       setItemQuantidade(route.params.venda.itemQuantidade);
       setItemTotal(route.params.venda.itemTotal);
-      setItemUidProduto(route.params.venda.itemUidProduto);
+      setItemNomeProduto(route.params.venda.itemNomeProduto);
       setNumeroPedido(route.params.venda.numeroPedido);
       setParcelas(route.params.venda.parcelas);
       setSituacao(route.params.venda.situacao);
@@ -82,7 +82,7 @@ const Venda = ({route, navigation}) => {
       itemMarca &&
       itemQuantidade &&
       itemTotal &&
-      itemUidProduto &&
+      itemNomeProduto &&
       numeroPedido &&
       parcelas &&
       situacao &&
@@ -96,7 +96,7 @@ const Venda = ({route, navigation}) => {
       order.itemMarca = itemMarca;
       order.itemQuantidade = itemQuantidade;
       order.itemTotal = itemTotal;
-      order.itemUidProduto = itemUidProduto;
+      order.itemNomeProduto = itemNomeProduto;
       order.numeroPedido = numeroPedido;
       order.parcelas = parcelas;
       order.situacao = situacao;
@@ -129,17 +129,14 @@ const Venda = ({route, navigation}) => {
       },
     ]);
   };
-  
   const selecionarCliente = (val) => {
     setNomeCliente(val);
     setModalClientVisible(!modalClientVisible);
   };
-  
   const selecionarProduto = (val) => {
-    setItemUidProduto(val);
+    setItemNomeProduto(val);
     setModalProductVisible(!modalProductVisible);
   };
-
   const modalSituacao = [
     'Aberto',
     'Em faturamento',
@@ -147,7 +144,6 @@ const Venda = ({route, navigation}) => {
     'Entregue',
     'Pago',
   ];
-
   const selecionarSituacao = (val) => {
     setSituacao(val);
     setModalSituacaoVisible(!modalSituacaoVisible);
@@ -156,12 +152,10 @@ const Venda = ({route, navigation}) => {
     'À vista',
     'Parcelado',
   ];
-
   const selecionarPagamento = (val) => {
     setPagamento(val);
     setModalPagamentoVisible(!modalPagamentoVisible);
   };
-
   const selecionarMarca = (val) =>{
     setItemMarca(val);
     setModalItemMarcaVisible(!setModalItemMarcaVisible);
@@ -170,14 +164,16 @@ const Venda = ({route, navigation}) => {
   return (
     <Container>
       <TextInput
-        placeholder="Data de Criação"
+        placeholder="Informe a data de criação da venda"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setDataCriacao(t)}
         value={dataCriacao}
-      />
+      />     
       <TextInput
-        placeholder="Data de Vencimento"
+        placeholder="Informe a data de pagamento"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setDataVenc(t)}
@@ -187,9 +183,10 @@ const Venda = ({route, navigation}) => {
         placeholder="Selecione o nome do cliente"
         onPress={()=> setModalClientVisible(!modalClientVisible)}>
           {nomeCliente}
-        </Text>
+      </Text>
       <TextInput
-        placeholder="Número do pedido"
+        placeholder="Informe o número do pedido"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setNumeroPedido(t)}
@@ -198,7 +195,7 @@ const Venda = ({route, navigation}) => {
       <Text
         placeholder="Selecione o produto"
         onPress={()=> setModalProductVisible(!modalProductVisible)}>
-          {itemUidProduto}
+          {itemNomeProduto}
       </Text>
       <Text
         placeholder = "Selecione a marca"
@@ -207,34 +204,37 @@ const Venda = ({route, navigation}) => {
       </Text>
       
       <TextInput
-        placeholder="Quantidade do produto"
+        placeholder="Informe a quantidade do produto"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setItemQuantidade(t)}
         value={itemQuantidade}
       />
       <TextInput
-        placeholder="Total da venda"
+        placeholder="Informe o valor total da venda"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setItemTotal(t)}
         value={itemTotal}
       />
       <TextInput
-        placeholder="Número de parcelas"
+        placeholder="Informe o número de parcelas"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setParcelas(t)}
         value={parcelas}
       />
        <Text
-        onPress={() => setModalSituacaoVisible(!modalSituacaoVisible)}
-        placeholder="Selecione a situação do pedido">
+        placeholder="Selecioe a situação do peidido"
+        onPress={() => setModalSituacaoVisible(!modalSituacaoVisible)}>
           {situacao}
       </Text>
       <Text
-        onPress={() => setModalPagamentoVisible(!modalPagamentoVisible)}
-        placeholder="Selecione a forma de pagamento">
+        placeholder="Selecione a forma de pagamento"
+        onPress={() => setModalPagamentoVisible(!modalPagamentoVisible)}>
           {pagamento}
       </Text>
 
@@ -262,7 +262,7 @@ const Venda = ({route, navigation}) => {
             return (
               <RadioButton 
                 label={o.nome}
-                selected={o.nome === itemUidProduto ? true : false }
+                selected={o.nome === itemNomeProduto ? true : false }
                 onClick={selecionarProduto}
               />
             );

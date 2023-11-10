@@ -7,7 +7,6 @@ import AddFloatButton from '../../components/AddFloatButton';
 import SearchBar from '../../components/SearchBar';
 import {VendaContext} from '../../context/VendaProvider';
 
-
 const Venda = ({navigation}) => {
   const {order} = useContext(VendaContext);
   const [orderTemp, setOrderTemp] = useState([]);

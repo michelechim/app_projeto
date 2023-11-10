@@ -15,7 +15,6 @@ import {FornecedorContext} from '../../context/FornecedorProvider';
 
 const Product = ({route, navigation}) => {
   const [uid, setUid] = useState('');
-  //const [descricao, setDescricao] = useState('');
   const [fornecedor, setFornecedor] = useState([]);
   const [modalFornecedorVisible, setModalFornecedorVisible] = useState(false);
   const [img, setImg] = useState('');
@@ -193,8 +192,8 @@ const Product = ({route, navigation}) => {
       <Image  source={{ uri: img !== '' ? img
         : 'https://cdn.pixabay.com/photo/2019/05/25/14/47/eye-4228531_960_720.png',
       }} />
-      <Button texto="Selecione a Imagem" onClick={selectImage}/>
-      <Button texto="Tirar foto" onClick={takePicker}/>
+      <Button texto="Selecione a imagem do produto" onClick={selectImage}/>
+      <Button texto="Tirar foto do produto" onClick={takePicker}/>
 
       <Text
         placeholder = "Selecione um fornecedor"
@@ -203,56 +202,48 @@ const Product = ({route, navigation}) => {
       </Text>
 
       <TextInput
-        placeholder="Código do produto"
+        placeholder="Informe o código do produto"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setUid(t)}
         value={uid}
       />
-      {/* <TextInput
-        placeholder="Descrição do produto"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setDescricao(t)}
-        value={descricao}
-      /> */}
       <TextInput
         placeholder="Informe o nome e fragrância do produto"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setNome(t)}
         value={nome}
       />
-      {/* <TextInput
-        placeholder="Fornecedor"
-        keyboardType="default"
-        returnKeyType="go"
-        onChangeText={t => setFornecedor(t)}
-        value={fornecedor}
-      /> */}
       <TextInput
-        placeholder="Quantidade"
+        placeholder="Informe a quantidade do produto"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setQuantidade(t)}
         value={quantidade}
       />
       <TextInput
-        placeholder="Validade"
+        placeholder="Informe a validade do produto"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setValidade(t)}
         value={validade}
       />
       <TextInput
-        placeholder="Valor de custo"
+        placeholder="Informe o valor de custo unitário do produto"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setValorCusto(t)}
         value= {valorCusto}
       />
       <TextInput
-        placeholder="Valor de venda"
+        placeholder="Informe o valor de venda unitário do produto"
+        placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
         onChangeText={t => setValorVenda(t)}

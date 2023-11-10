@@ -52,10 +52,10 @@ const Catalogo = ({route, navigation}) => {
       {/* <Text>Descrição: {descricao}</Text> */}
       <Text>Nome: {nome}</Text>
       <Text>Fornecedor: {fornecedor}</Text>
-      <Text>Quantidade: 0{quantidade}</Text>
+      <Text>Quantidade: {quantidade}</Text>
       <Text>Validade: {validade}</Text>
-      <Text>Valor de custo: R$ {valorCusto}</Text>
-      <Text>Valor de venda: R$ {valorVenda}</Text>
+      <Text>Valor de custo: {valorCusto}</Text>
+      <Text>Valor de venda: {valorVenda}</Text>
       {loading && <Loading />}
     </Container>
   );
