@@ -22,7 +22,6 @@ import Fornecedor from '../screens/Fornecedor';
 import Fornecedors from '../screens/Fornecedors';
 import {COLORS} from '../assets/colors';
 import CustomDrawerContent from '../components/CustomDrawerContent';
-import LogoutButton from '../components/LogoutButton';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -38,7 +37,6 @@ const Navigator = () => {
             backgroundColor: COLORS.primaryDark,
           },
           headerTintColor: COLORS.white,
-          headerRight: () => <LogoutButton />,
         }}
         drawerContent={props => <CustomDrawerContent {...props} />}>
         <Drawer.Screen name="Products" component={Products} options={productsStyle} />

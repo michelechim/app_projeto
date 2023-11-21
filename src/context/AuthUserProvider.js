@@ -3,6 +3,7 @@ import {Alert} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import { log } from 'react-native-reanimated';
 
 export const AuthUserContext = createContext({});
 
@@ -121,20 +122,19 @@ export const AuthUserProvider = ({children}) => {
       });
   };
 
-  const signOut = () => {
-    AsyncStorage.removeItem('user')
-      .then(() => {
-        auth()
-          .signOut()
-          .then(() => {})
-          .catch(e => {
-            console.error('AuthUserProvider, signOut firebase: ' + e);
-          });
-      })
-      .catch(e => {
-        console.error('AuthUserProvider, signOut cache: ' + e);
-      });
-  };
+  async function signOut() {
+    try {
+      setUser(null);
+      await AsyncStorage.removeItem('user');
+      if (auth().currentUser) {
+        await auth().signOut();
+      }
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   /* Fim SignUp, SignIn, e SignOut */
 
   //busca os detalhes do user no nó users e faz cache

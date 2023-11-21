@@ -1,9 +1,10 @@
 import React, {useContext} from 'react';
 import styled from 'styled-components/native';
 import Icon from 'react-native-vector-icons/Ionicons';
-
+import {CommonActions} from '@react-navigation/native';
 import DrawerHeader from '../components/DrawerHeader';
 import {AuthUserContext} from '../context/AuthUserProvider';
+
 import {COLORS} from '../assets/colors';
 
 const Page = styled.View`
@@ -116,8 +117,14 @@ const CustomDrawerContent = ({navigation}) => {
           <DivItem>
             <Icon name="exit-outline" size={25} color={COLORS.primaryDark} />
             <ItemMenuText
-              onPress={() => {
-                signOut();
+              onPress={async () => {
+                await signOut();
+                navigation.dispatch(
+                  CommonActions.reset({
+                    index: 0,
+                    routes: [{name: 'AuthStack'}],
+                  }),
+                );
               }}>
               Sair
             </ItemMenuText>
