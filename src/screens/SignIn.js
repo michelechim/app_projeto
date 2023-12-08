@@ -81,7 +81,7 @@ const SignIn = ({navigation}) => {
           <Text style={styles.textEsqueceuSenha} onPress={recuperarSenha}>
             Esqueceu a senha?
           </Text>
-          <Button texto="ENTRAR" onClick={entrar} />
+          <Button texto="Entrar" onClick={entrar} />
         </View>
         <View style={styles.divInferior}>
           <View style={styles.divOuHr}>
@@ -109,10 +109,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 20,
+    backgroundColor: COLORS.white,
   },
   divSuperior: {
     flex: 5,
     alignItems: 'center',
+    color: COLORS.black,
   },
   divInferior: {
     flex: 1,

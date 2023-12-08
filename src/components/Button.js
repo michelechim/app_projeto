@@ -12,9 +12,9 @@ const Button = ({texto, onClick}) => {
 export default Button;
 
 const styles = StyleSheet.create({
-  texto: {
+  text: {
     fontSize: 20,
-    color: COLORS.grey,
+    color: COLORS.white,
   },
   button: {
     width: '95%',

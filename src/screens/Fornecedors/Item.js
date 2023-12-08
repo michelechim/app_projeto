@@ -10,18 +10,18 @@ const Button = styled.TouchableHighlight`
   margin-top: 5px;
   border-radius: 5px;
 `;
-const TextGeral = styled.Text`
+const Texto = styled.Text`
   font-size: 18px;
-  color: ${COLORS.black};
+  color: ${COLORS.white};
 `;
 
 const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
       <>
-        <TextGeral>Marca:{item.marca}</TextGeral>
-        <TextGeral>Responsável:{item.responsavel}</TextGeral>
-        <TextGeral>Contato:{item.contato}</TextGeral>
+        <Texto>Marca:{item.marca}</Texto>
+        <Texto>Responsável:{item.responsavel}</Texto>
+        <Texto>Contato:{item.contato}</Texto>
       </>
     </Button>
   );

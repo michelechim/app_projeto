@@ -14,22 +14,21 @@ const Texto = styled.Text`
   font-size: 18px;
   color: ${COLORS.white};
 `;
-const TextGeral = styled.Text`
-  font-size: 18px;
-  color: ${COLORS.black};
-`;
+// const TextGeral = styled.Text`
+//   font-size: 20px;
+//   color: ${COLORS.black};
+// `;
 
 const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
       <>
         <Texto>Nome:{item.nome}</Texto>
-        <TextGeral>Email:{item.email}</TextGeral>
-        <TextGeral>Data de Nasc.:{item.dataNasc}</TextGeral>
-        <TextGeral>Telefone: {item.telefone}</TextGeral>
-        <Texto>Endereço</Texto>
-        <TextGeral>Residencial:{item.endereco}</TextGeral>
-        <TextGeral>Entrega: {item.enderecoEntrega}</TextGeral>
+        <Texto>Email:{item.email}</Texto>
+        <Texto>Data de Nasc.:{item.dataNasc}</Texto>
+        <Texto>Telefone: {item.telefone}</Texto>
+        <Texto>Endereço Residencial:{item.endereco}</Texto>
+        <Texto>Endereco de Entrega: {item.enderecoEntrega}</Texto>
         
       </>
     </Button>

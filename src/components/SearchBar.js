@@ -13,7 +13,7 @@ const DivItem = styled.View`
   align-items: center;
 `;
 const TextInput = styled.TextInput`
-  font-size: 14px;
+  font-size: 18px;
   color: ${COLORS.accent};
   width: 300px;
   height: auto;

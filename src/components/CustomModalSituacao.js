@@ -40,7 +40,7 @@ export default (props) => {
       <Container>
         <DivContainer>
           <DivTop>
-            <Title>Selecione a situação</Title>
+            <Title>Selecione a situação do pedido</Title>
             <Icon name="close-circle-outline" size={30} color={COLORS.primaryDark} onPress={props.closeAction}/>
           </DivTop>
           {props.children}

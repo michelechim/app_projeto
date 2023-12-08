@@ -31,7 +31,7 @@ const Product = ({route, navigation}) => {
     console.log(route.params.product);
     setUid('');
     //setDescricao('');
-    setFornecedor('Selecione o fornecedor');
+    setFornecedor('Selecione o nome do fornecedor');
     setImg('');
     setNome('');
     setQuantidade('');
@@ -196,7 +196,6 @@ const Product = ({route, navigation}) => {
       <Button texto="Tirar foto do produto" onClick={takePicker}/>
 
       <Text
-        placeholder = "Selecione um fornecedor"
         onPress={()=> setModalFornecedorVisible(!modalFornecedorVisible)}>
         {fornecedor}
       </Text>

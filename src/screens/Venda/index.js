@@ -46,14 +46,14 @@ const Venda = ({route, navigation}) => {
     setUid('');
     setDataCriacao('');
     setDataVenc('');
-    setItemMarca('Selecione a marca');
+    setItemMarca('Selecione o nome da marca');
     setItemQuantidade('');
     setItemTotal('');
-    setItemNomeProduto('Selecione o produto');
+    setItemNomeProduto('Selecione o nome do produto');
     setNumeroPedido('');
     setParcelas('');
     setSituacao('Selecione a situação do pedido');
-    setNomeCliente('Selecione o cliente');
+    setNomeCliente('Selecione o nome do cliente');
     setPagamento('Selecione a forma de pagamento');
     if (route.params.venda) {
       setUid(route.params.venda.uid);
@@ -180,7 +180,6 @@ const Venda = ({route, navigation}) => {
         value={dataVenc}
       />
       <Text
-        placeholder="Selecione o nome do cliente"
         onPress={()=> setModalClientVisible(!modalClientVisible)}>
           {nomeCliente}
       </Text>
@@ -193,12 +192,10 @@ const Venda = ({route, navigation}) => {
         value={numeroPedido}
       />
       <Text
-        placeholder="Selecione o produto"
         onPress={()=> setModalProductVisible(!modalProductVisible)}>
           {itemNomeProduto}
       </Text>
       <Text
-        placeholder = "Selecione a marca"
         onPress={()=> setModalItemMarcaVisible(!modalItemMarcaVisible)}>
           {itemMarca}
       </Text>
@@ -228,12 +225,10 @@ const Venda = ({route, navigation}) => {
         value={parcelas}
       />
        <Text
-        placeholder="Selecioe a situação do peidido"
         onPress={() => setModalSituacaoVisible(!modalSituacaoVisible)}>
           {situacao}
       </Text>
       <Text
-        placeholder="Selecione a forma de pagamento"
         onPress={() => setModalPagamentoVisible(!modalPagamentoVisible)}>
           {pagamento}
       </Text>

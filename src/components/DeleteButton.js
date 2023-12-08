@@ -4,7 +4,7 @@ import {Text, StyleSheet, TouchableHighlight} from 'react-native';
 import {COLORS} from '../assets/colors';
 
 const styles = StyleSheet.create({
-  texto: {
+  text: {
     fontSize: 20,
     color: COLORS.white,
   },

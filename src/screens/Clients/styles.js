@@ -12,5 +12,5 @@ export const FlatList = styled.FlatList`
 `;
 
 export const Text = styled.Text`
-  font-size: 30px;
+  font-size: 18px;
 `;

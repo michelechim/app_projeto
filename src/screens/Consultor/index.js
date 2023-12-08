@@ -36,7 +36,7 @@ const Consultor = ({route, navigation}) => {
     setPerfilCodigo('');
     setPerfilSenha('');
     setPerfilUsuario('');
-    setPerfilNivel('Selecione o nível');
+    setPerfilNivel('Selecione seu nível');
     setPerfilLucratividade('');
     if (route.params.users) {
       setUid(route.params.users.uid);
@@ -164,7 +164,7 @@ const Consultor = ({route, navigation}) => {
         value={telefone}
       />
       <TextInput 
-        placeholder="Informe a marca"
+        placeholder="Informe o nome da marca"
         placeholderTextColor="black"
         keyboardType="default"
         returnKeyType="go"
@@ -173,8 +173,7 @@ const Consultor = ({route, navigation}) => {
       />
       {/* MODAL */}
       <Text
-        onPress={() => setModalNivelVisible(!modalNivelVisible)}
-        placeholder="Selecione seu nível">
+        onPress={() => setModalNivelVisible(!modalNivelVisible)}>
           {perfilNivel}
       </Text>
       <TextInput

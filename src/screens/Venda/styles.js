@@ -10,8 +10,7 @@ export const Container = styled.SafeAreaView`
 export const TextInput = styled.TextInput`
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  color: ${COLORS.black};
+  font-size: 18px;
   width: 90%;
   height: auto;
   border-bottom-color: ${COLORS.primary};
@@ -20,10 +19,10 @@ export const TextInput = styled.TextInput`
 `;
 
 export const Text = styled.Text`
+  color: ${COLORS.black};
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
-  color: ${COLORS.black};
+  font-size: 18px;
   width: 90%;
   height: auto;
   border-bottom-color: ${COLORS.primary};

@@ -24,7 +24,7 @@ const TextWelcome = styled.Text`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 18px;
   display: flex;
   align-items: center;
@@ -34,7 +34,7 @@ const TextUserName = styled.Text`
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 18px;
   line-height: 19px;
   display: flex;
   align-items: center;
@@ -48,7 +48,7 @@ const DrawerHeader = () => {
   return (
     <Container>
       <DivIcon>
-        <Icon name="person-outline" size={35} color={COLORS.white} />
+        <Icon name="person" size={35} color={COLORS.white} />
       </DivIcon>
       <DivText>
         <TextWelcome>Bem vindo, consultor(a)</TextWelcome>

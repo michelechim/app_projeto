@@ -9,12 +9,13 @@ export const Container = styled.SafeAreaView`
 
 export const TextInput = styled.TextInput`
   width: 90%;
-  height: 30px;
+  height: auto;
   border-bottom-color: ${COLORS.primary};
   border-bottom-width: 2px;
   padding-left: 2px;
   padding-bottom: 1px;
   margin-bottom: 5px;
+  font-size: 18px;
 `;
 
 export const Text = styled.Text`

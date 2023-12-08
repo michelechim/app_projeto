@@ -18,6 +18,7 @@ const DivContainer = styled.View`
   height: auto;
   //height: 90%;
   background-color: ${COLORS.white};
+  color: ${COLORS.black};
 `;
 
 const DivTop = styled.View`
@@ -41,7 +42,7 @@ export default (props) => {
       <Container>
         <DivContainer>
           <DivTop>
-            <Title>Selecione o cliente</Title>
+            <Title>Selecione o nome do cliente</Title>
             <Icon name="close-circle-outline" size={30} color={COLORS.primaryDark} onPress={props.closeAction}/>
           </DivTop>
           {props.children}

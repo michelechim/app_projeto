@@ -14,25 +14,24 @@ const Texto = styled.Text`
   font-size: 18px;
   color: ${COLORS.white};
 `;
-const TextGeral = styled.Text`
-  font-size: 18px;
-  color: ${COLORS.black};
-`;
+// const TextGeral = styled.Text`
+//   font-size: 18px;
+//   color: ${COLORS.black};
+// `;
 
 const Item = ({item, onPress}) => {
   return (
     <Button onPress={onPress} underlayColor="transparent">
       <>
-        <Texto>Dados Pessoais</Texto>
-        <TextGeral>Nome:{item.nome}</TextGeral>
-        <TextGeral>Email:{item.email}</TextGeral>
-        <TextGeral>Endereço:{item.endereco}</TextGeral>
-        <TextGeral>Telefone:{item.telefone}</TextGeral>
+        <Texto>Nome:{item.nome}</Texto>
+        <Texto>Email:{item.email}</Texto>
+        <Texto>Endereço:{item.endereco}</Texto>
+        <Texto>Telefone:{item.telefone}</Texto>
         <Texto>Marca: {item.marca}</Texto>
-        <TextGeral>Código de consultor:{item.perfilCodigo}</TextGeral>
-        <TextGeral>Usuário de acesso:{item.perfilUsuario}</TextGeral>
-        <TextGeral>Senha de acesso: {item.perfilSenha}</TextGeral>
-        <TextGeral>Nivel: {item.perfilNivel} - Lucratividade: {item.perfilLucratividade}</TextGeral>
+        <Texto>Código de consultor:{item.perfilCodigo}</Texto>
+        <Texto>Usuário de acesso:{item.perfilUsuario}</Texto>
+        <Texto>Senha de acesso: {item.perfilSenha}</Texto>
+        <Texto>Nivel: {item.perfilNivel} - Lucratividade: {item.perfilLucratividade}</Texto>
       </>
     </Button>
   );

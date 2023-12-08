@@ -8,7 +8,7 @@ export const Container = styled.SafeAreaView`
 `;
 
 export const Text = styled.Text`
-  font-size: 18px;
+  font-size: 20px;
   color: ${COLORS.accent};
   width: 80%;
   height: auto;
@@ -18,6 +18,7 @@ export const Text = styled.Text`
   display: flex;
   justify-content: space-between;
   flex-direction: row;
+  font-size: 18px;
 `;
 
 export const Image = styled.Image`
